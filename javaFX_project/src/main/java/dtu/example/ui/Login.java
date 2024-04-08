@@ -7,24 +7,23 @@ public class Login {
     public ArrayList<String> employees;
 
     public ArrayList<String> projectManagers;
-}
-public boolean isEmployee (String initials){
-    this.initials = initials;
+
+public boolean isEmployee (){
     return false;
 }
-public boolean isAvailable (projectManagers){
+public boolean isAvailable (){
     this.projectManagers = projectManagers;
     return false;
 }
 
-public void addEmployee (employees){
+public void addEmployee (String employees){
 
 }
 
-public void deleteEmployee(employee){
+public void deleteEmployee(){
 
 }
 
-public void addProject(project){
-
+public void addProject(String project) {
+}
 }
