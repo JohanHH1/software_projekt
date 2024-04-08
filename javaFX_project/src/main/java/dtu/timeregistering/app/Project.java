@@ -1,4 +1,4 @@
-package dtu.example.ui;
+package dtu.timeregistering.app;
 
 import java.util.ArrayList;
 
@@ -21,4 +21,6 @@ public class Project {
     }
     public void isEmployeeOnProject(String employee){
     }
+
+
 }

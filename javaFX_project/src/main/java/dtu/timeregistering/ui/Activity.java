@@ -1,4 +1,4 @@
-package dtu.example.ui;
+package dtu.timeregistering.ui;
 
 import java.util.ArrayList;
 import java.util.Calendar;

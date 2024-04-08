@@ -1,4 +1,6 @@
-package dtu.example.ui;
+package dtu.timeregistering.ui;
+
+import dtu.timeregistering.app.Project;
 
 import java.util.ArrayList;
 

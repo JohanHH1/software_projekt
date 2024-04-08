@@ -1,4 +1,4 @@
-package dtu.example.ui;
+package dtu.timeregistering.ui;
 
 public class Employee {
     private String initials;

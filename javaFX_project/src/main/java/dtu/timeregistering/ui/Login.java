@@ -1,4 +1,4 @@
-package dtu.example.ui;
+package dtu.timeregistering.ui;
 
 import java.util.ArrayList;
 
@@ -24,6 +24,5 @@ public void deleteEmployee(){
 
 }
 
-public void addProject(String project) {
-}
+
 }
