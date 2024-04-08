@@ -5,9 +5,9 @@ import java.util.Calendar;
 
 public class Activity {
     private String activityName;
-    private Calendar bugedetTime;
+    private Calendar budgetTime;
     private Calendar startWeek;
     private Calendar endWeek;
-    private ArrayList<Employee> employeeOnActicity;
+    private ArrayList<Employee> employeeOnActivity;
     private int budgetedHours;
 }
