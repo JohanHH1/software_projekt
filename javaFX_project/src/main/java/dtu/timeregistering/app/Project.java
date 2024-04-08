@@ -3,6 +3,10 @@ package dtu.timeregistering.app;
 import java.util.ArrayList;
 
 public class Project {
+    public Project(String projectName, int projectNumber){
+        this.projectName=projectName;
+        this.projectNumber=projectNumber;
+    }
     private int projectNumber;
     private String projectName;
     private ArrayList<String> activities;
