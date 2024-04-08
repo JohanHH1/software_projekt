@@ -12,7 +12,6 @@ public boolean isEmployee (){
     return false;
 }
 public boolean isAvailable (){
-    this.projectManagers = projectManagers;
     return false;
 }
 
