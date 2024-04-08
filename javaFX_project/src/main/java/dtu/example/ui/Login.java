@@ -1,4 +1,4 @@
-package example.cucumber;
+package dtu.example.ui;
 
 import java.util.ArrayList;
 
