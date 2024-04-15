@@ -7,17 +7,7 @@ Scenario: Add project successfully:
     And i add the project "project-1"
     Then "project-1" is created
 
-
-
-
-
-
-
-
-
-
-  ##When an employee enters "project-1"
-
-  #!Then "project-1" will be created with the name
-  #And the system will give it a number "2401" consisting of year and serialnumber
-  #And "project-1" is added to the list of projects
+  Scenario: Add project unsuccessfully:
+    When "project-1" already exists
+    And i add the project "project-1"
+    Then error message "A project with this name already exists" is thrown

@@ -38,7 +38,7 @@
 				<artifactId>javafx-maven-plugin</artifactId>
 				<version>0.0.8</version>
 				<configuration>
-					<mainClass>dtu.time registering.ui.App</mainClass>
+					<mainClass>dtu.time registering.app.TimeApp</mainClass>
 				</configuration>
 			</plugin>
 
