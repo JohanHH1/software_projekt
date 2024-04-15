@@ -23,7 +23,7 @@ Make sure that the main class is correctly set in the pom.xml file in the JavaFX
 
 To run the main class execute: `mvn javafx:run`. 
 
-You can also run the JavaFX application from Eclipse and IntelliJ, if you have a correctly setup `module-info.java` file in the `src/main/java` directory. Note that you have to change `opens dtu.timeregistering.ui to javafx.fxml;` to the package where you have your `.fxml` files, and `exports dtu.timeregistering.ui;` to the package, that contains your start class.
+You can also run the JavaFX application from Eclipse and IntelliJ, if you have a correctly setup `module-info.java` file in the `src/main/java` directory. Note that you have to change `opens dtu.timeregistering.domain to javafx.fxml;` to the package where you have your `.fxml` files, and `exports dtu.timeregistering.domain;` to the package, that contains your start class.
 
 More information can be found at [https://openjfx.io/openjfx-docs/](https://openjfx.io/openjfx-docs/).
 

@@ -3,8 +3,8 @@ Feature: Create project
   Actors: Employee (or already assigned Project Manager)
 
 Scenario: Add project successfully:
-    When i add the project "project-1"
-    And "project-1" does not exist
+    When "project-1" does not already exist
+    And i add the project "project-1"
     Then "project-1" is created
 
 

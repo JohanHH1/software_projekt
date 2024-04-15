@@ -1,4 +1,4 @@
-package dtu.timeregistering.ui;
+package dtu.timeregistering.domain;
 
 import java.util.ArrayList;
 import java.util.Calendar;

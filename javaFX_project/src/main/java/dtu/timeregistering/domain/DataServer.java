@@ -1,4 +1,4 @@
-package dtu.timeregistering.ui;
+package dtu.timeregistering.domain;
 
 public class DataServer {
    public void getDate(){
