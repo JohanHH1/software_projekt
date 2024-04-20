@@ -48,4 +48,8 @@ public class AddProject {
     public void error_message_is_thrown(String em)  {
         assertEquals(em,errorMessage);
     }
+
+    @And("I add the activity {string}")
+    public void iAddTheActivity(String arg0) {
+    }
 }
