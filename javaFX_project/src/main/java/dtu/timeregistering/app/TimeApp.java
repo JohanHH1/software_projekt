@@ -31,7 +31,4 @@ public class TimeApp {
     public ArrayList<String> getProjects() {
         return listOfProjects;
     }
-
-    public void addActivity(String activityName) {
-    }
 }

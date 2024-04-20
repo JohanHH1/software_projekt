@@ -10,7 +10,4 @@ public class Activity {
     private Calendar endWeek;
     private ArrayList<Employee> employeeOnActivity;
     private int budgetedHours;
-    public Activity(String name) {
-        this.activityName = name;
-    }
 }
