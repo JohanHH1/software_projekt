@@ -1,18 +1,24 @@
 package dtu.timeregistering.ui;
 import dtu.timeregistering.app.TimeApp;
+import dtu.timeregistering.domain.Project;
 
 import java.util.*;
 import java.io.*;
 public class Start {
     TimeApp timeapp = new TimeApp();
+
     public static void main(String[] args){
         new Start().start();
     }
     public void start() {
         int nr;
-        System.out.println("Welcome");
+        String chosenProject;
+        String activityName;
+        System.out.println("Welcome - please enter the corresponding number to pick the action");
         do {
+            System.out.println("0. Exit");
             System.out.println("1. Create project");
+            System.out.println("2. Create activity in project");
             Scanner console = new Scanner(System.in);
             nr = console.nextInt();
             console.nextLine();
@@ -25,7 +31,19 @@ public class Start {
                         System.out.println(e.getMessage());
                     }
 
-                System.out.println(timeapp.getProjects());
+                timeapp.displayAllProjectNames();
+
+            }
+            if (nr == 2) {
+                System.out.println("Choose project to add activity to:");
+                timeapp.displayAllProjectNames();
+                chosenProject = console.nextLine();
+                System.out.println("Enter activity name");
+                activityName = console.nextLine();
+                timeapp.createActivity(activityName,timeapp.getProject(chosenProject));
+                timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+
+
             }
         } while(nr!=0);
     }

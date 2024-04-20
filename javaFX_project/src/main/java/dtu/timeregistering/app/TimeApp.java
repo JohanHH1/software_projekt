@@ -1,5 +1,6 @@
 package dtu.timeregistering.app;
 
+import dtu.timeregistering.domain.Activity;
 import dtu.timeregistering.domain.Project;
 import dtu.timeregistering.ui.Start;
 
@@ -13,22 +14,49 @@ public class TimeApp {
     Project project;
     Start start;
 
-    ArrayList<String> listOfProjects = new ArrayList<>();
+    ArrayList<Project> listOfProjects = new ArrayList<>();
+
     public TimeApp() {
     }
 
     public void addProject(String projectName) throws IllegalArgumentException {
-        if(isIn(projectName)){
+        if (isIn(projectName)) {
             throw new IllegalArgumentException("A project with this name already exists");
         }
-        listOfProjects.add(projectName);
+        Project project = new Project(projectName);
+        listOfProjects.add(project);
     }
 
-    public boolean isIn(String projectName) throws IllegalArgumentException{
-        return listOfProjects.contains(projectName);
-        }
+    public boolean isIn(String projectName) throws IllegalArgumentException {
+        return listOfProjects.contains(getProject(projectName));
+    }
 
-    public ArrayList<String> getProjects() {
+    public ArrayList<Project> getProjects() {
         return listOfProjects;
     }
+
+    public void createActivity(String activityName, Project projectName) {
+        projectName.addActivity(activityName);
+    }
+
+    public Project getProject(String projectName) {
+        for (Project listOfProject : listOfProjects) {
+            if (projectName.equals(listOfProject.getName())) {
+                return listOfProject;
+            }
+        }
+        return null;
+    }
+
+    public void displayAllProjectNames() {
+        for (Project listOfProject : listOfProjects) {
+            System.out.println(listOfProject.getName());
+        }
+    }
+    public void displayAllActivitiesInProject(Project project) {
+        for (Activity listOfActivity : project.getListOfActivities()){
+            System.out.println(listOfActivity.getActivityName());
+        }
+    }
+
 }
