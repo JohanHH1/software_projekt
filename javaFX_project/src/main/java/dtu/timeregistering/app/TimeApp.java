@@ -7,6 +7,7 @@ import dtu.timeregistering.ui.Start;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TimeApp {
@@ -16,19 +17,23 @@ public class TimeApp {
 
     ArrayList<Project> listOfProjects = new ArrayList<>();
 
+
     public TimeApp() {
     }
 
     public void addProject(String projectName) throws IllegalArgumentException {
-        if (isIn(projectName)) {
+        if (isInProjectList(projectName)) {
             throw new IllegalArgumentException("A project with this name already exists");
         }
         Project project = new Project(projectName);
         listOfProjects.add(project);
     }
 
-    public boolean isIn(String projectName) throws IllegalArgumentException {
+    public boolean isInProjectList(String projectName) throws IllegalArgumentException {
         return listOfProjects.contains(getProject(projectName));
+    }
+    public boolean isInActivityList(String activityName) {
+        return project.getListOfActivities().contains(project.getActivity(activityName));
     }
 
     public ArrayList<Project> getProjects() {

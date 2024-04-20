@@ -22,7 +22,7 @@ public class AddProject {
 
     @When("{string} does not already exist")
     public void does_not_exist(String projectName) {
-        assertFalse(timeApp.isIn(projectName));
+        assertFalse(timeApp.isInProjectList(projectName));
     }
     @And("i add the project {string}")
     public void i_add_the_project(String projectName) throws Exception{
@@ -42,7 +42,7 @@ public class AddProject {
     @When("{string} already exists")
     public void already_exists(String projectName) {
         timeApp.addProject(projectName);
-        assertTrue(timeApp.isIn(projectName));
+        assertTrue(timeApp.isInProjectList(projectName));
     }
     @Then("error message {string} is thrown")
     public void error_message_is_thrown(String em)  {

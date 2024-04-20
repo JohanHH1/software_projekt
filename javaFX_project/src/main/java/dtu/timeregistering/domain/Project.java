@@ -29,5 +29,15 @@ public class Project {
         listOfActivities.add(activity);
     }
 
+    public Activity getActivity(String activityName) {
+        for (Activity listOfActivity : listOfActivities) {
+            if (activityName.equals(listOfActivity.getActivityName())) {
+                return listOfActivity;
+            }
+        }
+        return null;
+    }
+
+
 
 }
