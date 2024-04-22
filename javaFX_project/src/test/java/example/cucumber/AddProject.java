@@ -2,6 +2,7 @@ package example.cucumber;
 import dtu.timeregistering.app.TimeApp;
 import dtu.timeregistering.domain.Project;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -39,10 +40,9 @@ public class AddProject {
         System.out.println(projectName + " was successfully created");
     }
 
-    @When("{string} already exists")
+    @Given("project {string} already exists")
     public void already_exists(String projectName) {
         timeApp.addProject(projectName);
-        assertTrue(timeApp.isInProjectList(projectName));
     }
     @Then("error message {string} is thrown")
     public void error_message_is_thrown(String em)  {

@@ -8,6 +8,6 @@ Scenario: Add project successfully:
     Then "project-1" is created
 
   Scenario: Add project unsuccessfully:
-    When "project-1" already exists
+    Given project "project-1" already exists
     And i add the project "project-1"
     Then error message "A project with this name already exists" is thrown

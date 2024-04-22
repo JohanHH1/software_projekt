@@ -22,14 +22,20 @@ public class AddActivity {
     public void the_user_creates_in(String activityName, String projectName) {
         timeApp.createActivity(activityName, timeApp.getProject(projectName));
     }
-    @When("{string} exists in {string}")
-    public void exists_in(String activityName, String projectName) {
-        timeApp.addProject(projectName);
-        timeApp.createActivity(activityName, timeApp.getProject(projectName));
-        assertTrue(timeApp.isInActivityList(activityName));
 
-
+    @Then("the user has activity {string} in project {string}")
+    public void the_user_has_in(String activityName, String projectName) {
+        assertTrue(timeApp.isInActivityList(activityName,projectName));
     }
+
+//    @When("{string} exists in {string}")
+//    public void exists_in(String activityName, String projectName) {
+//        timeApp.addProject(projectName);
+//        timeApp.createActivity(activityName, timeApp.getProject(projectName));
+//        assertTrue(timeApp.isInActivityList(activityName));
+
+
+    //}
     @When("the user sets start week to {int} and end week to {int}")
     public void the_user_sets_start_week_to_and_end_week_to(Integer int1, Integer int2) {
         // Write code here that turns the phrase above into concrete actions

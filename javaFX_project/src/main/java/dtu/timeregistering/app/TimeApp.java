@@ -32,8 +32,9 @@ public class TimeApp {
     public boolean isInProjectList(String projectName) throws IllegalArgumentException {
         return listOfProjects.contains(getProject(projectName));
     }
-    public boolean isInActivityList(String activityName) {
-        return project.getListOfActivities().contains(project.getActivity(activityName));
+    public boolean isInActivityList(String activityName, String projectName) {
+        Project gottenProject = listOfProjects.stream().filter(project->project.getName().equals(projectName)).findFirst().orElseThrow();
+        return gottenProject.getListOfActivities().contains(gottenProject.getActivity(activityName));
     }
 
     public ArrayList<Project> getProjects() {
