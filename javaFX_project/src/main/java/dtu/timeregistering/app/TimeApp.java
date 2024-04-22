@@ -32,8 +32,8 @@ public class TimeApp {
     public boolean isInProjectList(String projectName) throws IllegalArgumentException {
         return listOfProjects.contains(getProject(projectName));
     }
-    public boolean isInActivityList(String activityName, String projectName) {
-        Project gottenProject = listOfProjects.stream().filter(project->project.getName().equals(projectName)).findFirst().orElseThrow();
+    public boolean isInActivityList(String activityName, String projectName) throws Exception {
+        Project gottenProject = listOfProjects.stream().filter(project->project.getName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
         return gottenProject.getListOfActivities().contains(gottenProject.getActivity(activityName));
     }
 
@@ -41,13 +41,15 @@ public class TimeApp {
         return listOfProjects;
     }
 
-    public void createActivity(String activityName, Project projectName) {
-        projectName.addActivity(activityName);
+    public void createActivity(String activityName, String projectName) throws Exception {
+        Project gottenProject = listOfProjects.stream().filter(project->project.getName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
+
+        gottenProject.addActivity(activityName);
     }
 
     public Project getProject(String projectName) {
         for (Project listOfProject : listOfProjects) {
-            if (projectName.equals(listOfProject.getName())) {
+            if (listOfProject.getName().equals(projectName)) {
                 return listOfProject;
             }
         }
@@ -65,4 +67,9 @@ public class TimeApp {
         }
     }
 
+    public void setTimeFrame(String activityName, String projectName, Integer startWeek, Integer endWeek) throws Exception {
+        Project gottenProject = listOfProjects.stream().filter(project->project.getName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
+        gottenProject.getActivity(activityName).setStartWeek(startWeek);
+        gottenProject.getActivity(activityName).setEndWeek(endWeek);
+    }
 }

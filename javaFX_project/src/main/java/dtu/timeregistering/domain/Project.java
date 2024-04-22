@@ -37,7 +37,14 @@ public class Project {
         }
         return null;
     }
-
-
+    public void setActivityStartWeek(int startWeek, Activity activity){
+        activity.setStartWeek(startWeek);
+    }
+    public void setActivityEndWeek(int endWeek, Activity activity){
+        activity.setEndWeek(endWeek);
+    }
+     public Boolean hasTimeFrame(Activity activity){
+         return activity.getStartWeek() != 0 && activity.getEndWeek() != 0;
+     }
 
 }
