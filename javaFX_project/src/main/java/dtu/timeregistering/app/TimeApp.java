@@ -1,6 +1,7 @@
 package dtu.timeregistering.app;
 
 import dtu.timeregistering.domain.Activity;
+import dtu.timeregistering.domain.Employee;
 import dtu.timeregistering.domain.Project;
 import dtu.timeregistering.ui.Start;
 
@@ -16,6 +17,7 @@ public class TimeApp {
     Start start;
 
     ArrayList<Project> listOfProjects = new ArrayList<>();
+    ArrayList<Employee> listOfEmployees = new ArrayList<>();
 
 
     public TimeApp() {
@@ -66,10 +68,46 @@ public class TimeApp {
             System.out.println(listOfActivity.getActivityName());
         }
     }
+    public void displayAllEmployees() {
+        for (Employee listOfEmployee : listOfEmployees){
+            System.out.println(listOfEmployee.getName());
+        }
+    }
 
     public void setTimeFrame(String activityName, String projectName, Integer startWeek, Integer endWeek) throws Exception {
         Project gottenProject = listOfProjects.stream().filter(project->project.getName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
         gottenProject.getActivity(activityName).setStartWeek(startWeek);
         gottenProject.getActivity(activityName).setEndWeek(endWeek);
+    }
+
+    public void initializeEmployees(){
+        Employee huba = new Employee("HUBA");
+        listOfEmployees.add(huba);
+        Employee joha = new Employee("JOHA");
+        listOfEmployees.add(joha);
+        Employee joma = new Employee("JOMA");
+        listOfEmployees.add(joma);
+        Employee paro = new Employee("PARO");
+        listOfEmployees.add(paro);
+        Employee lini = new Employee("LINI");
+        listOfEmployees.add(lini);
+        Employee kabe = new Employee("KABE");
+        listOfEmployees.add(kabe);
+    }
+    public Employee getEmployee(String initials) {
+        for (Employee listOfEmployee : listOfEmployees) {
+            if (listOfEmployee.getName().equals(initials)) {
+                return listOfEmployee;
+            }
+        }
+        return null;
+    }
+
+    public void logIn(String initials) {
+        getEmployee(initials).setLoggedIn(true);
+    }
+
+    public boolean isLoggedIn(String initials) {
+        return getEmployee(initials).isLoggedIn();
     }
 }

@@ -17,13 +17,19 @@ public class Start {
         String activityName;
         int startWeek;
         int endWeek;
-        System.out.println("Welcome - please enter the corresponding number to pick the action");
+        String chosenEmployee;
+        Scanner console = new Scanner(System.in);
+        timeapp.initializeEmployees();
+        System.out.println("Chose an employee:");
+        timeapp.displayAllEmployees();
+        chosenEmployee = console.nextLine();
+        timeapp.logIn(chosenEmployee);
+        System.out.println("Welcome " + chosenEmployee + " - please enter the corresponding number to pick the action");
         do {
             System.out.println("0. Exit");
             System.out.println("1. Create project");
             System.out.println("2. Create activity in project");
             System.out.println("3. Set timeframe for activity");
-            Scanner console = new Scanner(System.in);
             nr = console.nextInt();
             console.nextLine();
             if (nr == 1) {

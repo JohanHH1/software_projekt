@@ -1,23 +1,19 @@
 package example.cucumber;
 import dtu.timeregistering.app.TimeApp;
-import dtu.timeregistering.domain.Project;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.*;
 
-public class AddProject {
+public class ProjectSteps {
     private TimeApp timeApp;
     private String errorMessage;
 
 
-    public AddProject(TimeApp timeApp) {
+    public ProjectSteps(TimeApp timeApp) {
         this.timeApp = timeApp;
     }
 

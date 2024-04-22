@@ -1,7 +1,6 @@
 package example.cucumber;
 
 import dtu.timeregistering.app.TimeApp;
-import dtu.timeregistering.domain.Activity;
 import dtu.timeregistering.domain.Project;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,13 +8,13 @@ import io.cucumber.java.en.When;
 
 import static org.junit.Assert.assertTrue;
 
-public class AddActivity {
+public class ActivitySteps {
 
     private TimeApp timeApp;
     private Project project;
 
 
-    public AddActivity(TimeApp timeApp) {
+    public ActivitySteps(TimeApp timeApp) {
         this.timeApp = timeApp;
     }
 
@@ -44,9 +43,7 @@ public class AddActivity {
 
     @Given("the user has an activity {string} in project {string}")
     public void theUserHasAnActivityInProject(String activityName, String projectName) {
-        System.out.print(projectName);
         try {
-            System.out.println("hej");
             timeApp.createActivity(activityName,projectName);
         } catch (Exception e) {
             throw new RuntimeException(e);
