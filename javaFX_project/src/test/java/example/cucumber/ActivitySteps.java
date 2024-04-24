@@ -58,6 +58,9 @@ public class ActivitySteps {
     }
 
 
+    //_______________________________________________________________________________________________
+    // use-case: add_activity
+    // Scenario: Add employee to activity
     @When("employee {string} is added to activity {string} in project {string}")
     public void employeeIsAddedToActivityInProject(String initials, String activityName, String projectName) {
         timeApp.initializeEmployees();
@@ -71,6 +74,36 @@ public class ActivitySteps {
     public void employee_is_added_to_activity_list_of_employees_in_project(String initials, String activityName, String projectName) {
         assertTrue(timeApp.isInActivityListOfEmployees(activityName,initials,projectName));
     }
+    //________________________________________________________________________________________________
+
+
+    //________________________________________________________________________________________________
+    // use-case: add_activity
+    // Scenario: Add employee to project
+    @When("employee {string} is added to project {string}")
+    public void employee_is_added_to_project(String initials, String projectName) {
+        timeApp.initializeEmployees();
+        timeApp.addEmployeeToProject(initials,projectName);
+    }
+    @Then("project {string} is added to employee {string} list of projects")
+    public void project_is_added_to_employee_list_of_projects(String initials, String projectName) {
+        assertTrue(timeApp.isInEmployeesListOfProjects(initials,projectName));
+    }
+    @Then("employee {string} is added to project {string} list of employees")
+    public void employee_is_added_to_project_list_of_employees(String initials, String projectName) {
+        assertTrue(timeApp.isInProjectListOfEmployees(initials,projectName));
+    }
+
+    //________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
 
 
 }

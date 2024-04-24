@@ -3,33 +3,42 @@ package dtu.timeregistering.domain;
 import java.util.ArrayList;
 
 public class Project {
-
-    private String name;
-    private ArrayList<Activity> listOfActivities = new ArrayList<>();
+    //--------------------------------------------------------------------------------
+    // Fields
     private int projectNumber;
+    private String projectName;
+    private ArrayList<Activity> listOfActivities = new ArrayList<>();
+    private ArrayList<Employee> listOfEmployeesInProject = new ArrayList<>();
+    //--------------------------------------------------------------------------------
 
-
-    public Project(String name) {
-        this.name = name;
+    // Constructor
+    public Project(String projectName) {
+        this.projectName = projectName;
     }
 
-    public String getName() {
-        return name;
-    }
+    //--------------------------------------------------------------------------------
+    // Initialize
 
+    //--------------------------------------------------------------------------------
+    // Booleans
+    public Boolean hasTimeFrame(Activity activity){
+        return activity.getStartWeek() != 0 && activity.getEndWeek() != 0;
+    }
+    //--------------------------------------------------------------------------------
+    // Methods
+    public void addActivity(String activityName){
+        Activity activity = new Activity(activityName);
+        activity.setProjectName(projectName);
+        listOfActivities.add(activity);
+    }
+    //--------------------------------------------------------------------------------
+    // Getters
+    public String getProjectName() {
+        return projectName;
+    }
     public ArrayList<Activity> getListOfActivities() {
         return listOfActivities;
     }
-
-    public void setListOfActivities(ArrayList<Activity> listOfActivities) {
-        this.listOfActivities = listOfActivities;
-    }
-    public void addActivity(String activityName){
-        Activity activity = new Activity(activityName);
-        activity.setMyProject(name);
-        listOfActivities.add(activity);
-    }
-
     public Activity getActivity(String activityName) {
         for (Activity listOfActivity : listOfActivities) {
             if (activityName.equals(listOfActivity.getActivityName())) {
@@ -38,14 +47,25 @@ public class Project {
         }
         return null;
     }
+    public ArrayList<Employee> getListOfEmployeesInProject() {
+        return listOfEmployeesInProject;
+    }
+    //--------------------------------------------------------------------------------
+    // Setters
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+    public void setListOfActivities(ArrayList<Activity> listOfActivities) {
+        this.listOfActivities = listOfActivities;
+    }
     public void setActivityStartWeek(int startWeek, Activity activity){
         activity.setStartWeek(startWeek);
     }
     public void setActivityEndWeek(int endWeek, Activity activity){
         activity.setEndWeek(endWeek);
     }
-     public Boolean hasTimeFrame(Activity activity){
-         return activity.getStartWeek() != 0 && activity.getEndWeek() != 0;
-     }
-
+    public void setListOfEmployeesInProject(ArrayList<Employee> listOfEmployeesInProject) {
+        this.listOfEmployeesInProject = listOfEmployeesInProject;
+    }
+    //--------------------------------------------------------------------------------
 }
