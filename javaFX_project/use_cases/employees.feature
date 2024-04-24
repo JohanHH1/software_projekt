@@ -6,3 +6,4 @@ Feature: select employee
     Given employee "HUBA" already exist
     When I enter the initials "HUBA"
     Then I am logged in as initials "HUBA"
+

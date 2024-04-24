@@ -1,5 +1,6 @@
 package dtu.timeregistering.ui;
 import dtu.timeregistering.app.TimeApp;
+import dtu.timeregistering.domain.Employee;
 import dtu.timeregistering.domain.Project;
 
 import java.util.*;
@@ -13,6 +14,8 @@ public class Start {
     public void start() throws Exception {
         int nr;
         int n = 0;
+        int m = 0;
+        String employeeToAdd;
         String chosenProject;
         String activityName;
         int startWeek;
@@ -30,6 +33,7 @@ public class Start {
             System.out.println("1. Create project");
             System.out.println("2. Create activity in project");
             System.out.println("3. Set timeframe for activity");
+            System.out.println("4. Add Employee to activity");
             nr = console.nextInt();
             console.nextLine();
             if (nr == 1) {
@@ -75,6 +79,29 @@ public class Start {
                 timeapp.setTimeFrame(activityName,chosenProject, startWeek, endWeek);
                 System.out.println("Timeframe has successfully been added to " + activityName + " in project " + chosenProject);
                 System.out.println(startWeek + endWeek);
+            }
+            if (nr == 4) {
+                do {
+                    if (m >= 0){
+                        System.out.println("Please enter valid project name ");
+                    }
+                    System.out.println("Choose a project: ");
+                    timeapp.displayAllProjectNames();
+                    chosenProject = console.nextLine();
+                    m+=1;
+                } while (!timeapp.isInProjectList(chosenProject));
+                System.out.println("Enter activity name");
+                timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+                activityName = console.nextLine();
+                System.out.println("Chose an employee:");
+                timeapp.displayAllEmployees();
+                employeeToAdd = console.nextLine();
+                timeapp.addEmployeeToActivity(activityName,employeeToAdd,chosenProject);
+                System.out.println("your activities are: ");
+                timeapp.displayMyActivityList(employeeToAdd);
+
+
+
             }
         } while(nr!=0);
     }

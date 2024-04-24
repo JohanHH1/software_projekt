@@ -13,7 +13,7 @@ public class Employee {
 
     private boolean isProjectManager;
 
-    //ArrayList<Activity> myActivities = new ArrayList<>();
+    ArrayList<Activity> myActivityList = new ArrayList<>();
     public Employee(String initials) {
         this.initials = initials;
     }
@@ -73,5 +73,13 @@ public class Employee {
 
     public void setProjectManager(boolean projectManager) {
         isProjectManager = projectManager;
+    }
+
+    public ArrayList<Activity> getMyActivityList() {
+        return myActivityList;
+    }
+
+    public void setMyActivityList(ArrayList<Activity> myActivityList) {
+        this.myActivityList = myActivityList;
     }
 }

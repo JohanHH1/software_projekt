@@ -26,6 +26,7 @@ public class Project {
     }
     public void addActivity(String activityName){
         Activity activity = new Activity(activityName);
+        activity.setMyProject(name);
         listOfActivities.add(activity);
     }
 

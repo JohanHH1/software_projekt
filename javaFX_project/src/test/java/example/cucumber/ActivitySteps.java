@@ -2,6 +2,7 @@ package example.cucumber;
 
 import dtu.timeregistering.app.TimeApp;
 import dtu.timeregistering.domain.Project;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -55,5 +56,21 @@ public class ActivitySteps {
     public void theUserHasActivityInProject(String activityName, String projectName) throws Exception {
         assertTrue(timeApp.isInActivityList(activityName,projectName));
     }
+
+
+    @When("employee {string} is added to activity {string} in project {string}")
+    public void employeeIsAddedToActivityInProject(String initials, String activityName, String projectName) {
+        timeApp.initializeEmployees();
+        timeApp.addEmployeeToActivity(activityName,initials,projectName);
+    }
+    @Then("activity {string} is added to employee {string} list of activities in project {string}")
+    public void activity_is_added_to_employee_list_of_activities_in_project(String activityName, String initials, String projectName) {
+        assertTrue(timeApp.isInEmployeesListOfActivities(activityName,initials,projectName));
+    }
+    @Then("employee {string} is added to activity {string} list of employees in project {string}")
+    public void employee_is_added_to_activity_list_of_employees_in_project(String initials, String activityName, String projectName) {
+        assertTrue(timeApp.isInActivityListOfEmployees(activityName,initials,projectName));
+    }
+
 
 }

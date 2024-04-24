@@ -6,6 +6,7 @@ import dtu.timeregistering.domain.Project;
 import dtu.timeregistering.ui.Start;
 
 
+import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,5 +110,29 @@ public class TimeApp {
 
     public boolean isLoggedIn(String initials) {
         return getEmployee(initials).isLoggedIn();
+    }
+
+    public void addEmployeeToActivity(String activityName, String initials, String projectName) {
+        getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().add(getEmployee((initials)));
+        getEmployee(initials).getMyActivityList().add(getProject(projectName).getActivity(activityName));
+    }
+
+    public boolean isInEmployeesListOfActivities(String activityName, String initials, String projectName) {
+        return (getEmployee(initials).getMyActivityList().contains(getProject(projectName).getActivity(activityName)));
+    }
+
+    public boolean isInActivityListOfEmployees(String activityName, String initials, String projectName) {
+        return (getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().contains(getEmployee(initials)));
+    }
+
+    public void displayMyActivityList(String initials) {
+        for (Activity i : getEmployee(initials).getMyActivityList()){
+            System.out.println(i.getActivityName());
+        }
+    }
+    public void displayListOfEmployeesInActivity(String activityName, String projectName) {
+        for (Employee i : getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity()){
+            System.out.println(i.getName());
+        }
     }
 }
