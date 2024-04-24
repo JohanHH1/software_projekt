@@ -6,11 +6,7 @@ import dtu.timeregistering.domain.Project;
 import dtu.timeregistering.ui.Start;
 
 
-import java.lang.reflect.AccessibleObject;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class TimeApp {
 
@@ -34,6 +30,10 @@ public class TimeApp {
 
     public boolean isInProjectList(String projectName) throws IllegalArgumentException {
         return listOfProjects.contains(getProject(projectName));
+    }
+
+    public boolean isInEmployeeList(String initials) throws IllegalArgumentException {
+        return listOfEmployees.contains(getEmployee(initials));
     }
     public boolean isInActivityList(String activityName, String projectName) throws Exception {
         Project gottenProject = listOfProjects.stream().filter(project->project.getName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
@@ -135,4 +135,10 @@ public class TimeApp {
             System.out.println(i.getName());
         }
     }
+
+    public boolean isProjectManager(String initials) {
+        return getEmployee(initials).isProjectManager();
+    }
+
+    public void assignProjectmanager(String initials) {getEmployee(initials).setProjectManager((true));}
 }

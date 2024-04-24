@@ -29,4 +29,15 @@ public class EmployeeSteps {
             assertTrue(timeapp.isLoggedIn(initials));
         }
 
+
+
+
+        @When("the user assigns initials {string} as project manager")
+        public void the_user_assigns_initials_as_project_manager(String initials){
+            timeapp.assignProjectmanager(initials);
+        }
+        @Then("the user initials {string} is project manager")
+            public void the_user_initials_is_project_manager(String initials) {
+            assertTrue(timeapp.isProjectManager(initials));
+    }
     }

@@ -67,14 +67,11 @@ public class Employee {
         return initials;
     }
 
-    public boolean isProjectManager() {
-        return isProjectManager;
-    }
+    public boolean isProjectManager() { return isProjectManager;}
 
     public void setProjectManager(boolean projectManager) {
         isProjectManager = projectManager;
     }
-
     public ArrayList<Activity> getMyActivityList() {
         return myActivityList;
     }
@@ -83,3 +80,4 @@ public class Employee {
         this.myActivityList = myActivityList;
     }
 }
+

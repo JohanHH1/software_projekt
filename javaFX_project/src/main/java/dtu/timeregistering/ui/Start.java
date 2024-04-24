@@ -15,6 +15,7 @@ public class Start {
         int nr;
         int n = 0;
         int m = 0;
+        int o = 0;
         String employeeToAdd;
         String chosenProject;
         String activityName;
@@ -34,6 +35,7 @@ public class Start {
             System.out.println("2. Create activity in project");
             System.out.println("3. Set timeframe for activity");
             System.out.println("4. Add Employee to activity");
+            System.out.println("5. Assign a project manager");
             nr = console.nextInt();
             console.nextLine();
             if (nr == 1) {
@@ -99,9 +101,19 @@ public class Start {
                 timeapp.addEmployeeToActivity(activityName,employeeToAdd,chosenProject);
                 System.out.println("your activities are: ");
                 timeapp.displayMyActivityList(employeeToAdd);
-
-
-
+            }
+            if (nr == 5) {
+                do {
+                    if (o >= 0) {
+                        System.out.println("Please choose an employee as a project manager");
+                    }
+                    System.out.println("Choose an employee: ");
+                    timeapp.displayAllEmployees();
+                    chosenEmployee = console.nextLine();
+                    o += 1;
+                } while (!timeapp.isInEmployeeList(chosenEmployee));
+                    timeapp.assignProjectmanager(chosenEmployee);
+                    System.out.println(chosenEmployee + " has succesfully been assigned as project manager ");
             }
         } while(nr!=0);
     }
