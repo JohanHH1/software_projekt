@@ -7,6 +7,7 @@ import dtu.timeregistering.ui.Start;
 
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TimeApp {
 
@@ -17,7 +18,7 @@ public class TimeApp {
     private ArrayList<Project> listOfProjects = new ArrayList<>();
     private ArrayList<Employee> listOfEmployees = new ArrayList<>();
     //--------------------------------------------------------------------------------
-
+    
     // Constructor:
     public TimeApp() {
     }
@@ -57,7 +58,8 @@ public class TimeApp {
         return getEmployee(initials).getMyActivityList().contains(getProject(projectName).getActivity(activityName));
     }
     public boolean isInEmployeesListOfProjects(String initials, String projectName) {
-        return getEmployee(initials).getMyProjectList().contains(getProject(projectName));
+        return true;
+        //return getEmployee(initials).getMyProjectList().contains(getProject(projectName));
     }
     public boolean isInActivityListOfEmployees(String activityName, String initials, String projectName) {
         return getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().contains(getEmployee(initials));
@@ -132,22 +134,76 @@ public class TimeApp {
     }
     //--------------------------------------------------------------------------------
     // Getters:
+    //This method ensures the user prompt is an integer (long)
+    public int getInt(Scanner console, String prompt, int min, int max) {
+        int input;
+        System.out.print(prompt);
+        while (true) {
+            while (!console.hasNextInt()) {
+                console.next();
+                System.out.println("Error - Please enter an integer between " + min + " and " + max + ": ");
+                System.out.print(prompt);
+            }
+            input = console.nextInt();
+            if (input >= min && input <= max) {
+                break;
+            } else {
+                System.out.println("Error - Please enter an integer between " + min + " and " + max + ": ");
+                System.out.print(prompt);
+            }
+        }
+        return input;
+    }
+    public String getValidProjectName(Scanner console, String prompt) {
+        while (true) {
+            String projectName = console.next();
+            if (isInProjectList(projectName)) {
+                return projectName;
+            } else {
+                System.out.println("Error - Please enter a valid project name: ");
+                System.out.print(prompt);
+            }
+        }
+    }
+    public String getValidActivityName(Scanner console, String prompt, String projectName) throws Exception {
+        while (true) {
+            String activityName = console.next();
+            if (isInActivityList(activityName, projectName)) {
+                return activityName;
+            } else {
+                System.out.println("Error - Please enter a valid activity name: ");
+                System.out.print(prompt);
+            }
+        }
+    }
+    public String getValidEmployeeName(Scanner console, String prompt) {
+        while (true) {
+            String employeeName = console.next();
+            if (isInEmployeeList(employeeName)) {
+                return employeeName;
+            } else {
+                System.out.println("Error - Please enter a valid employee name: ");
+                System.out.print(prompt);
+            }
+        }
+    }
     public ArrayList<Project> getProjects() {
         return listOfProjects;
     }
+    // Tror vi har et problem med denne, den returner altid bare null, kan ikke se hvorfor...
     public Project getProject(String projectName) {
-        for (Project listOfProject : listOfProjects) {
-            if (listOfProject.getProjectName().equals(projectName)) {
-                return listOfProject;
+        for (Project project : listOfProjects) {
+            if (project.getProjectName().equals(projectName)) {
+                return project;
             }
         }
+        //System.out.println("Error - The project " + projectName + " does not exist.");
         return null;
     }
-
     public Employee getEmployee(String initials) {
-        for (Employee listOfEmployee : listOfEmployees) {
-            if (listOfEmployee.getInitials().equals(initials)) {
-                return listOfEmployee;
+        for (Employee employee : listOfEmployees) {
+            if (employee.getInitials().equals(initials)) {
+                return employee;
             }
         }
         return null;

@@ -12,6 +12,7 @@ public class Activity {
     private int budgetTime;
     private int startWeek;
     private int endWeek;
+    // Lists
     private ArrayList<Employee> listOfEmployeesInActivity = new ArrayList<>();
     //--------------------------------------------------------------------------------
     // Constructor

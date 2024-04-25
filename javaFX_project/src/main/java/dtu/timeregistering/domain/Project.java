@@ -7,6 +7,7 @@ public class Project {
     // Fields
     private int projectNumber;
     private String projectName;
+    // Lists
     private ArrayList<Activity> listOfActivities = new ArrayList<>();
     private ArrayList<Employee> listOfEmployeesInProject = new ArrayList<>();
     //--------------------------------------------------------------------------------

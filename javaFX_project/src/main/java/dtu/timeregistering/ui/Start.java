@@ -8,134 +8,142 @@ import java.io.*;
 public class Start {
     TimeApp timeapp = new TimeApp();
 
+    // MAIN
     public static void main(String[] args) throws Exception {
         new Start().start();
     }
+
     public void start() throws Exception {
+        // Fields:
         int nr;
-        int n = 0;
-        int m = 0;
-        int o = 0;
-        int p = 0;
+        int startWeek;
+        int endWeek;
         String employeeToAdd;
         String chosenProject;
         String activityName;
-        int startWeek;
-        int endWeek;
         String chosenEmployee;
+        // Scanner
         Scanner console = new Scanner(System.in);
+
+        // Program Starting
         timeapp.initializeEmployees();
-        System.out.println("Chose an employee:");
+
+        // Log In
+        System.out.println("Chose an employee to login as:");
         timeapp.displayAllEmployees();
-        chosenEmployee = console.nextLine();
+        chosenEmployee = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
         timeapp.logIn(chosenEmployee);
-        System.out.println("Welcome " + chosenEmployee + " - please enter the corresponding number to pick the action");
+        System.out.println("Welcome " + chosenEmployee + "!");
+
+        // List of Actions
         do {
-            System.out.println("0. Exit");
+            System.out.println("Please enter the corresponding number to pick the action");
+            System.out.println("0. Exit program");
             System.out.println("1. Create project");
             System.out.println("2. Create activity in project");
             System.out.println("3. Set timeframe for activity");
-            System.out.println("4. Add Employee to activity");
-            System.out.println("5. Add Employee to project");
+            System.out.println("4. Assign Employee to activity");
+            System.out.println("5. Assign Employee to project");
             System.out.println("6. Assign a project manager");
-            nr = console.nextInt();
+            nr = timeapp.getInt(console,"Enter a number from the list above: ", 0, 10);
             console.nextLine();
+
+            // 1. Create project
             if (nr == 1) {
-                System.out.println("Please enter projectname");
+                System.out.println("To create a new project, please enter project name: ");
                 String projectName = console.nextLine();
                     try {
                         timeapp.addProject(projectName);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-
+                System.out.println("Project " + projectName + " was created successfully!");
+                System.out.println("List of all current projects: ");
                 timeapp.displayAllProjectNames();
-
+                System.out.println();
             }
+            // 2. Create activity in project
             if (nr == 2) {
-                do {
-                    if (n >= 0){
-                        System.out.println("Please enter valid project name ");
-                    }
-                    System.out.println("Choose project to add activity to:");
-                    timeapp.displayAllProjectNames();
-                    chosenProject = console.nextLine();
-                    n+=1;
-                } while (!timeapp.isInProjectList(chosenProject));
-
-                    System.out.println("Enter activity name");
-                    activityName = console.nextLine();
-                    timeapp.createActivity(activityName, chosenProject);
-                    timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
-
-            }
-            if (nr == 3){
-                System.out.println("Choose project to add activity to:");
+                System.out.println("\nChoose a project to add activity to: ");
+                System.out.println("List of all current projects: ");
                 timeapp.displayAllProjectNames();
-                chosenProject = console.nextLine();
-                System.out.println("Enter activity name");
-                timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+                chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
+                console.nextLine(); // (Skal være her for at det virker, men gør i princippet ingenting)
+                System.out.println("To create new activity, please enter activity name: ");
                 activityName = console.nextLine();
-                System.out.println("Enter start week:");
-                startWeek = console.nextInt();
-                System.out.println("Enter end week:");
-                endWeek = console.nextInt();
+                timeapp.createActivity(activityName, chosenProject);
+                System.out.println("The activity " + activityName + " was successfully created!");
+                System.out.println("Here is a list of all current activities in project " + chosenProject + ": ");
+                timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+                System.out.println();
+            }
+            // 3. Set timeframe for activity
+            if (nr == 3){
+                System.out.println("\nTo add timeframe, first chose a project.");
+                System.out.println("List of all current projects: ");
+                timeapp.displayAllProjectNames();
+                chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
+                System.out.println("You have chosen project " + chosenProject + ".");
+                System.out.println("Which activity would you like to add timeframe to?");
+                timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+                activityName = timeapp.getValidActivityName(console,"Enter a valid acvivity name: ", chosenProject);
+                System.out.println("Start week for activity " + activityName + ": ");
+                startWeek = timeapp.getInt(console, "Enter a valid week number: ", 1, 52);
+                System.out.println("End week for activity " + activityName + ": ");
+                endWeek = timeapp.getInt(console, "Enter a valid week number: ", 1, 52);
                 timeapp.setTimeFrame(activityName,chosenProject, startWeek, endWeek);
-                System.out.println("Timeframe has successfully been added to " + activityName + " in project " + chosenProject);
-                System.out.println(startWeek + endWeek);
+                System.out.println("Timeframe has successfully been added to activity " + activityName + " in project " + chosenProject);
+                System.out.println("Start week: " + startWeek + ", End week: " + endWeek);
+                System.out.println();
             }
+            // 4. Assign Employee to activity
             if (nr == 4) {
-                do {
-                    if (m >= 0){
-                        System.out.println("Please enter valid project name ");
-                    }
-                    System.out.println("Choose a project: ");
-                    timeapp.displayAllProjectNames();
-                    chosenProject = console.nextLine();
-                    m+=1;
-                } while (!timeapp.isInProjectList(chosenProject));
-                System.out.println("Enter activity name");
+                System.out.println("\nTo assign an employee to activity, first choose a project: ");
+                System.out.println("List of all current projects: ");
+                timeapp.displayAllProjectNames();
+                chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
+                System.out.println("You have chosen project " + chosenProject + ".");
+                System.out.println("Which activity do you wish to assign an employee to: ");
+                System.out.println("List of all current activities in project " + chosenProject + ": ");
                 timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
-                activityName = console.nextLine();
-                System.out.println("Chose an employee:");
+                activityName = timeapp.getValidActivityName(console,"Enter a valid acvivity name: ", chosenProject);
+                System.out.println("Chose an employee to add to activity " + activityName + ": ");
+                System.out.println("List of all employees: ");
                 timeapp.displayAllEmployees();
-                employeeToAdd = console.nextLine();
+                employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
                 timeapp.addEmployeeToActivity(activityName,employeeToAdd,chosenProject);
-                System.out.println("your activities are: ");
+                System.out.println("Employee " + employeeToAdd + " was successfully added to activity " + activityName + " in project " + chosenProject);
+                System.out.println(employeeToAdd + " is now assigned to current activities: ");
                 timeapp.displayMyActivityList(employeeToAdd);
+                System.out.println();
             }
+            // 5. Assign Employee to project
             if (nr == 5) {
-                do {
-                    if (p >= 0){
-                        System.out.println("Please enter valid project name ");
-                    }
-                    System.out.println("Choose a project: ");
-                    timeapp.displayAllProjectNames();
-                    chosenProject = console.nextLine();
-                    p+=1;
-                } while (!timeapp.isInProjectList(chosenProject));
-                System.out.println("Chose an employee:");
+                System.out.println("\nWhich project do you wish to assign an employee to?");
+                System.out.println("List of all current projects: ");
+                timeapp.displayAllProjectNames();
+                chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
+                System.out.println("Chose an employee to assign to project " + chosenProject + ": ");
+                System.out.println("List of all employees: ");
                 timeapp.displayAllEmployees();
-                employeeToAdd = console.nextLine();
+                employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
                 timeapp.addEmployeeToProject(employeeToAdd,chosenProject);
-                System.out.println("The projects that employee " + employeeToAdd + " is assigned to, are: ");
+                System.out.println("Employee" + employeeToAdd + " was successfully added to project " + chosenProject);
+                System.out.println(employeeToAdd + " is now assigned to these current projects: ");
                 timeapp.displayMyProjectList(employeeToAdd);
+                System.out.println();
             }
+            // 6. Assign a project manager
             if (nr == 6) {
-                do {
-                    if (o >= 0) {
-                        System.out.println("Please choose an employee as a project manager");
-                    }
-                    System.out.println("Choose an employee: ");
-                    timeapp.displayAllEmployees();
-                    chosenEmployee = console.nextLine();
-                    o += 1;
-                } while (!timeapp.isInEmployeeList(chosenEmployee));
-                    timeapp.assignProjectmanager(chosenEmployee);
-                    System.out.println(chosenEmployee + " has succesfully been assigned as project manager ");
+                System.out.println("\nPlease choose an employee to assign as project manager: ");
+                System.out.println("List of all employees: ");
+                timeapp.displayAllEmployees();
+                chosenEmployee = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                timeapp.assignProjectmanager(chosenEmployee);
+                System.out.println(chosenEmployee + " has succesfully been assigned as project manager ");
+                System.out.println();
             }
         } while(nr!=0);
+        System.out.println("Exiting program as per your request");
     }
-
-    }
-
+}

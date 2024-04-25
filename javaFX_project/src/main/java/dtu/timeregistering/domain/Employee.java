@@ -12,6 +12,7 @@ public class Employee {
     private final int maxNumberOfActivities = 20;
     private boolean loggedIn;
     private boolean isProjectManager;
+    // Lists
     private ArrayList<Activity> myActivityList = new ArrayList<>();
     private ArrayList<Project> myProjectList = new ArrayList<>();
     //--------------------------------------------------------------------------------
