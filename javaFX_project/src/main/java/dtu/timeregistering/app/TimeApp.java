@@ -56,7 +56,7 @@ public class TimeApp {
     public boolean isInEmployeesListOfActivities(String activityName, String initials, String projectName) {
         return getEmployee(initials).getMyActivityList().contains(getProject(projectName).getActivity(activityName));
     }
-    public boolean isInEmployeesListOfProjects(String initials, String projectName) {
+    public boolean isInEmployeesListOfProjects(String projectName, String initials) {
         return getEmployee(initials).getMyProjectList().contains(getProject(projectName));
     }
     public boolean isInActivityListOfEmployees(String activityName, String initials, String projectName) {
@@ -127,7 +127,7 @@ public class TimeApp {
     }
     public void displayListOfEmployeesInProject(String projectName) {
         for (Employee i : getProject(projectName).getListOfEmployeesInProject()){
-            System.out.println(i.getMyProjectList());
+            System.out.println(i.getInitials());
         }
     }
     //--------------------------------------------------------------------------------
