@@ -18,7 +18,7 @@ public class TimeApp {
     private ArrayList<Project> listOfProjects = new ArrayList<>();
     private ArrayList<Employee> listOfEmployees = new ArrayList<>();
     //--------------------------------------------------------------------------------
-    
+
     // Constructor:
     public TimeApp() {
     }
