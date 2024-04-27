@@ -10,6 +10,7 @@ public class Project {
     // Lists
     private ArrayList<Activity> listOfActivities = new ArrayList<>();
     private ArrayList<Employee> listOfEmployeesInProject = new ArrayList<>();
+    private Employee projectManager;
     //--------------------------------------------------------------------------------
 
     // Constructor
@@ -51,6 +52,9 @@ public class Project {
     public ArrayList<Employee> getListOfEmployeesInProject() {
         return listOfEmployeesInProject;
     }
+    public Employee getProjectManager() {
+        return projectManager;
+    }
     //--------------------------------------------------------------------------------
     // Setters
     public void setProjectName(String projectName) {
@@ -67,6 +71,10 @@ public class Project {
     }
     public void setListOfEmployeesInProject(ArrayList<Employee> listOfEmployeesInProject) {
         this.listOfEmployeesInProject = listOfEmployeesInProject;
+    }
+
+    public void setProjectManager(Employee projectManager) {
+        this.projectManager = projectManager;
     }
     //--------------------------------------------------------------------------------
 }

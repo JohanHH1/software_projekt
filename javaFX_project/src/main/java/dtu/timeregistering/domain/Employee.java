@@ -7,8 +7,6 @@ public class Employee {
     //--------------------------------------------------------------------------------
     // Fields:
     private String initials;
-    private boolean isVacation;
-    private boolean isSick;
     private final int maxNumberOfActivities = 20;
     private boolean loggedIn;
     private boolean isProjectManager;
@@ -16,6 +14,8 @@ public class Employee {
     // Lists
     private ArrayList<Activity> myActivityList = new ArrayList<>();
     private ArrayList<Project> myProjectList = new ArrayList<>();
+    private ArrayList<Integer> unavailableWeeks = new ArrayList<>();
+
     //--------------------------------------------------------------------------------
     // Constructor
     public Employee(String initials) {
@@ -35,12 +35,7 @@ public class Employee {
     public boolean isAvailable(){
         return false;
     }
-    public boolean isVacation() {
-        return isVacation;
-    }
-    public boolean isSick() {
-        return isSick;
-    }
+
     //--------------------------------------------------------------------------------
     // Methods
 
@@ -63,6 +58,11 @@ public class Employee {
         return hours;
     }
     public int getHoursWorked() {return hoursWorked;}
+
+    public ArrayList<Integer> getUnavailableWeeks() {
+        return unavailableWeeks;
+    }
+
     //--------------------------------------------------------------------------------
     // Setters
     public void setLoggedIn(boolean loggedIn) {
@@ -80,13 +80,9 @@ public class Employee {
     public void setInitials(String initials) {
         this.initials = initials;
     }
-    public void setVacation(boolean vacation) {
-        isVacation = vacation;
-    }
-    public void setSick(boolean sick) {
-        isSick = sick;
-    }
     public void setHoursWorked(int hoursWorked) {this.hoursWorked = hoursWorked;}
+
+
 
     //--------------------------------------------------------------------------------
     }

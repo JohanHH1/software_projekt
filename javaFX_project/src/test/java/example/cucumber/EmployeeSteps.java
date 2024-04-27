@@ -67,4 +67,37 @@ public class EmployeeSteps {
     public void employeeHoursWorkedIsUpdatedToHoursMore(String initials, int hours) {
         assertTrue(timeapp.getEmployee(initials).getHoursWorked()==hours);
     }
+
+    @When("employee {string} marks himself unavailable in week {int}")
+    public void employee_marks_himself_unavailable_in_week(String initials, Integer unavailableWeek) {
+        timeapp.markEmployeeUnavailableSingleWeek(initials,unavailableWeek);
+
+    }
+    @Then("employee {string} is unavailable in week {int}")
+    public void employee_is_unavailable_in_week(String initials, Integer unavailableWeek) {
+        assertTrue(timeapp.getEmployee(initials).getUnavailableWeeks().contains(unavailableWeek));
+    }
+    @When("employee {string} marks himself unavailable in week {int} to week {int}")
+    public void employee_marks_himself_unavailable_in_week_to_week(String initials, Integer startWeekUnavailable, Integer endWeekUnavailable) {
+        timeapp.markEmployeeUnavailableSeveralWeeks(initials, startWeekUnavailable, endWeekUnavailable);
+    }
+    @Then("employee {string} is unavailable in week {int} to week {int}")
+    public void employee_is_unavailable_in_week_to_week(String initials, Integer startWeekUnavailable, Integer endWeekUnavailable) {
+       for (int i = startWeekUnavailable; i <= endWeekUnavailable; i++) {
+           assertTrue(timeapp.getEmployee(initials).getUnavailableWeeks().contains(i));
+       }
+
+    }
+
+    @When("the user assigns initials {string} as project manager for project {string}")
+    public void theUserAssignsInitialsAsProjectManagerForProject(String initials, String projectName) {
+        timeapp.assignProjectManagerToProject(initials,projectName);
+    }
+
+
+    @Then("the user initials {string} is project manager for project {string}")
+    public void theUserInitialsIsProjectManagerForProject(String initials, String projectName) {
+        assertTrue(timeapp.isProjectManagerOnProject(initials, projectName));
+    }
+
 }

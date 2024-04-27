@@ -227,5 +227,25 @@ public class TimeApp {
         gottenProject.getActivity(activityName).setStartWeek(startWeek);
         gottenProject.getActivity(activityName).setEndWeek(endWeek);
     }
+
+    public void markEmployeeUnavailableSingleWeek(String initials, Integer unavailableWeek) {
+        getEmployee(initials).getUnavailableWeeks().add(unavailableWeek);
+
+    }
+
+    public void markEmployeeUnavailableSeveralWeeks(String initials, Integer startWeekUnavailable, Integer endWeekUnavailable) {
+        for (int i = startWeekUnavailable; i <= endWeekUnavailable; i++) {
+            getEmployee(initials).getUnavailableWeeks().add(i);
+        }
+    }
+
+    public boolean isProjectManagerOnProject(String initials, String projectName) {
+        return (getProject(projectName).getProjectManager()==getEmployee(initials));
+    }
+
+    public void assignProjectManagerToProject(String initials, String projectName) {
+        getProject(projectName).setProjectManager(getEmployee(initials));
+        getEmployee(initials).getMyProjectList().add(getProject(projectName));
+    }
     //--------------------------------------------------------------------------------
 }
