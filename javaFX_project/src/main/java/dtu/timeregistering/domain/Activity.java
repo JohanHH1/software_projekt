@@ -12,6 +12,7 @@ public class Activity {
     private int budgetTime;
     private int startWeek;
     private int endWeek;
+    private int hoursSpentOnActivity;
     // Lists
     private ArrayList<Employee> listOfEmployeesInActivity = new ArrayList<>();
     //--------------------------------------------------------------------------------
@@ -41,6 +42,9 @@ public class Activity {
     public ArrayList<Employee> getListOfEmployeesInActivity() {
         return listOfEmployeesInActivity;
     }
+    public int getHoursSpentOnActivity() {
+        return hoursSpentOnActivity;
+    }
     //--------------------------------------------------------------------------------
     // Setters
     public void setActivityName(String activityName) {
@@ -58,6 +62,10 @@ public class Activity {
     public void setListOfEmployeesInActivity(ArrayList<Employee> listOfEmployeesInActivity) {
         this.listOfEmployeesInActivity = listOfEmployeesInActivity;
     }
+    public void setHoursSpentOnActivity(int hoursSpentOnActivity) {
+        this.hoursSpentOnActivity = hoursSpentOnActivity;
+    }
+
     //--------------------------------------------------------------------------------
 
 }

@@ -2,6 +2,7 @@ package example.cucumber;
 
 import dtu.timeregistering.app.TimeApp;
 import dtu.timeregistering.domain.Project;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -46,4 +47,24 @@ public class EmployeeSteps {
         assertTrue(timeapp.isProjectManager(initials));
     }
     //----------------------------------------------------------------------------------------------------
+    //Feature: employees,      Scenario: employee registers hours
+    @Given("employee {string} is assigned to the activity {string} in project {string}")
+    public void employee_is_assigned_to_the_activity_in_project(String initials, String activityName, String projectName) {
+        timeapp.addEmployeeToActivity(activityName,initials,projectName);
+    }
+
+    @When("employee {string} enters {int} hours spent on activity {string} in project {string}")
+    public void employeeEntersHoursSpentOnActivityInProject(String initials, int hours, String activityName, String projectName) {
+        timeapp.addHoursToActivityAndEmployee(activityName,initials,projectName,hours);
+    }
+
+    @Then("activity {string} in project {string} is updated with {int} hours spent")
+    public void activityInProjectIsUpdatedWithHoursSpent(String activityName, String projectName, int hours) {
+        assertTrue(timeapp.getProject(projectName).getActivity(activityName).getHoursSpentOnActivity()==hours);
+    }
+
+    @And("employee {string} hours worked is updated to {int} hours more")
+    public void employeeHoursWorkedIsUpdatedToHoursMore(String initials, int hours) {
+        assertTrue(timeapp.getEmployee(initials).getHoursWorked()==hours);
+    }
 }

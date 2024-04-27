@@ -18,6 +18,7 @@ public class Start {
         int nr;
         int startWeek;
         int endWeek;
+        int hoursWorked;
         String employeeToAdd;
         String chosenProject;
         String activityName;
@@ -37,6 +38,29 @@ public class Start {
 
         // List of Actions
         do {
+            //create project
+            //select project
+                //select project manager
+                //manage activity
+                    //create activities
+                    //add timeframe
+                    //assign employee
+                    //register hours
+                //edit project
+            //manage employees
+                //register unavailable
+                //assign employee
+                //register hours
+                //edit hours
+                //see my activities
+                //see my hours
+            //project Manager
+                //available employees
+                //assign Employees
+                //get hours spent on project (total hours on activities)
+                //set budgeted hours on activities
+
+            //
             System.out.println("Please enter the corresponding number to pick the action");
             System.out.println("0. Exit program");
             System.out.println("1. Create project");
@@ -45,6 +69,7 @@ public class Start {
             System.out.println("4. Assign Employee to activity");
             System.out.println("5. Assign Employee to project");
             System.out.println("6. Assign a project manager");
+            System.out.println("7. Add hours worked on activities");
             nr = timeapp.getInt(console,"Enter a number from the list above: ", 0, 10);
             console.nextLine();
 
@@ -86,7 +111,7 @@ public class Start {
                 System.out.println("You have chosen project " + chosenProject + ".");
                 System.out.println("Which activity would you like to add timeframe to?");
                 timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
-                activityName = timeapp.getValidActivityName(console,"Enter a valid acvivity name: ", chosenProject);
+                activityName = timeapp.getValidActivityName(console,"Enter a valid activity name: ", chosenProject);
                 System.out.println("Start week for activity " + activityName + ": ");
                 startWeek = timeapp.getInt(console, "Enter a valid week number: ", 1, 52);
                 System.out.println("End week for activity " + activityName + ": ");
@@ -106,7 +131,7 @@ public class Start {
                 System.out.println("Which activity do you wish to assign an employee to: ");
                 System.out.println("List of all current activities in project " + chosenProject + ": ");
                 timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
-                activityName = timeapp.getValidActivityName(console,"Enter a valid acvivity name: ", chosenProject);
+                activityName = timeapp.getValidActivityName(console,"Enter a valid activity name: ", chosenProject);
                 System.out.println("Chose an employee to add to activity " + activityName + ": ");
                 System.out.println("List of all employees: ");
                 timeapp.displayAllEmployees();
@@ -140,10 +165,27 @@ public class Start {
                 timeapp.displayAllEmployees();
                 chosenEmployee = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
                 timeapp.assignProjectmanager(chosenEmployee);
-                System.out.println(chosenEmployee + " has succesfully been assigned as project manager ");
+                System.out.println(chosenEmployee + " has successfully been assigned as project manager ");
                 System.out.println();
             }
-        } while(nr!=0);
+            if (nr == 7) {
+                System.out.println("\nTo add your hours, first chose a project.");
+                System.out.println("List of all current projects: ");
+                timeapp.displayAllProjectNames();
+                chosenProject = timeapp.getValidProjectName(console, "Enter a valid project name: ");
+                System.out.println("You have chosen project " + chosenProject + ".");
+                System.out.println("Which activity would you like to add hours worked to?");
+                timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+                activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", chosenProject);
+                System.out.println("Please enter hours worked on activity ");
+                hoursWorked = console.nextInt();
+                console.nextLine();
+                timeapp.addHoursToActivityAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
+                System.out.println(hoursWorked + " hours added to activity " + activityName + " in project " + chosenProject);
+                System.out.println(hoursWorked + " hours added to " + chosenEmployee + " worked hours");
+                System.out.println("Your total hours worked are: "+ timeapp.getEmployee(chosenEmployee).getHoursWorked());
+            }
+            } while(nr!=0);
         System.out.println("Exiting program as per your request");
     }
 }

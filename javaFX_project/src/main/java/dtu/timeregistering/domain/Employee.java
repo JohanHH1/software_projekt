@@ -12,6 +12,7 @@ public class Employee {
     private final int maxNumberOfActivities = 20;
     private boolean loggedIn;
     private boolean isProjectManager;
+    private int hoursWorked;
     // Lists
     private ArrayList<Activity> myActivityList = new ArrayList<>();
     private ArrayList<Project> myProjectList = new ArrayList<>();
@@ -61,6 +62,7 @@ public class Employee {
     public int registerTime(int hours, String initials){
         return hours;
     }
+    public int getHoursWorked() {return hoursWorked;}
     //--------------------------------------------------------------------------------
     // Setters
     public void setLoggedIn(boolean loggedIn) {
@@ -84,5 +86,7 @@ public class Employee {
     public void setSick(boolean sick) {
         isSick = sick;
     }
+    public void setHoursWorked(int hoursWorked) {this.hoursWorked = hoursWorked;}
+
     //--------------------------------------------------------------------------------
-}
+    }

@@ -95,6 +95,18 @@ public class TimeApp {
         getEmployee(initials).getMyProjectList().add(getProject(projectName));
     }
     public void assignProjectmanager(String initials) {getEmployee(initials).setProjectManager((true));}
+
+    public void addHoursToActivityAndEmployee(String activityName, String initials, String projectName,int hours) {
+        addHoursToActivity(activityName, projectName, hours);
+        addHoursToEmployee(initials, hours);
+    }
+    public void addHoursToActivity(String activityName, String projectName,int hours) {
+        getProject(projectName).getActivity(activityName).setHoursSpentOnActivity(getProject(projectName).getActivity(activityName).getHoursSpentOnActivity()+hours);
+
+    }
+    public void addHoursToEmployee(String initials,int hours) {
+        getEmployee(initials).setHoursWorked(getEmployee(initials).getHoursWorked()+hours);
+    }
     //--------------------------------------------------------------------------------
     // DISPLAY METHODS:
     public void displayAllProjectNames() {
@@ -190,7 +202,7 @@ public class TimeApp {
     public ArrayList<Project> getProjects() {
         return listOfProjects;
     }
-    // Tror vi har et problem med denne, den returner altid bare null, kan ikke se hvorfor...
+
     public Project getProject(String projectName) {
         for (Project project : listOfProjects) {
             if (project.getProjectName().equals(projectName)) {
