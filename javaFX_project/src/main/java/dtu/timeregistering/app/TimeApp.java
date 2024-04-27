@@ -227,5 +227,10 @@ public class TimeApp {
         gottenProject.getActivity(activityName).setStartWeek(startWeek);
         gottenProject.getActivity(activityName).setEndWeek(endWeek);
     }
+
+    public void markEmployeeUnavailable(String initials, Integer unavailableWeek) {
+        getEmployee(initials).getUnavailableWeeks().add(unavailableWeek);
+
+    }
     //--------------------------------------------------------------------------------
 }

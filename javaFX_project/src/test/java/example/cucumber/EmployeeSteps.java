@@ -67,4 +67,14 @@ public class EmployeeSteps {
     public void employeeHoursWorkedIsUpdatedToHoursMore(String initials, int hours) {
         assertTrue(timeapp.getEmployee(initials).getHoursWorked()==hours);
     }
+
+    @When("employee {string} marks himself unavailable in week {int}")
+    public void employee_marks_himself_unavailable_in_week(String initials, Integer unavailableWeek) {
+        timeapp.markEmployeeUnavailable(initials,unavailableWeek);
+
+    }
+    @Then("employee {string} is unavailable in week {int}")
+    public void employee_is_unavailable_in_week(String initials, Integer unavailableWeek) {
+        assertTrue(timeapp.getEmployee(initials).getUnavailableWeeks().contains(unavailableWeek));
+    }
 }
