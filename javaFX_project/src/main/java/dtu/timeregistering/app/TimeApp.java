@@ -237,7 +237,15 @@ public class TimeApp {
         for (int i = startWeekUnavailable; i <= endWeekUnavailable; i++) {
             getEmployee(initials).getUnavailableWeeks().add(i);
         }
+    }
 
+    public boolean isProjectManagerOnProject(String initials, String projectName) {
+        return (getProject(projectName).getProjectManager()==getEmployee(initials));
+    }
+
+    public void assignProjectManagerToProject(String initials, String projectName) {
+        getProject(projectName).setProjectManager(getEmployee(initials));
+        getEmployee(initials).getMyProjectList().add(getProject(projectName));
     }
     //--------------------------------------------------------------------------------
 }

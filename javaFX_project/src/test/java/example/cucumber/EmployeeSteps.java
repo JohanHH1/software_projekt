@@ -88,4 +88,16 @@ public class EmployeeSteps {
        }
 
     }
+
+    @When("the user assigns initials {string} as project manager for project {string}")
+    public void theUserAssignsInitialsAsProjectManagerForProject(String initials, String projectName) {
+        timeapp.assignProjectManagerToProject(initials,projectName);
+    }
+
+
+    @Then("the user initials {string} is project manager for project {string}")
+    public void theUserInitialsIsProjectManagerForProject(String initials, String projectName) {
+        assertTrue(timeapp.isProjectManagerOnProject(initials, projectName));
+    }
+
 }
