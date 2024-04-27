@@ -70,11 +70,22 @@ public class EmployeeSteps {
 
     @When("employee {string} marks himself unavailable in week {int}")
     public void employee_marks_himself_unavailable_in_week(String initials, Integer unavailableWeek) {
-        timeapp.markEmployeeUnavailable(initials,unavailableWeek);
+        timeapp.markEmployeeUnavailableSingleWeek(initials,unavailableWeek);
 
     }
     @Then("employee {string} is unavailable in week {int}")
     public void employee_is_unavailable_in_week(String initials, Integer unavailableWeek) {
         assertTrue(timeapp.getEmployee(initials).getUnavailableWeeks().contains(unavailableWeek));
+    }
+    @When("employee {string} marks himself unavailable in week {int} to week {int}")
+    public void employee_marks_himself_unavailable_in_week_to_week(String initials, Integer startWeekUnavailable, Integer endWeekUnavailable) {
+        timeapp.markEmployeeUnavailableSeveralWeeks(initials, startWeekUnavailable, endWeekUnavailable);
+    }
+    @Then("employee {string} is unavailable in week {int} to week {int}")
+    public void employee_is_unavailable_in_week_to_week(String initials, Integer startWeekUnavailable, Integer endWeekUnavailable) {
+       for (int i = startWeekUnavailable; i <= endWeekUnavailable; i++) {
+           assertTrue(timeapp.getEmployee(initials).getUnavailableWeeks().contains(i));
+       }
+
     }
 }

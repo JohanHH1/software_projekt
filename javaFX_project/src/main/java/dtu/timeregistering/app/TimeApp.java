@@ -228,8 +228,15 @@ public class TimeApp {
         gottenProject.getActivity(activityName).setEndWeek(endWeek);
     }
 
-    public void markEmployeeUnavailable(String initials, Integer unavailableWeek) {
+    public void markEmployeeUnavailableSingleWeek(String initials, Integer unavailableWeek) {
         getEmployee(initials).getUnavailableWeeks().add(unavailableWeek);
+
+    }
+
+    public void markEmployeeUnavailableSeveralWeeks(String initials, Integer startWeekUnavailable, Integer endWeekUnavailable) {
+        for (int i = startWeekUnavailable; i <= endWeekUnavailable; i++) {
+            getEmployee(initials).getUnavailableWeeks().add(i);
+        }
 
     }
     //--------------------------------------------------------------------------------

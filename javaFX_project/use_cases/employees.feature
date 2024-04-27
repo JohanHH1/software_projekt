@@ -20,8 +20,11 @@ Feature: select employee
       Given employee "HUBA" already exist
       When employee "HUBA" marks himself unavailable in week 1
       Then employee "HUBA" is unavailable in week 1
-    
 
+  Scenario: Employee registers as unavailable for several weeks
+      Given employee "HUBA" already exist
+      When employee "HUBA" marks himself unavailable in week 1 to week 7
+      Then employee "HUBA" is unavailable in week 1 to week 7
 
 
 
