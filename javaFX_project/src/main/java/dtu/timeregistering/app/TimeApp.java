@@ -44,13 +44,23 @@ public class TimeApp {
     public boolean isInProjectList(String projectName) throws IllegalArgumentException {
         return listOfProjects.contains(getProject(projectName));
     }
-    public boolean isInEmployeeList(String initials) throws IllegalArgumentException {
-        return listOfEmployees.contains(getEmployee(initials));
-    }
     public boolean isInActivityList(String activityName, String projectName) throws Exception {
         Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
         return gottenProject.getListOfActivities().contains(gottenProject.getActivity(activityName));
     }
+
+    public boolean isEmptyActivitylist(String projectName) throws Exception {
+        Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Project " + projectName + " doesn't exist"));
+        return gottenProject.getListOfActivities().isEmpty();
+    }
+    public boolean isEmptyProjectList() throws IllegalArgumentException {
+        return listOfProjects.isEmpty();
+    }
+
+    public boolean isInEmployeeList(String initials) throws IllegalArgumentException {
+        return listOfEmployees.contains(getEmployee(initials));
+    }
+
     public boolean isLoggedIn(String initials) {
         return getEmployee(initials).isLoggedIn();
     }
@@ -58,8 +68,7 @@ public class TimeApp {
         return getEmployee(initials).getMyActivityList().contains(getProject(projectName).getActivity(activityName));
     }
     public boolean isInEmployeesListOfProjects(String initials, String projectName) {
-        return true;
-        //return getEmployee(initials).getMyProjectList().contains(getProject(projectName));
+        return getEmployee(initials).getMyProjectList().contains(getProject(projectName));
     }
     public boolean isInActivityListOfEmployees(String activityName, String initials, String projectName) {
         return getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().contains(getEmployee(initials));
@@ -90,10 +99,12 @@ public class TimeApp {
         getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().add(getEmployee((initials)));
         getEmployee(initials).getMyActivityList().add(getProject(projectName).getActivity(activityName));
     }
+
     public void addEmployeeToProject(String initials, String projectName) {
         getProject(projectName).getListOfEmployeesInProject().add(getEmployee((initials)));
         getEmployee(initials).getMyProjectList().add(getProject(projectName));
     }
+
     public void assignProjectmanager(String initials) {getEmployee(initials).setProjectManager((true));}
 
     public void addHoursToActivityAndEmployee(String activityName, String initials, String projectName,int hours) {
@@ -209,7 +220,7 @@ public class TimeApp {
                 return project;
             }
         }
-        //System.out.println("Error - The project " + projectName + " does not exist.");
+        System.out.println("Error - The project " + projectName + " does not exist.");
         return null;
     }
     public Employee getEmployee(String initials) {
@@ -218,6 +229,7 @@ public class TimeApp {
                 return employee;
             }
         }
+        System.out.println("ERROR - Employee with initials " + initials + " not found");
         return null;
     }
     //--------------------------------------------------------------------------------

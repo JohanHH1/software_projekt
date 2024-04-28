@@ -23,7 +23,8 @@ Scenario: Add employee to activity
   Then activity "activity1" is added to employee "HUBA" list of activities in project "project-1"
   And employee "HUBA" is added to activity "activity1" list of employees in project "project-1"
 
-  Scenario: Add employee to project
+# Scenario 4:
+Scenario: Add employee to project
   Given project "project-1" already exists
   When employee "HUBA" is added to project "project-1"
   Then project "project-1" is added to employee "HUBA" list of projects

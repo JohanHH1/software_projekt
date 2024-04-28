@@ -83,7 +83,7 @@ public class ActivitySteps {
     }
     @Then("project {string} is added to employee {string} list of projects")
     public void project_is_added_to_employee_list_of_projects(String projectName, String initials) {
-        assertTrue(timeApp.isInEmployeesListOfProjects(projectName,initials));
+        assertTrue(timeApp.isInEmployeesListOfProjects(initials, projectName));
     }
     @Then("employee {string} is added to project {string} list of employees")
     public void employee_is_added_to_project_list_of_employees(String initials, String projectName) {
