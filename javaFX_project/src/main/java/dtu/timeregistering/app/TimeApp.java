@@ -233,11 +233,14 @@ public class TimeApp {
         return null;
     }
 
-    public ArrayList<Employee> getListOfAvailableEmployees(Integer startWeek, Integer endWeek) {
+    public ArrayList<Employee> getListOfAvailableEmployees(Integer startWeek, Integer endWeek) throws Exception {
         for (Employee employee : listOfEmployees) {
             if (!employee.getUnavailableWeeks().contains(startWeek) && !employee.getUnavailableWeeks().contains(endWeek)) {
                 listOfAvailableEmployees.add(employee);
             }
+        }
+        if(listOfAvailableEmployees.isEmpty()){
+            throw new Exception("There are no available employees in your requested timeframe");
         }
         return listOfAvailableEmployees;
     }
@@ -271,6 +274,7 @@ public class TimeApp {
     }
     public boolean employeeIsAvailable(String initials, Integer startWeek, Integer endWeek){
         if(!getEmployee(initials).getUnavailableWeeks().contains(startWeek) && !getEmployee(initials).getUnavailableWeeks().contains(endWeek)) {
+            getEmployee(initials).setAvailable(true);
             return getEmployee(initials).isAvailable();
         }
         return false;

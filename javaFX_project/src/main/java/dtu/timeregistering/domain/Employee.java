@@ -83,7 +83,8 @@ public class Employee {
     }
     public void setHoursWorked(int hoursWorked) {this.hoursWorked = hoursWorked;}
 
-
-
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
     //--------------------------------------------------------------------------------
     }
