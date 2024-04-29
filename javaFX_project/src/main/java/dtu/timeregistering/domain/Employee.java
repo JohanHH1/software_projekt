@@ -11,6 +11,7 @@ public class Employee {
     private boolean loggedIn;
     private boolean isProjectManager;
     private int hoursWorked;
+    private boolean isAvailable;
     // Lists
     private ArrayList<Activity> myActivityList = new ArrayList<>();
     private ArrayList<Project> myProjectList = new ArrayList<>();
@@ -33,7 +34,7 @@ public class Employee {
         return isProjectManager;
     }
     public boolean isAvailable(){
-        return false;
+        return isAvailable;
     }
 
     //--------------------------------------------------------------------------------

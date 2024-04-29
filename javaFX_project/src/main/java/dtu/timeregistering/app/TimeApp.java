@@ -17,6 +17,7 @@ public class TimeApp {
     private Start start;
     private ArrayList<Project> listOfProjects = new ArrayList<>();
     private ArrayList<Employee> listOfEmployees = new ArrayList<>();
+    private ArrayList<Employee> listOfAvailableEmployees = new ArrayList<>();
     //--------------------------------------------------------------------------------
 
     // Constructor:
@@ -220,7 +221,6 @@ public class TimeApp {
                 return project;
             }
         }
-        System.out.println("Error - The project " + projectName + " does not exist.");
         return null;
     }
     public Employee getEmployee(String initials) {
@@ -232,6 +232,16 @@ public class TimeApp {
         System.out.println("ERROR - Employee with initials " + initials + " not found");
         return null;
     }
+
+    public ArrayList<Employee> getListOfAvailableEmployees(Integer startWeek, Integer endWeek) {
+        for (Employee employee : listOfEmployees) {
+            if (!employee.getUnavailableWeeks().contains(startWeek) && !employee.getUnavailableWeeks().contains(endWeek)) {
+                listOfAvailableEmployees.add(employee);
+            }
+        }
+        return listOfAvailableEmployees;
+    }
+
     //--------------------------------------------------------------------------------
     // Setters:
     public void setTimeFrame(String activityName, String projectName, Integer startWeek, Integer endWeek) throws Exception {
@@ -258,6 +268,12 @@ public class TimeApp {
     public void assignProjectManagerToProject(String initials, String projectName) {
         getProject(projectName).setProjectManager(getEmployee(initials));
         getEmployee(initials).getMyProjectList().add(getProject(projectName));
+    }
+    public boolean employeeIsAvailable(String initials, Integer startWeek, Integer endWeek){
+        if(!getEmployee(initials).getUnavailableWeeks().contains(startWeek) && !getEmployee(initials).getUnavailableWeeks().contains(endWeek)) {
+            return getEmployee(initials).isAvailable();
+        }
+        return false;
     }
     //--------------------------------------------------------------------------------
 }

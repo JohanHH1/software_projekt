@@ -86,9 +86,7 @@ public class EmployeeSteps {
        for (int i = startWeekUnavailable; i <= endWeekUnavailable; i++) {
            assertTrue(timeapp.getEmployee(initials).getUnavailableWeeks().contains(i));
        }
-
     }
-
     @When("the user assigns initials {string} as project manager for project {string}")
     public void theUserAssignsInitialsAsProjectManagerForProject(String initials, String projectName) {
         timeapp.assignProjectManagerToProject(initials,projectName);
@@ -100,4 +98,17 @@ public class EmployeeSteps {
         assertTrue(timeapp.isProjectManagerOnProject(initials, projectName));
     }
 
+    // Feature get available employees
+    @Given("there exists an available user {string} from week {int} till week {int}")
+    public void there_exists_an_available_user_from_week_till_week(String initials, Integer startWeek, Integer endWeek) {
+        timeapp.employeeIsAvailable(initials,startWeek,endWeek);
+    }
+    @When("the user requests list of available employees from week {int} till week {int}")
+    public void the_user_requests_list_of_available_employees_from_week_till_week(Integer startWeek, Integer endWeek) {
+        timeapp.getListOfAvailableEmployees(startWeek,endWeek);
+    }
+    @Then("the user is given list of available employees in week {int} till week {int} containing at least {string}")
+    public void the_user_is_given_list_of_available_employees_in_week_till_week_containing_at_least(Integer startWeek, Integer endWeek, String initials) {
+        assertTrue(timeapp.getListOfAvailableEmployees(startWeek,endWeek).contains(timeapp.getEmployee(initials)));
+    }
 }
