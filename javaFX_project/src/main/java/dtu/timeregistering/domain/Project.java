@@ -7,7 +7,7 @@ public class Project {
     // Fields
     private int projectNumber;
     private String projectName;
-    private boolean hasProjectManager=true;
+    private boolean hasProjectManager;
     // Lists
     private ArrayList<Activity> listOfActivities = new ArrayList<>();
     private ArrayList<Employee> listOfEmployeesInProject = new ArrayList<>();
@@ -45,13 +45,15 @@ public class Project {
         return listOfActivities;
     }
     public Activity getActivity(String activityName) {
-        for (Activity listOfActivity : listOfActivities) {
-            if (activityName.equals(listOfActivity.getActivityName())) {
-                return listOfActivity;
+        String normalizedActivityName = activityName.toLowerCase(); // Convert activity name to lowercase
+        for (Activity activity : listOfActivities) {
+            if (activityName.equalsIgnoreCase(activity.getActivityName())) {
+                return activity;
             }
         }
         return null;
     }
+
     public ArrayList<Employee> getListOfEmployeesInProject() {
         return listOfEmployeesInProject;
     }

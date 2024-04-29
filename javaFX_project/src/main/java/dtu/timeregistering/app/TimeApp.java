@@ -42,21 +42,42 @@ public class TimeApp {
         Employee kabe = new Employee("KABE");
         listOfEmployees.add(kabe);
     }
-    public void initializeActivities() {
-
+    public void initializeProjectsAndActivities() {
+        for (int i = 1; i <= 5; i++) {  // Creating 5 projects
+            Project project = new Project("Project" + i);
+            listOfProjects.add(project);
+            for (int j = 1; j <= 3; j++) { // Adding 3 activities to each of the 5 projects
+                Activity activity = new Activity("Activity" + j);
+                project.addActivity(activity.getActivityName());
+                for (Employee employee : listOfEmployees) {     // assigning all employees to all activities
+                    addEmployeeToActivity(activity.getActivityName(), employee.getInitials(), project.getProjectName());
+                }
+            }
+        }
     }
+
     //--------------------------------------------------------------------------------
     //Booleans:
     public boolean isInProjectList(String projectName) throws IllegalArgumentException {
-        return listOfProjects.contains(getProject(projectName));
-    }
-    public boolean isInActivityList(String activityName, String projectName) throws Exception {
-        Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
-        return gottenProject.getListOfActivities().contains(gottenProject.getActivity(activityName));
+        String normalizedProjectName = projectName.toLowerCase(); // Convert project name to lowercase
+        for (Project project : listOfProjects) {
+            if (project.getProjectName().toLowerCase().equals(normalizedProjectName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public boolean isEmptyActivitylist(String projectName) throws Exception {
-        Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Project " + projectName + " doesn't exist"));
+    public boolean isInActivityList(String activityName, String projectName) throws Exception {
+        String normalizedActivityName = activityName.toLowerCase(); // Convert activity name to lowercase
+        String normalizedProjectName = projectName.toLowerCase(); // Convert project name to lowercase
+        Project gottenProject = listOfProjects.stream().filter(project -> project.getProjectName().toLowerCase().equals(normalizedProjectName)).findFirst().orElseThrow(() -> new Exception("Activity not in project"));
+        return gottenProject.getListOfActivities().stream().anyMatch(activity -> activity.getActivityName().toLowerCase().equals(normalizedActivityName));
+    }
+
+
+    public boolean isEmptyActivityList(String projectName) throws Exception {
+        Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equalsIgnoreCase(projectName)).findFirst().orElseThrow(()-> new Exception("Project " + projectName + " doesn't exist"));
         return gottenProject.getListOfActivities().isEmpty();
     }
     public boolean isEmptyProjectList() throws IllegalArgumentException {
@@ -64,8 +85,15 @@ public class TimeApp {
     }
 
     public boolean isInEmployeeList(String initials) throws IllegalArgumentException {
-        return listOfEmployees.contains(getEmployee(initials));
+        String normalizedInitials = initials.toLowerCase(); // Convert initials to lowercase
+        for (Employee employee : listOfEmployees) {
+            if (employee.getInitials().toLowerCase().equals(normalizedInitials)) {
+                return true;
+            }
+        }
+        return false;
     }
+
 
     public boolean isLoggedIn(String initials) {
         return getEmployee(initials).isLoggedIn();
@@ -111,7 +139,9 @@ public class TimeApp {
         getEmployee(initials).getMyProjectList().add(getProject(projectName));
     }
 
-    public void assignProjectmanager(String initials) {getEmployee(initials).setProjectManager((true));}
+    public void assignProjectmanager(String initials) {
+        getEmployee(initials).setProjectManager((true));
+    }
 
     public void addHoursToActivityAndEmployee(String activityName, String initials, String projectName,int hours) {
         addHoursToActivity(activityName, projectName, hours);
@@ -141,9 +171,9 @@ public class TimeApp {
             System.out.println(listOfEmployee.getInitials());
         }
     }
-    public void displayMyActivityList(String initials) {
+    public void displayMyActivityList(String initials, String projectName) {
         for (Activity i : getEmployee(initials).getMyActivityList()){
-            System.out.println(i.getActivityName());
+            System.out.println(i.getActivityName() + "in project " + projectName);
         }
     }
     public void displayMyProjectList(String initials) {
@@ -156,7 +186,7 @@ public class TimeApp {
     }
     public void displayListOfEmployeesInActivity(String activityName, String projectName) {
         for (Employee i : getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity()){
-            System.out.println(i.getMyActivityList());
+            System.out.println(i.getInitials());
         }
     }
     public void displayListOfEmployeesInProject(String projectName) {
@@ -169,7 +199,7 @@ public class TimeApp {
             System.out.println(i.getProjectName());
         }
     }
-    public void displayAllMyInformation(String initials){
+    public void displayAllMyInformation(String initials, String projectName){
         Employee employee = getEmployee(initials);
         System.out.println("Name: "+ employee.getInitials());
         System.out.print("My projects: ");
@@ -177,7 +207,7 @@ public class TimeApp {
         System.out.println("Max number of activities: "+ employee.getMaxNumberOfActivities());
         System.out.println("My number of activities: " + employee.getMyActivityList().size());
         System.out.print("My activities: ");
-        displayMyActivityList(initials);
+        displayMyActivityList(initials, projectName);
         displayMyHoursWorked(initials);
         System.out.println("My unavailable weeks are: " + employee.getUnavailableWeeks());
         System.out.println("ProjectManager:" + employee.isProjectManager());
@@ -188,14 +218,26 @@ public class TimeApp {
     public void displayActivityInformation(String activityName, String projectName) {
         Activity activity = getProject(projectName).getActivity(activityName);
         System.out.println("Activity name: "+ activity.getActivityName());
-        System.out.println("Employees in activity: ");
+        System.out.println("Employees in " + activityName + ": ");
         displayListOfEmployeesInActivity(activityName,projectName);
         System.out.println("Hours spent on activity: " + activity.getHoursSpentOnActivity());
-        System.out.println("Budget hours:" + activity.getBudgetTime());
+        System.out.println("Budget hours: " + activity.getBudgetTime());
         System.out.println("Start week: " + activity.getStartWeek());
         System.out.println("End week: " + activity.getEndWeek());
-        System.out.println("Activity is in project: " + activity.getProjectName());
+        System.out.println("Activity " + activityName + " is in project: " + activity.getProjectName());
     }
+    public void displayListOfAvailableEmployees(Integer startWeek, Integer endWeek) {
+        try {
+            ArrayList<Employee> listOfAvailableEmployees = getListOfAvailableEmployees(startWeek, endWeek);
+            System.out.println("Available Employees:");
+            for (Employee employee : listOfAvailableEmployees) {
+                System.out.println(employee.getInitials());
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     public void displayTotalHoursOnProject(String projectName) {
         int i = 0;
@@ -263,22 +305,26 @@ public class TimeApp {
     }
 
     public Project getProject(String projectName) {
+        String normalizedProjectName = projectName.toLowerCase(); // Convert project name to lowercase
         for (Project project : listOfProjects) {
-            if (project.getProjectName().equals(projectName)) {
+            if (project.getProjectName().toLowerCase().equals(normalizedProjectName)) {
                 return project;
             }
         }
         return null;
     }
+
     public Employee getEmployee(String initials) {
+        String normalizedInitials = initials.toLowerCase(); // Convert initials to lowercase
         for (Employee employee : listOfEmployees) {
-            if (employee.getInitials().equals(initials)) {
+            if (employee.getInitials().toLowerCase().equals(normalizedInitials)) {
                 return employee;
             }
         }
         System.out.println("ERROR - Employee with initials " + initials + " not found");
         return null;
     }
+
 
     public ArrayList<Employee> getListOfAvailableEmployees(Integer startWeek, Integer endWeek) throws Exception {
         for (Employee employee : listOfEmployees) {
@@ -299,7 +345,7 @@ public class TimeApp {
     //--------------------------------------------------------------------------------
     // Setters:
     public void setTimeFrame(String activityName, String projectName, Integer startWeek, Integer endWeek) throws Exception {
-        Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
+        Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equalsIgnoreCase(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
         gottenProject.getActivity(activityName).setStartWeek(startWeek);
         gottenProject.getActivity(activityName).setEndWeek(endWeek);
     }

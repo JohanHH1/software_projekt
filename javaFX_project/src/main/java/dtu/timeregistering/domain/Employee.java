@@ -88,7 +88,9 @@ public class Employee {
     public void setInitials(String initials) {
         this.initials = initials;
     }
-    public void setHoursWorked(int hoursWorked) {this.hoursWorked = hoursWorked;}
+    public void setHoursWorked(int hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
 
     public void setAvailable(boolean available) {
         isAvailable = available;

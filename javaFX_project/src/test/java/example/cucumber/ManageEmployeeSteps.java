@@ -27,7 +27,7 @@ public class ManageEmployeeSteps {
     @And("employee {string} has at least one activity in their list of activities")
     public void employeeHasAtLeastOneActivityInTheirListOfActivities(String initials) {
         timeapp.initializeEmployees();
-        timeapp.initializeActivities();
+        timeapp.initializeProjectsAndActivities();
     }
 
     @When("I enter initials {string}")
@@ -37,8 +37,8 @@ public class ManageEmployeeSteps {
 
 
     @Then("employee {string} information is displayed")
-    public void employee_information_is_displayed(String initials) {
-        timeapp.displayAllMyInformation(initials);
+    public void employee_information_is_displayed(String initials, String projectName) {
+        timeapp.displayAllMyInformation(initials, projectName);
     }
 
 
