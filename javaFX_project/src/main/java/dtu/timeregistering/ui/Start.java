@@ -16,6 +16,7 @@ public class Start {
         int nr;
         int nr2;
         int nr3;
+        int unavailableWeek;
         int startWeek;
         int endWeek;
         int hoursWorked;
@@ -107,7 +108,7 @@ public class Start {
                         System.out.println("0. To go back to main menu");
                         System.out.println("1. Register hours");
                         System.out.println("2. See activity data(virker ikke*)");
-                        if ((!timeapp.getProject(chosenProject).getHasProjectManager())){
+                        if ((timeapp.getProject(chosenProject).getHasProjectManager())){
                             System.out.println("3. Select a projectManager");
                         }
                         nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 4);
@@ -172,10 +173,33 @@ public class Start {
                     if (nr2 == 1){ // 3.1 Display my information
                         // displaying information
                     }
-                    if (nr2 == 2){ // 3.2 Register unavailable
-                        // register unavailable
+
+                    if (nr2 == 2) { // 3.2 Register unavailable
+                        do {
+                            System.out.println("\n Choose one of the options below :");
+                            System.out.println("0. Go back to employee management menu:");
+                            System.out.println("1. Register unavailable for a single week:");
+                            System.out.println("2. Register unavailable for multiple weeks:");
+                            nr3 = timeapp.getInt(console, "Enter a number from the list above: ", 0, 2);
+
+                            if (nr3 == 1) {
+                                System.out.println("Please enter week of your unavailability:");
+                                unavailableWeek = timeapp.getInt(console, "Please enter a valid week.", 1, 1000);
+                                timeapp.markEmployeeUnavailableSingleWeek(chosenEmployee, unavailableWeek);
+                                System.out.println("You have successfully been marked unavailable in week " + unavailableWeek);
+                            }
+                            if (nr3 == 2) {
+                                System.out.println("Please enter start week of your unavailability:");
+                                startWeek = timeapp.getInt(console, "Please enter a valid week.", 1, 1000);
+                                System.out.println("Please enter end week of your unavailability:");
+                                endWeek = timeapp.getInt(console, "Please enter a valid week.", 1, 1000);
+                                timeapp.markEmployeeUnavailableSeveralWeeks(chosenEmployee, startWeek, endWeek);
+                                System.out.println("You have successfully been marked unavailable from week " + startWeek + " till week " + endWeek);
+                            }
+                        } while (nr3 != 0);
                     }
-                    if (nr2 == 3){ // 3.3 edit hours
+
+                        if (nr2 == 3){ // 3.3 edit hours
                         //edit hours
                     }
 
@@ -221,12 +245,9 @@ public class Start {
                             System.out.println("Which activity would you like to manage?");
                             timeapp.displayAllActivitiesInProject(timeapp.getProject(myProject));
                             activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", myProject);
-
-
+                            console.nextLine();
                             do{
                                 nr3 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
-                                console.nextLine();
-
                                 System.out.println("\nManage activities: ");
                                 System.out.println("0. To go back to main menu");
                                 System.out.println("1. Add timeframe");
@@ -246,6 +267,13 @@ public class Start {
                                     System.out.println();
                                 }
                                 if (nr3 == 2){// 4.2.2 see available employees
+                                   System.out.println("Enter the start week for the availability check");
+                                   startWeek = timeapp.getInt(console,"Enter a valid week number: ", 1, 5000);
+                                   System.out.println("Enter the end week for the availability check");
+                                   endWeek = timeapp.getInt(console,"Enter a valid week number: ", 1, 5000);
+                                   System.out.println(timeapp.getListOfAvailableEmployees(startWeek,endWeek));
+
+
                                 }
                                 if (nr3 == 3){// 4.2.3 assign employee to activity
                                     System.out.println("Chose an employee to add to activity " + activityName + ": ");
