@@ -174,7 +174,6 @@ public class TimeApp {
     //This method ensures the user prompt is an integer (long)
     public int getInt(Scanner console, String prompt, int min, int max) {
         int input;
-        System.out.print(prompt);
         while (true) {
             while (!console.hasNextInt()) {
                 console.next();
