@@ -233,15 +233,14 @@ public class Start {
                     System.out.println("You are now being sent back to main menu.");
                 }
                 else{
+                    System.out.println("Please pick a project to continue with ");
+                    System.out.println("List of all projects: ");
+                    timeapp.displayAllProjectNames();
+                    myProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
                     do{ // choose a project to manage if more than one:
-                        if (timeapp.getEmployee(chosenEmployee).getLisOfManagersListOfProjects().size() > 1 ){
-                            System.out.println("\nYou are project manager for more than one project.\n Please pick a project to continue with ");
-                            System.out.println("List of all your projects: ");
-                            timeapp.displayLisOfManagersListOfProjects(chosenEmployee);
-                            myProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
-                        }else{
-                            myProject = timeapp.getEmployee(chosenEmployee).getLisOfManagersListOfProjects().toString();
-                        }
+
+
+
                         System.out.println("\nProject manager settings: ");
                         System.out.println("0. To go back to main menu");
                         System.out.println("1. Create an activity");
@@ -252,15 +251,15 @@ public class Start {
                         nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
                         console.nextLine();
                         if (nr2 == 1){ // 4.1 Create activity
-//
-//                            timeapp.displayLisOfManagersListOfProjects(chosenEmployee);
-//                            System.out.println("To create new activity, please enter activity name: ");
-//                            activityName = console.nextLine();
-//                            timeapp.createActivity(activityName, myProject);
-//                            System.out.println("The activity " + activityName + " was successfully created!");
-//                            System.out.println("Here is a list of all current activities in project " + myProject + ": ");
-//                            timeapp.displayAllActivitiesInProject(timeapp.getProject(myProject));
-//                            System.out.println();
+
+                            timeapp.displayLisOfManagersListOfProjects(chosenEmployee);
+                            System.out.println("To create new activity, please enter activity name: ");
+                            activityName = console.nextLine();
+                            timeapp.createActivity(activityName, myProject);
+                            System.out.println("The activity " + activityName + " was successfully created!");
+                            System.out.println("Here is a list of all current activities in project " + myProject + ": ");
+                            timeapp.displayAllActivitiesInProject(timeapp.getProject(myProject));
+                            System.out.println();
                         }
                         if (nr2 == 2){ //4.2 Manage activity
                             System.out.println("Which activity would you like to manage?");
