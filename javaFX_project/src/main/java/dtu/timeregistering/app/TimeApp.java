@@ -13,12 +13,12 @@ public class TimeApp {
 
     //--------------------------------------------------------------------------------
     // Fields:
+    private int n=0;
     private Project project;
     private Start start;
     private ArrayList<Project> listOfProjects = new ArrayList<>();
     private ArrayList<Employee> listOfEmployees = new ArrayList<>();
     private ArrayList<Employee> listOfAvailableEmployees = new ArrayList<>();
-
     private ArrayList<Project> lisOfManagersListOfProjects = new ArrayList<>();
     //--------------------------------------------------------------------------------
 
@@ -43,18 +43,25 @@ public class TimeApp {
         listOfEmployees.add(kabe);
     }
     public void initializeProjectsAndActivities() {
+        ArrayList<String> activityNames = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {  // Creating 10 activities
+            activityNames.add("Activity" + i);
+        }
+        int activityIndex = 0;
         for (int i = 1; i <= 5; i++) {  // Creating 5 projects
             Project project = new Project("Project" + i);
             listOfProjects.add(project);
-            for (int j = 1; j <= 3; j++) { // Adding 3 activities to each of the 5 projects
-                Activity activity = new Activity("Activity" + j);
-                project.addActivity(activity.getActivityName());
-                for (Employee employee : listOfEmployees) {     // assigning all employees to all activities
-                    addEmployeeToActivity(activity.getActivityName(), employee.getInitials(), project.getProjectName());
+            for (int j = 0; j < 2; j++) { // Adding 2 activities to each of the 5 projects
+                String activityName = activityNames.get(activityIndex++);
+                Activity activity = new Activity(activityName);
+                project.addActivity(activityName);
+                for (Employee employee : listOfEmployees) { // assigning all employees to all activities
+                    addEmployeeToActivity(activityName, employee.getInitials(), project.getProjectName());
                 }
             }
         }
     }
+
 
     //--------------------------------------------------------------------------------
     //Booleans:
@@ -171,9 +178,10 @@ public class TimeApp {
             System.out.println(listOfEmployee.getInitials());
         }
     }
-    public void displayMyActivityList(String initials, String projectName) {
+    public void displayMyActivityList(String initials) {
+        // Denne metode kan måske/evt upgrades til at displaye hvilket projekt hver aktivitet hører til
         for (Activity i : getEmployee(initials).getMyActivityList()){
-            System.out.println(i.getActivityName() + "in project " + projectName);
+            System.out.println(i.getActivityName());
         }
     }
     public void displayMyProjectList(String initials) {
@@ -207,10 +215,10 @@ public class TimeApp {
         System.out.println("Max number of activities: "+ employee.getMaxNumberOfActivities());
         System.out.println("My number of activities: " + employee.getMyActivityList().size());
         System.out.print("My activities: ");
-        displayMyActivityList(initials, projectName);
+        displayMyActivityList(initials);
         displayMyHoursWorked(initials);
         System.out.println("My unavailable weeks are: " + employee.getUnavailableWeeks());
-        System.out.println("ProjectManager:" + employee.isProjectManager());
+        System.out.println("ProjectManager: " + employee.isProjectManager());
         if (employee.isProjectManager()){
             displayLisOfManagersListOfProjects(initials);
         }
@@ -229,7 +237,7 @@ public class TimeApp {
     public void displayListOfAvailableEmployees(Integer startWeek, Integer endWeek) {
         try {
             ArrayList<Employee> listOfAvailableEmployees = getListOfAvailableEmployees(startWeek, endWeek);
-            System.out.println("Available Employees:");
+            System.out.println("Available Employees from week " + startWeek + " to week " + endWeek);
             for (Employee employee : listOfAvailableEmployees) {
                 System.out.println(employee.getInitials());
             }

@@ -35,12 +35,10 @@ public class ManageEmployeeSteps {
         Employee employeeToCheck = timeapp.getEmployee(initials);
     }
 
-
-    @Then("employee {string} information is displayed")
-    public void employee_information_is_displayed(String initials, String projectName) {
+    @Then("employee {string} information in project {string}  is displayed")
+    public void employeeInformationInProjectIsDisplayed(String initials, String projectName) {
         timeapp.displayAllMyInformation(initials, projectName);
     }
-
 
     @When("I enter activity {string} in project {string}")
     public void iEnterActivityInProject(String activityName, String projectName) {
@@ -52,6 +50,8 @@ public class ManageEmployeeSteps {
     public void activityInProjectInformationIsDisplayed(String activityName, String projectName) {
         timeapp.displayActivityInformation(activityName,projectName);
     }
+
+
 
 
     //----------------------------------------------------------------------------------------------------
