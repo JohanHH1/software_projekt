@@ -104,17 +104,14 @@ public class Start {
                     do {
                         System.out.println("\nProject management menu:");
                         System.out.println("0. To go back to main menu");
-<<<<<<< Updated upstream
                         System.out.println("1. Register hours");
                         System.out.println("2. See activity data");
                         System.out.println("3. Select a projectManager");
-=======
                         System.out.println("1. Create a new activity in project");
                         System.out.println("2. Manage an activity");
                         System.out.println("3. Select a projectManager(virker ikke)");
                         System.out.println("4. Edit project(virker ikke)");
 
->>>>>>> Stashed changes
                         nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 4);
                         console.nextLine(); // (Skal være her for at det virker, men gør i princippet ingenting)
                         //2.1
@@ -147,8 +144,6 @@ public class Start {
                                 activityName = timeapp.getValidActivityName(console,"Enter a valid activity name: ", chosenProject);
                                 //print activity data
 
-<<<<<<< Updated upstream
-=======
                             do{
                                 System.out.println("\nActivity management menu:");
                                 System.out.println("0. To go back to project management menu");
@@ -191,7 +186,6 @@ public class Start {
                                     System.out.println("Your total hours worked are: "+ timeapp.getEmployee(chosenEmployee).getHoursWorked());
                                 }
                             } while(nr3 != 0);// Back to project management menu
->>>>>>> Stashed changes
                             }
                         }
 

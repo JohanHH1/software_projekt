@@ -290,7 +290,6 @@ public class TimeApp {
         getEmployee(initials).getMyProjectList().add(getProject(projectName));
         getEmployee(initials).getLisOfManagersListOfProjects().add(getProject(projectName));
     }
-<<<<<<< Updated upstream
     public boolean employeeIsAvailable(String initials, Integer startWeek, Integer endWeek){
         if(!getEmployee(initials).getUnavailableWeeks().contains(startWeek) && !getEmployee(initials).getUnavailableWeeks().contains(endWeek)) {
             getEmployee(initials).setAvailable(true);
@@ -302,12 +301,10 @@ public class TimeApp {
     public void setLisOfManagersListOfProjects(ArrayList<Project> lisOfManagersListOfProjects) {
         this.lisOfManagersListOfProjects = lisOfManagersListOfProjects;
     }
-=======
 
 
 
 
->>>>>>> Stashed changes
 
     //--------------------------------------------------------------------------------
 }
