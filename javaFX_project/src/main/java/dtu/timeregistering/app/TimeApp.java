@@ -92,8 +92,7 @@ public class TimeApp {
         listOfProjects.add(project);
     }
     public void createActivity(String activityName, String projectName) throws Exception {
-        Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
-        gottenProject.addActivity(activityName);
+         getProject(projectName).addActivity(activityName);
     }
     public void logIn(String initials) {
         getEmployee(initials).setLoggedIn(true);
@@ -156,6 +155,11 @@ public class TimeApp {
     public void displayListOfEmployeesInProject(String projectName) {
         for (Employee i : getProject(projectName).getListOfEmployeesInProject()){
             System.out.println(i.getMyProjectList());
+        }
+    }
+    public void displayLisOfManagersListOfProjects(String initials){
+        for (Project i : getEmployee(initials).getLisOfManagersListOfProjects()){
+            System.out.println(i.getProjectName());
         }
     }
     //--------------------------------------------------------------------------------
