@@ -169,6 +169,41 @@ public class TimeApp {
             System.out.println(i.getProjectName());
         }
     }
+    public void displayAllMyInformation(String initials){
+        Employee employee = getEmployee(initials);
+        System.out.println("Name: "+ employee.getInitials());
+        System.out.print("My projects: ");
+        displayMyProjectList(initials);
+        System.out.println("Max number of activities: "+ employee.getMaxNumberOfActivities());
+        System.out.println("My number of activities: " + employee.getMyActivityList().size());
+        System.out.print("My activities: ");
+        displayMyActivityList(initials);
+        displayMyHoursWorked(initials);
+        System.out.println("My unavailable weeks are: " + employee.getUnavailableWeeks());
+        System.out.println("ProjectManager:" + employee.isProjectManager());
+        if (employee.isProjectManager()){
+            displayLisOfManagersListOfProjects(initials);
+        }
+    }
+    public void displayActivityInformation(String activityName, String projectName) {
+        Activity activity = getProject(projectName).getActivity(activityName);
+        System.out.println("Activity name: "+ activity.getActivityName());
+        System.out.println("Employees in activity: ");
+        displayListOfEmployeesInActivity(activityName,projectName);
+        System.out.println("Hours spent on activity: " + activity.getHoursSpentOnActivity());
+        System.out.println("Budget hours:" + activity.getBudgetTime());
+        System.out.println("Start week: " + activity.getStartWeek());
+        System.out.println("End week: " + activity.getEndWeek());
+        System.out.println("Activity is in project: " + activity.getProjectName());
+    }
+
+    public void displayTotalHoursOnProject(String projectName) {
+        int i = 0;
+        for (Activity activity : getProject(projectName).getListOfActivities()){
+            i+=activity.getHoursSpentOnActivity();
+        }
+        System.out.println(i);
+    }
     //--------------------------------------------------------------------------------
     // Getters:
     //This method ensures the user prompt is an integer (long)
@@ -303,7 +338,6 @@ public class TimeApp {
     public void setLisOfManagersListOfProjects(ArrayList<Project> lisOfManagersListOfProjects) {
         this.lisOfManagersListOfProjects = lisOfManagersListOfProjects;
     }
-
 
 
 

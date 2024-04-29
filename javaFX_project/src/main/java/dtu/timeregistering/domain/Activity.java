@@ -42,8 +42,18 @@ public class Activity {
     public ArrayList<Employee> getListOfEmployeesInActivity() {
         return listOfEmployeesInActivity;
     }
+
+    public int getBudgetTime() {
+        return budgetTime;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
     public int getHoursSpentOnActivity() {
         return hoursSpentOnActivity;
+
     }
     //--------------------------------------------------------------------------------
     // Setters

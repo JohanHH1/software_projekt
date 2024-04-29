@@ -59,5 +59,18 @@ public class ProjectSteps {
     public void error_message_is_thrown(String em)  {
         assertEquals(em,errorMessage);
     }
+
+
+    //--------------------------------------------------------------------------------------------
+   // display total hours in project
+    @When("the user wants to see the total hours spent on a project {string}")
+    public void theUserWantsToSeeTheTotalHoursSpentOnAProject(String projectName) {
+        timeApp.getProject(projectName);
+    }
+
+    @Then("the total hours on project {string} is displayed")
+    public void theTotalHoursOnProjectIsDisplayed(String projectName) {
+        timeApp.displayTotalHoursOnProject(projectName);
+    }
     //----------------------------------------------------------------------------------------------------
 }

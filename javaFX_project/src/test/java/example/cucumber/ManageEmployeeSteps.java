@@ -35,16 +35,23 @@ public class ManageEmployeeSteps {
         Employee employeeToCheck = timeapp.getEmployee(initials);
     }
 
-    @Then("employee {string} total hours worked is displayed")
-    public void employeeTotalHoursWorkedIsDisplayed(String initials) {
-        timeapp.displayMyHoursWorked(initials);
-    }
-    @And("employee {string} list of activities is displayed")
-    public void employeeListOfActivitiesIsDisplayed(String initials) {
-        System.out.println("Here is a list of your current activities: ");
-        timeapp.displayMyActivityList(initials);
+
+    @Then("employee {string} information is displayed")
+    public void employee_information_is_displayed(String initials) {
+        timeapp.displayAllMyInformation(initials);
     }
 
+
+    @When("I enter activity {string} in project {string}")
+    public void iEnterActivityInProject(String activityName, String projectName) {
+        timeapp.getProject(projectName).getActivity(activityName);
+
+    }
+
+    @Then("activity {string} in project  {string} information is displayed")
+    public void activityInProjectInformationIsDisplayed(String activityName, String projectName) {
+        timeapp.displayActivityInformation(activityName,projectName);
+    }
 
 
     //----------------------------------------------------------------------------------------------------
