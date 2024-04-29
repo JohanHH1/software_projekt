@@ -289,7 +289,9 @@ public class TimeApp {
         getProject(projectName).setProjectManager(getEmployee(initials));
         getEmployee(initials).getMyProjectList().add(getProject(projectName));
         getEmployee(initials).getLisOfManagersListOfProjects().add(getProject(projectName));
+        getProject(projectName).setHasProjectManager(true);
     }
+
     public boolean employeeIsAvailable(String initials, Integer startWeek, Integer endWeek){
         if(!getEmployee(initials).getUnavailableWeeks().contains(startWeek) && !getEmployee(initials).getUnavailableWeeks().contains(endWeek)) {
             getEmployee(initials).setAvailable(true);

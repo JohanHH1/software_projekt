@@ -7,10 +7,12 @@ public class Project {
     // Fields
     private int projectNumber;
     private String projectName;
+    private boolean hasProjectManager=true;
     // Lists
     private ArrayList<Activity> listOfActivities = new ArrayList<>();
     private ArrayList<Employee> listOfEmployeesInProject = new ArrayList<>();
     private Employee projectManager;
+
     //--------------------------------------------------------------------------------
 
     // Constructor
@@ -56,6 +58,11 @@ public class Project {
     public Employee getProjectManager() {
         return projectManager;
     }
+
+    public boolean getHasProjectManager() {
+        return hasProjectManager;
+    }
+
     //--------------------------------------------------------------------------------
     // Setters
     public void setProjectName(String projectName) {
@@ -74,6 +81,9 @@ public class Project {
         this.listOfEmployeesInProject = listOfEmployeesInProject;
     }
 
+    public void setHasProjectManager(boolean hasProjectManager) {
+        this.hasProjectManager = hasProjectManager;
+    }
 
     public void setProjectManager(Employee projectManager) {
         this.projectManager = projectManager;
