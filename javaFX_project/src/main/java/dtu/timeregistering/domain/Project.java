@@ -29,6 +29,7 @@ public class Project {
     //--------------------------------------------------------------------------------
     // Methods
     public void addActivity(String activityName){
+
         Activity activity = new Activity(activityName);
         activity.setProjectName(projectName);
         listOfActivities.add(activity);

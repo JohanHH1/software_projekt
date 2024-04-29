@@ -18,6 +18,8 @@ public class TimeApp {
     private ArrayList<Project> listOfProjects = new ArrayList<>();
     private ArrayList<Employee> listOfEmployees = new ArrayList<>();
     private ArrayList<Employee> listOfAvailableEmployees = new ArrayList<>();
+
+    private ArrayList<Project> lisOfManagersListOfProjects = new ArrayList<>();
     //--------------------------------------------------------------------------------
 
     // Constructor:
@@ -90,8 +92,7 @@ public class TimeApp {
         listOfProjects.add(project);
     }
     public void createActivity(String activityName, String projectName) throws Exception {
-        Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equals(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
-        gottenProject.addActivity(activityName);
+         getProject(projectName).addActivity(activityName);
     }
     public void logIn(String initials) {
         getEmployee(initials).setLoggedIn(true);
@@ -154,6 +155,11 @@ public class TimeApp {
     public void displayListOfEmployeesInProject(String projectName) {
         for (Employee i : getProject(projectName).getListOfEmployeesInProject()){
             System.out.println(i.getMyProjectList());
+        }
+    }
+    public void displayLisOfManagersListOfProjects(String initials){
+        for (Project i : getEmployee(initials).getLisOfManagersListOfProjects()){
+            System.out.println(i.getProjectName());
         }
     }
     //--------------------------------------------------------------------------------
@@ -245,6 +251,10 @@ public class TimeApp {
         return listOfAvailableEmployees;
     }
 
+    public ArrayList<Project> getLisOfManagersListOfProjects(String initials, String projectName) {
+        return lisOfManagersListOfProjects;
+    }
+
     //--------------------------------------------------------------------------------
     // Setters:
     public void setTimeFrame(String activityName, String projectName, Integer startWeek, Integer endWeek) throws Exception {
@@ -271,6 +281,7 @@ public class TimeApp {
     public void assignProjectManagerToProject(String initials, String projectName) {
         getProject(projectName).setProjectManager(getEmployee(initials));
         getEmployee(initials).getMyProjectList().add(getProject(projectName));
+        getEmployee(initials).getLisOfManagersListOfProjects().add(getProject(projectName));
     }
     public boolean employeeIsAvailable(String initials, Integer startWeek, Integer endWeek){
         if(!getEmployee(initials).getUnavailableWeeks().contains(startWeek) && !getEmployee(initials).getUnavailableWeeks().contains(endWeek)) {
@@ -279,5 +290,10 @@ public class TimeApp {
         }
         return false;
     }
+
+    public void setLisOfManagersListOfProjects(ArrayList<Project> lisOfManagersListOfProjects) {
+        this.lisOfManagersListOfProjects = lisOfManagersListOfProjects;
+    }
+
     //--------------------------------------------------------------------------------
 }

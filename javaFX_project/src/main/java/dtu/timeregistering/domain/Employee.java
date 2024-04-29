@@ -16,6 +16,7 @@ public class Employee {
     private ArrayList<Activity> myActivityList = new ArrayList<>();
     private ArrayList<Project> myProjectList = new ArrayList<>();
     private ArrayList<Integer> unavailableWeeks = new ArrayList<>();
+    private ArrayList<Project> lisOfManagersListOfProjects = new ArrayList<>();
 
     //--------------------------------------------------------------------------------
     // Constructor
@@ -64,6 +65,10 @@ public class Employee {
         return unavailableWeeks;
     }
 
+    public ArrayList<Project> getLisOfManagersListOfProjects() {
+        return lisOfManagersListOfProjects;
+    }
+
     //--------------------------------------------------------------------------------
     // Setters
     public void setLoggedIn(boolean loggedIn) {
@@ -86,5 +91,12 @@ public class Employee {
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
+    public void setUnavailableWeeks(ArrayList<Integer> unavailableWeeks) {
+        this.unavailableWeeks = unavailableWeeks;
+    }
+    public void setLisOfManagersListOfProjects(ArrayList<Project> lisOfManagersListOfProjects) {
+        this.lisOfManagersListOfProjects = lisOfManagersListOfProjects;
+    }
+
     //--------------------------------------------------------------------------------
     }

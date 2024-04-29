@@ -33,12 +33,9 @@ public class ActivitySteps {
     //----------------------------------------------------------------------------------------------------
     // Scenario 1: Create activity successfully
     @When("the user creates {string} in {string}")
-    public void the_user_creates_in(String activityName, String projectName) {
-        try {
+    public void the_user_creates_in(String activityName, String projectName) throws Exception {
             timeApp.createActivity(activityName,projectName);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
     }
     @Then("the user has activity {string} in project {string}")
     public void theUserHasActivityInProject(String activityName, String projectName) throws Exception {
