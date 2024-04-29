@@ -42,6 +42,9 @@ public class TimeApp {
         Employee kabe = new Employee("KABE");
         listOfEmployees.add(kabe);
     }
+    public void initializeActivities() {
+
+    }
     //--------------------------------------------------------------------------------
     //Booleans:
     public boolean isInProjectList(String projectName) throws IllegalArgumentException {
@@ -97,6 +100,7 @@ public class TimeApp {
     public void logIn(String initials) {
         getEmployee(initials).setLoggedIn(true);
     }
+
     public void addEmployeeToActivity(String activityName, String initials, String projectName) {
         getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().add(getEmployee((initials)));
         getEmployee(initials).getMyActivityList().add(getProject(projectName).getActivity(activityName));
@@ -146,6 +150,9 @@ public class TimeApp {
         for (Project i : getEmployee(initials).getMyProjectList()){
             System.out.println(i.getProjectName());
         }
+    }
+    public void displayMyHoursWorked(String initials) {
+        System.out.println("Your total hours worked are: " + getEmployee(initials).getHoursWorked());
     }
     public void displayListOfEmployeesInActivity(String activityName, String projectName) {
         for (Employee i : getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity()){
@@ -283,6 +290,7 @@ public class TimeApp {
         getEmployee(initials).getMyProjectList().add(getProject(projectName));
         getEmployee(initials).getLisOfManagersListOfProjects().add(getProject(projectName));
     }
+<<<<<<< Updated upstream
     public boolean employeeIsAvailable(String initials, Integer startWeek, Integer endWeek){
         if(!getEmployee(initials).getUnavailableWeeks().contains(startWeek) && !getEmployee(initials).getUnavailableWeeks().contains(endWeek)) {
             getEmployee(initials).setAvailable(true);
@@ -294,6 +302,12 @@ public class TimeApp {
     public void setLisOfManagersListOfProjects(ArrayList<Project> lisOfManagersListOfProjects) {
         this.lisOfManagersListOfProjects = lisOfManagersListOfProjects;
     }
+=======
+
+
+
+
+>>>>>>> Stashed changes
 
     //--------------------------------------------------------------------------------
 }

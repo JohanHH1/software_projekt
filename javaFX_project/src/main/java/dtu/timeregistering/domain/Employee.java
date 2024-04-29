@@ -59,7 +59,9 @@ public class Employee {
     public int registerTime(int hours, String initials){
         return hours;
     }
-    public int getHoursWorked() {return hoursWorked;}
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
 
     public ArrayList<Integer> getUnavailableWeeks() {
         return unavailableWeeks;

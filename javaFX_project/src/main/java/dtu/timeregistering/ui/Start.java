@@ -104,9 +104,17 @@ public class Start {
                     do {
                         System.out.println("\nProject management menu:");
                         System.out.println("0. To go back to main menu");
+<<<<<<< Updated upstream
                         System.out.println("1. Register hours");
                         System.out.println("2. See activity data");
                         System.out.println("3. Select a projectManager");
+=======
+                        System.out.println("1. Create a new activity in project");
+                        System.out.println("2. Manage an activity");
+                        System.out.println("3. Select a projectManager(virker ikke)");
+                        System.out.println("4. Edit project(virker ikke)");
+
+>>>>>>> Stashed changes
                         nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 4);
                         console.nextLine(); // (Skal være her for at det virker, men gør i princippet ingenting)
                         //2.1
@@ -139,6 +147,51 @@ public class Start {
                                 activityName = timeapp.getValidActivityName(console,"Enter a valid activity name: ", chosenProject);
                                 //print activity data
 
+<<<<<<< Updated upstream
+=======
+                            do{
+                                System.out.println("\nActivity management menu:");
+                                System.out.println("0. To go back to project management menu");
+                                System.out.println("1. Add timeframe to activity");
+                                System.out.println("2. Add Employee to activity");
+                                System.out.println("3. Register Hours in activity");
+                                nr3 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 3);
+
+                                //2.2.1
+                                if (nr3 == 1){ // Add timeframe to activity
+                                    System.out.println("Start week for activity " + activityName + ": ");
+                                    startWeek = timeapp.getInt(console, "Enter a valid week number: ", 1, 500);
+                                    System.out.println("End week for activity " + activityName + ": ");
+                                    endWeek = timeapp.getInt(console, "Enter a valid week number: ", 1, 500);
+                                    timeapp.setTimeFrame(activityName,chosenProject, startWeek, endWeek);
+                                    System.out.println("Timeframe has successfully been added to activity " + activityName + " in project " + chosenProject);
+                                    System.out.println("Start week: " + startWeek + ", End week: " + endWeek);
+                                    System.out.println();
+                                }
+                                //2.2.2
+                                if (nr3 == 2){ // Add Employee to activity
+                                    System.out.println("Chose an employee to add to activity " + activityName + ": ");
+                                    System.out.println("List of all employees: ");
+                                    timeapp.displayAllEmployees();
+                                    employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                                    timeapp.addEmployeeToActivity(activityName,employeeToAdd,chosenProject);
+                                    System.out.println("Employee " + employeeToAdd + " was successfully added to activity " + activityName + " in project " + chosenProject);
+                                    System.out.println(employeeToAdd + " is now assigned to current activities: ");
+                                    timeapp.displayMyActivityList(employeeToAdd);
+                                    System.out.println();
+                                }
+                                //2.2.3
+                                if (nr3 == 3){ // Register Hours in activity
+                                    System.out.println("Please enter hours worked on activity "+activityName);
+                                    hoursWorked = console.nextInt();
+                                    console.nextLine();
+                                    timeapp.addHoursToActivityAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
+                                    System.out.println(hoursWorked + " hours added to activity " + activityName + " in project " + chosenProject);
+                                    System.out.println(hoursWorked + " hours added to " + chosenEmployee + " worked hours");
+                                    System.out.println("Your total hours worked are: "+ timeapp.getEmployee(chosenEmployee).getHoursWorked());
+                                }
+                            } while(nr3 != 0);// Back to project management menu
+>>>>>>> Stashed changes
                             }
                         }
 
