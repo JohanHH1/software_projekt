@@ -17,8 +17,10 @@ Scenario: Add time-frame to activity successfully
 
 # Scenario 3:
 Scenario: Add employee to activity
+  Given employee "HUBA" already exist
   Given project "project-1" already exists
   And the user has an activity "activity1" in project "project-1"
+  And the user "HUBA" has less than 20 activities
   When employee "HUBA" is added to activity "activity1" in project "project-1"
   Then activity "activity1" is added to employee "HUBA" list of activities in project "project-1"
   And employee "HUBA" is added to activity "activity1" list of employees in project "project-1"

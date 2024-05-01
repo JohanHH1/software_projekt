@@ -62,6 +62,10 @@ public class ActivitySteps {
 
     //----------------------------------------------------------------------------------------------------
     // Scenario 3: Add employee to activity
+    @Given("the user {string} has less than {int} activities")
+    public void the_user_has_less_than_activities(String initials, Integer maxNumberOfActivities) {
+        assertTrue(timeApp.getEmployee(initials).getMyActivityList().size()<maxNumberOfActivities);
+    }
     @When("employee {string} is added to activity {string} in project {string}")
     public void employeeIsAddedToActivityInProject(String initials, String activityName, String projectName) {
         timeApp.initializeEmployees();
