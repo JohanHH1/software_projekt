@@ -7,8 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ActivitySteps {
     // Fields
@@ -99,7 +98,17 @@ public class ActivitySteps {
     public void theEmployeeShouldBeRemovedFromActivityInProjectSuccessfully(String initials, String activityName, String projectName) {
         assertFalse(timeApp.isInActivityListOfEmployees(activityName, initials, projectName ));
     }
+    //----------------------------------------------------------------------------------------------------
+    // Scenario 1 in time feature - add budgeted hours to activity
 
+    @When("the user adds {int} budgeted hour to activity {string} in project {string}")
+    public void the_user_adds_budgeted_hour_to_activity_in_project(Integer budgetedHours, String activityName, String projectName) {
+        timeApp.setBudgetedHoursForActivity(budgetedHours, activityName, projectName);
+    }
+    @Then("activity {string} in project {string} has {int} budgeted hour")
+    public void activity_in_project_has_budgeted_hour(String activityName, String projectName, Integer budgetedHours) {
+        assertEquals(timeApp.getProject(projectName).getActivity(activityName).getBudgetedHours(), (int) budgetedHours);
+    }
 
 }
     //----------------------------------------------------------------------------------------------------

@@ -9,7 +9,7 @@ public class Activity {
     // Fields
     private String activityName;
     private String projectName;
-    private int budgetTime;
+    private int budgetedHours;
     private int startWeek;
     private int endWeek;
     private int hoursSpentOnActivity;
@@ -43,8 +43,8 @@ public class Activity {
         return listOfEmployeesInActivity;
     }
 
-    public int getBudgetTime() {
-        return budgetTime;
+    public int getBudgetedHours() {
+        return budgetedHours;
     }
 
     public String getProjectName() {
@@ -76,6 +76,9 @@ public class Activity {
         this.hoursSpentOnActivity = hoursSpentOnActivity;
     }
 
+    public void setBudgetedHours(int budgetedHours) {
+        this.budgetedHours = budgetedHours;
+    }
     //--------------------------------------------------------------------------------
 
 }

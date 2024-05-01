@@ -216,7 +216,7 @@ public class TimeApp {
         System.out.println("Employees in " + activityName + ": ");
         displayListOfEmployeesInActivity(activityName,projectName);
         System.out.println("Hours spent on activity: " + activity.getHoursSpentOnActivity());
-        System.out.println("Budget hours: " + activity.getBudgetTime());
+        System.out.println("Budget hours: " + activity.getBudgetedHours());
         System.out.println("Start week: " + activity.getStartWeek());
         System.out.println("End week: " + activity.getEndWeek());
         System.out.println("Activity " + activityName + " is in project: " + activity.getProjectName());
@@ -381,6 +381,10 @@ public class TimeApp {
 
     public void removeEmployeeFromActivity(String initials, String activityName, String projectName) {
         getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().removeIf(i -> i.equals(getEmployee(initials)));
+    }
+
+    public void setBudgetedHoursForActivity(Integer budgetedHours, String activityName, String projectName) {
+        getProject(projectName).getActivity(activityName).setBudgetedHours(budgetedHours);
     }
 
     //--------------------------------------------------------------------------------
