@@ -43,6 +43,7 @@ public class Start {
         int startWeek;
         int endWeek;
         int hoursWorked;
+        int budgetHours;
         String employeeToAdd;
         String chosenProject;
         String activityName;
@@ -283,7 +284,10 @@ public class Start {
                                     System.out.println("Employee " + employeeToAdd + " was successfully added to activity " + activityName + " in project " + chosenProject);
                                 }
                                 if (nr3 == 4) {//4.2.4 set budgeted hours in activity
-                                    // bliver lavet lige nu af johan joyce og kajsa
+                                    System.out.println("Enter the hours budgeted for this activity:");
+                                    budgetHours = timeapp.getInt(console, "Enter a valid number: ", 1, 10000);
+                                    timeapp.setBudgetedHoursForActivity(budgetHours ,activityName, chosenProject);
+                                    System.out.println("Hours budgeted for activity " + activityName + " is: " + budgetHours);
                                 }
                                 if (nr3 == 5) {//4.2.5 remove employee from activities
                                     System.out.println("Chose an employee to remove from activity " + activityName + ": ");
