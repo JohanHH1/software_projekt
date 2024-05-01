@@ -16,6 +16,7 @@ public class TimeApp {
     private int n=0;
     private Project project;
     private Start start;
+    private int counter = 0;
     private ArrayList<Project> listOfProjects = new ArrayList<>();
     private ArrayList<Employee> listOfEmployees = new ArrayList<>();
     private ArrayList<Employee> listOfAvailableEmployees = new ArrayList<>();
@@ -125,7 +126,10 @@ public class TimeApp {
         }
         Project project = new Project(projectName);
         listOfProjects.add(project);
+        counter +=1;
+        project.setCount(counter);
         project.setProjectNumber();
+
     }
     public void createActivity(String activityName, String projectName) throws Exception {
          getProject(projectName).addActivity(activityName);
@@ -338,6 +342,8 @@ public class TimeApp {
         return lisOfManagersListOfProjects;
     }
 
+
+
     //--------------------------------------------------------------------------------
     // Setters:
     public void setTimeFrame(String activityName, String projectName, Integer startWeek, Integer endWeek) throws Exception {
@@ -402,6 +408,9 @@ public class TimeApp {
     public float EmployeeHoursWorked(String initials) {
         return getEmployee(initials).getHoursWorked();
     }
+
+
+
 
     //--------------------------------------------------------------------------------
 }

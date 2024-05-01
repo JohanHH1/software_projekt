@@ -88,7 +88,6 @@ public class Start {
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-                System.out.println("Project " + projectName + " was created successfully!");
                 System.out.println("List of all current projects: ");
                 timeapp.displayAllProjectNames();
                 System.out.println();
@@ -147,10 +146,10 @@ public class Start {
                                 timeapp.displayActivityInformation(activityName, chosenProject);
                             }
                         }
-
+                        if (!timeapp.projectHasProjectManager(chosenProject)){
                         if (nr2 == 3){ // 2.3 Select a projectManager
                             // Hvis der ikke allerede er en project manager
-                            if (timeapp.projectHasProjectManager(chosenProject)){
+
                                 System.out.println("\nPlease choose an employee to assign as project manager: ");
                                 System.out.println("List of all employees: ");
                                 timeapp.displayAllEmployees();
@@ -216,15 +215,15 @@ public class Start {
             }
             // 4. Project manager actions
             if (nr == 4){ // 4. Project manager settings
-                if (!timeapp.isProjectManager(loggedInEmployee)) {
-                    System.out.println(loggedInEmployee + ", You do not have access to project manager settings.");
-                    System.out.println("You are now being sent back to main menu.");
-                }
-                else{
-                    System.out.println("Please pick a project to continue with ");
-                    System.out.println("List of all projects: ");
-                    timeapp.displayAllProjectNames();
-                    chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
+                System.out.println("Please pick a project to continue with ");
+                System.out.println("List of all projects: ");
+                timeapp.displayAllProjectNames();
+                chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
+                if (!timeapp.isProjectManager(loggedInEmployee) && (timeapp.projectHasProjectManager(chosenProject))) {
+                    //jeg er ikke manager og projectet har en manager
+                        System.out.println(loggedInEmployee + ", You do not have access to project manager settings.");
+                        System.out.println("You are now being sent back to main menu.");
+                } else{
                     do{ // choose a project to manage if more than one:
 
                         System.out.println("\nProject manager settings for project " + chosenProject);

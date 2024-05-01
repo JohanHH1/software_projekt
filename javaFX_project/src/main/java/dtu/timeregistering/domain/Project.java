@@ -8,10 +8,10 @@ public class Project {
     private int projectNumber;
     private String projectName;
     private boolean hasProjectManager;
+    private int count;
     // Lists
     private ArrayList<Activity> listOfActivities = new ArrayList<>();
     private Employee projectManager;
-    private int count = 0;
     private int serialNumber;
 
     //--------------------------------------------------------------------------------
@@ -66,6 +66,7 @@ public class Project {
     public int getProjectNumber() {
         return projectNumber;
     }
+    public int getCount() {return count;}
 
     //--------------------------------------------------------------------------------
     // Setters
@@ -89,11 +90,13 @@ public class Project {
     public void setProjectManager(Employee projectManager) {
         this.projectManager = projectManager;
     }
-
+    public void setCount(int counter) {
+        this.count = counter;
+    }
     public void setProjectNumber() {
         int year = YearMonth.now().getYear();
-        serialNumber = ++ count;
         this.projectNumber = (year - 2000) * 1000 + count;
+
     }
     //--------------------------------------------------------------------------------
 }
