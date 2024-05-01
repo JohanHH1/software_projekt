@@ -392,8 +392,9 @@ public class TimeApp {
         this.lisOfManagersListOfProjects = lisOfManagersListOfProjects;
     }
 
-
-
+    public void removeEmployeeFromActivity(String initials, String activityName, String projectName) {
+        getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().removeIf(i -> i.equals(getEmployee(initials)));
+    }
 
     //--------------------------------------------------------------------------------
 }

@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class ActivitySteps {
@@ -96,21 +97,27 @@ public class ActivitySteps {
     public void employee_is_added_to_project_list_of_employees(String initials, String projectName) {
         assertTrue(timeApp.isInProjectListOfEmployees(initials, projectName));
     }
+    //----------------------------------------------------------------------------------------------------
+    // Scenario 5: remove employee from activity
+
+    @And("employee {string} is assigned to activity {string} in project {string}")
+    public void employeeIsAssignedToActivityInProject(String initials, String activityName, String projectName) {
+        timeApp.initializeEmployees();
+        timeApp.addEmployeeToActivity(activityName, initials, projectName);
+
+    }
+
+    @When("employee {string} is removed from activity {string} in project {string}")
+    public void employeeIsRemovedFromActivityInProject(String initials, String activityName, String projectName) {
+        timeApp.removeEmployeeFromActivity(initials, activityName,projectName);
+
+    }
+
+    @Then("the employee {string} should be removed from activity {string} in project {string} successfully")
+    public void theEmployeeShouldBeRemovedFromActivityInProjectSuccessfully(String initials, String activityName, String projectName) {
+        assertFalse(timeApp.isInActivityListOfEmployees(activityName, initials, projectName ));
+    }
+
+
 }
     //----------------------------------------------------------------------------------------------------
-    // Scenario 4: remove employee from activity
-//    @And("employee {string} is assigned to activity {string} in project {string}")
-//    public void employeeIsAssignedToActivityInProject(String initials, String activityName, String projectName) {
-//        timeApp.get
-//        // hvad skal der kaldes på når det er med initials - vi kalder for chosen employee
-//    }
-//
-//    @When("employee {string} is removed from activity {string} in project {string}")
-//    public void employeeIsRemovedFromActivityInProject(String arg0, String arg1, String arg2) {
-//    }
-//
-//    @Then("the employee {string} should be removed from activity {string} successfully")
-//    public void theEmployeeShouldBeRemovedFromActivitySuccessfully(String arg0, String arg1) {
-//    }
-//    //----------------------------------------------------------------------------------------------------
-//}
