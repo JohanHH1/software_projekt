@@ -165,14 +165,15 @@ public class Start {
                 do{
                     System.out.println("\nMy profile menu:");
                     System.out.println("0. To go back to main menu");
-                    System.out.println("1. Display my information (virker ikke)");
+                    System.out.println("1. Display my information");
                     System.out.println("2. Register unavailable");
                     System.out.println("3. Edit hours(virker ikke)");
                     nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
                     if (nr2 == 1){ // 3.1 Display my information
-                        System.out.println("Displaying MY INFORMATION:");
-                        // displaying my information
+                        System.out.println(chosenEmployee + " your informations are ");
+                        timeapp.displayAllMyInformation(chosenEmployee);
                     }
+
 
                     if (nr2 == 2) { // 3.2 Register unavailable
                         do {

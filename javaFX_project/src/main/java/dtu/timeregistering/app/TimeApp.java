@@ -207,14 +207,14 @@ public class TimeApp {
             System.out.println(i.getProjectName());
         }
     }
-    public void displayAllMyInformation(String initials, String projectName){
+    public void displayAllMyInformation(String initials){
         Employee employee = getEmployee(initials);
         System.out.println("Name: "+ employee.getInitials());
         System.out.print("My projects: ");
         displayMyProjectList(initials);
         System.out.println("Max number of activities: "+ employee.getMaxNumberOfActivities());
         System.out.println("My number of activities: " + employee.getMyActivityList().size());
-        System.out.print("My activities: ");
+        System.out.println("My activities: ");
         displayMyActivityList(initials);
         displayMyHoursWorked(initials);
         System.out.println("My unavailable weeks are: " + employee.getUnavailableWeeks());
