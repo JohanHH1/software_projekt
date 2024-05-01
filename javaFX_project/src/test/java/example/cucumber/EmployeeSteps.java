@@ -59,6 +59,11 @@ public class EmployeeSteps {
     public void employeeEntersHoursSpentOnActivityInProject(String initials, int hours, String activityName, String projectName) {
         timeapp.addHoursToActivityAndEmployee(activityName,initials,projectName,hours);
     }
+    @When("employee {string} edits hours spent on activity {string} in project {string} from {int} to {int}")
+    public void employeeEditsHoursSpentOnActivityInProjectFromTo(String initials, String activityName, String projectName, int oldHours, int updatedHours) {
+        int hours = updatedHours-oldHours;
+        timeapp.addHoursToActivityAndEmployee(activityName,initials,projectName,hours);
+    }
 
     @Then("activity {string} in project {string} is updated with {int} hours spent")
     public void activityInProjectIsUpdatedWithHoursSpent(String activityName, String projectName, int hours) {
@@ -122,6 +127,8 @@ public class EmployeeSteps {
             errorMessage.setError_message(e.getMessage());
         }
     }
+
+
 
     // Feature get available employees unsuccessfully
 //    @Given("there does not exist an available user {string} from week {int} till week {int}")
