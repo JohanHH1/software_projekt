@@ -6,25 +6,26 @@ import java.util.*;
 // STRUKTUR PÅ START KLASSEN
 //1 create project
 //2 select project
-//2.1 Register hours
-//2.2 See activity data(virker ikke)
-//2.3 select project manager
+    //2.1 Register hours
+    //2.2 See activity data
+    //2.3 select project manager
 //3 My profile
-//3.1 see employee data(se deres egen data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? )
-//3.2 register unavailable
-//3.3 edit hours(fjerne allerede registreret timer)
+    //3.1 see employee data(se deres egen data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? )
+    //3.2 register unavailable
+    //3.3 edit hours(fjerne allerede registreret timer)
 //4 project Manager actions
 // choose a project to manage if more that one:
-//4.1 create activities
-//4.2 manage activity
-//4.2.1 add timeframe
-//4.2.2 see available employees
-//4.2.3 assign employee to activity
-//4.2.4 set budgeted hours on activities
-//4.2.5 remove employee from activity
-//4.3 add employee to project
-//4.4 get hours spent on project (total hours on activities)
-//4.5 see selected employees data(se valgte employees data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? ))
+    //4.1 create activities
+    //4.2 manage activity
+        //4.2.1 add timeframe
+        //4.2.2 see available employees
+        //4.2.3 assign employee to activity
+        //4.2.4 set budgeted hours on activities
+        //4.2.5 remove employee from activity
+    //4.3 add employee to project
+    //4.4 get hours spent on project (total hours on activities)
+    //4.5 see selected employees data(se valgte employees data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? ))
+//5 Log ud
 //________________________________________________________________________________________________________________________//
 public class Start {
     TimeApp timeapp = new TimeApp();
@@ -169,6 +170,7 @@ public class Start {
                     System.out.println("2. Register unavailable");
                     System.out.println("3. Edit hours(virker ikke)");
                     nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
+
                     if (nr2 == 1){ // 3.1 Display my information
                         System.out.println(chosenEmployee + " your informations are ");
                         timeapp.displayAllMyInformation(chosenEmployee);
