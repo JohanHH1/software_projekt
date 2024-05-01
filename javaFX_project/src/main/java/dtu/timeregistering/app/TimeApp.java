@@ -380,7 +380,10 @@ public class TimeApp {
     }
 
     public void removeEmployeeFromActivity(String initials, String activityName, String projectName) {
-        getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().removeIf(i -> i.equals(getEmployee(initials)));
+        Activity activity = getProject(projectName).getActivity(activityName);
+        activity.getListOfEmployeesInActivity().removeIf(i -> i.equals(getEmployee(initials)));
+        Employee employee = getEmployee(initials);
+        employee.getMyActivityList().removeIf(i -> i.equals(activity));
     }
 
     public void setBudgetedHoursForActivity(Integer budgetedHours, String activityName, String projectName) {

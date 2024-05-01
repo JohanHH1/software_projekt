@@ -62,7 +62,8 @@ public class Start {
         chosenEmployee = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
         timeapp.logIn(chosenEmployee);
         loggedInEmployee = chosenEmployee;
-        System.out.println("Welcome " + chosenEmployee.toUpperCase() + "!");
+        chosenEmployee =chosenEmployee.toUpperCase();
+        System.out.println("Welcome " + chosenEmployee + "!");
         System.out.println("\nPlease enter the corresponding number to pick the action");
 
         // List of Actions
@@ -151,10 +152,11 @@ public class Start {
                                 System.out.println("\nPlease choose an employee to assign as project manager: ");
                                 System.out.println("List of all employees: ");
                                 timeapp.displayAllEmployees();
-                                chosenEmployee = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
-                                timeapp.assignProjectmanager(chosenEmployee.toUpperCase());
+                                employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                                employeeToAdd = employeeToAdd.toUpperCase();
+                                timeapp.assignProjectmanager(employeeToAdd);
                                 timeapp.getProject(chosenProject).setHasProjectManager(true);
-                                System.out.println(chosenEmployee.toUpperCase() + " has successfully been assigned as project manager ");
+                                System.out.println(employeeToAdd + " has successfully been assigned as project manager ");
                             }
                         }
 
@@ -280,6 +282,7 @@ public class Start {
                                     System.out.println("List of all employees: ");
                                     timeapp.displayAllEmployees();
                                     employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                                    employeeToAdd=employeeToAdd.toUpperCase();
                                     timeapp.addEmployeeToActivity(activityName, employeeToAdd, chosenProject);
                                     System.out.println("Employee " + employeeToAdd + " was successfully added to activity " + activityName + " in project " + chosenProject);
                                 }
@@ -294,6 +297,7 @@ public class Start {
                                     System.out.println("List of employees in activity: ");
                                     timeapp.displayListOfEmployeesInActivity(activityName,chosenProject);
                                     employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                                    employeeToAdd=employeeToAdd.toUpperCase();
                                     timeapp.removeEmployeeFromActivity(employeeToAdd,activityName, chosenProject);
                                     System.out.println("Employee " + employeeToAdd + " was successfully removed from activity " + activityName + " in project " + chosenProject);
                                 }
@@ -309,6 +313,7 @@ public class Start {
                             System.out.println("List of all employees: ");
                             timeapp.displayAllEmployees();
                             employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                            employeeToAdd=employeeToAdd.toUpperCase();
                             timeapp.displayAllMyInformation(employeeToAdd);
                         }
                     } while(nr2 !=0); // Back to main menu
