@@ -22,9 +22,8 @@ import java.util.*;
         //4.2.3 assign employee to activity
         //4.2.4 set budgeted hours on activities
         //4.2.5 remove employee from activity
-    //4.3 add employee to project
-    //4.4 get hours spent on project (total hours on activities)
-    //4.5 see selected employees data(se valgte employees data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? ))
+    //4.3 get hours spent on project (total hours on activities)
+    //4.4 see selected employees data(se valgte employees data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? ))
 //5 Log ud
 //________________________________________________________________________________________________________________________//
 public class Start {
@@ -227,9 +226,8 @@ public class Start {
                         System.out.println("0. Go back to main menu");
                         System.out.println("1. Create an activity");
                         System.out.println("2. Manage activity");
-                        System.out.println("3. Add employee to project (virker ikke)");
-                        System.out.println("4. Get hours spent on project(virker ikke) ");
-                        System.out.println("5. See employee data(virker ikke)");
+                        System.out.println("3. Get hours spent on project(virker ikke) ");
+                        System.out.println("4. See employee data(virker ikke)");
                         nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
                         console.nextLine();
                         if (nr2 == 1){ // 4.1 Create activity
@@ -294,8 +292,7 @@ public class Start {
 
 
                         }
-                        }
-                        if (nr2 == 3){ //4.3 add employee to project
+
 
                         }
                         if (nr2 == 4){ //4.4 Get hours spent on project (total hours on activities)

@@ -24,13 +24,6 @@ Scenario: Add employee to activity
   And employee "HUBA" is added to activity "activity1" list of employees in project "project-1"
 
 # Scenario 4:
-Scenario: Add employee to project
-  Given project "project-1" already exists
-  When employee "HUBA" is added to project "project-1"
-  Then project "project-1" is added to employee "HUBA" list of projects
-  And employee "HUBA" is added to project "project-1" list of employees
-
-# Scenario 5:
   Scenario: Removing an employee from an activity
     Given employee "HUBA" already exist
     Given project "project-1" already exists

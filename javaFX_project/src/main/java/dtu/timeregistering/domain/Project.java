@@ -10,7 +10,6 @@ public class Project {
     private boolean hasProjectManager;
     // Lists
     private ArrayList<Activity> listOfActivities = new ArrayList<>();
-    private ArrayList<Employee> listOfEmployeesInProject = new ArrayList<>();
     private Employee projectManager;
 
     //--------------------------------------------------------------------------------
@@ -54,9 +53,6 @@ public class Project {
         return null;
     }
 
-    public ArrayList<Employee> getListOfEmployeesInProject() {
-        return listOfEmployeesInProject;
-    }
     public Employee getProjectManager() {
         return projectManager;
     }
@@ -78,9 +74,6 @@ public class Project {
     }
     public void setActivityEndWeek(int endWeek, Activity activity){
         activity.setEndWeek(endWeek);
-    }
-    public void setListOfEmployeesInProject(ArrayList<Employee> listOfEmployeesInProject) {
-        this.listOfEmployeesInProject = listOfEmployeesInProject;
     }
 
     public void setHasProjectManager(boolean hasProjectManager) {
