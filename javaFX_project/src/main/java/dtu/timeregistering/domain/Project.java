@@ -1,5 +1,5 @@
 package dtu.timeregistering.domain;
-
+import java.time.YearMonth;
 import java.util.ArrayList;
 
 public class Project {
@@ -11,6 +11,8 @@ public class Project {
     // Lists
     private ArrayList<Activity> listOfActivities = new ArrayList<>();
     private Employee projectManager;
+    private int count = 0;
+    private int serialNumber;
 
     //--------------------------------------------------------------------------------
 
@@ -61,6 +63,10 @@ public class Project {
         return hasProjectManager;
     }
 
+    public int getProjectNumber() {
+        return projectNumber;
+    }
+
     //--------------------------------------------------------------------------------
     // Setters
     public void setProjectName(String projectName) {
@@ -82,6 +88,12 @@ public class Project {
 
     public void setProjectManager(Employee projectManager) {
         this.projectManager = projectManager;
+    }
+
+    public void setProjectNumber() {
+        int year = YearMonth.now().getYear();
+        serialNumber = ++ count;
+        this.projectNumber = (year - 2000) * 1000 + count;
     }
     //--------------------------------------------------------------------------------
 }

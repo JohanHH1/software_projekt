@@ -125,6 +125,7 @@ public class TimeApp {
         }
         Project project = new Project(projectName);
         listOfProjects.add(project);
+        project.setProjectNumber();
     }
     public void createActivity(String activityName, String projectName) throws Exception {
          getProject(projectName).addActivity(activityName);

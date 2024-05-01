@@ -38,6 +38,10 @@ public class ProjectSteps {
     public void is_created(String projectName) {
         System.out.println(projectName + " was successfully created");
     }
+    @And("a project number is added to project {string}")
+    public void aProjectNumberIsAddedToProject(String projectName) {
+        assertNotEquals(0, timeApp.getProject(projectName).getProjectNumber());
+    }
     //----------------------------------------------------------------------------------------------------
     // Scenario 2: Add project unsuccessfully:
     @Given("project {string} already exists")
@@ -72,5 +76,7 @@ public class ProjectSteps {
     public void theTotalHoursOnProjectIsDisplayed(String projectName) {
         timeApp.displayTotalHoursOnProject(projectName);
     }
+
+
     //----------------------------------------------------------------------------------------------------
 }

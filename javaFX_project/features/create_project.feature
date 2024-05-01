@@ -2,10 +2,11 @@ Feature: Create project
   Description: A project is created
   Actors: Employee (or already assigned Project Manager)
 
-Scenario: Add project successfully:
-    When "project-1" does not already exist
-    And i add the project "project-1"
-    Then "project-1" is created
+  Scenario: Add project successfully:
+      When "project-1" does not already exist
+      And i add the project "project-1"
+      Then "project-1" is created
+      And a project number is added to project "project-1"
 
   Scenario: Add project unsuccessfully:
     Given project "project-1" already exists
@@ -17,3 +18,4 @@ Scenario: Add project successfully:
       Given the user has an activity "activity1" in project "project-1"
       When the user wants to see the total hours spent on a project "project-1"
       Then the total hours on project "project-1" is displayed
+      
