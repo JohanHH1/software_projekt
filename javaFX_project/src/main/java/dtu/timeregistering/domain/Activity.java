@@ -12,7 +12,7 @@ public class Activity {
     private int budgetedHours;
     private int startWeek;
     private int endWeek;
-    private int hoursSpentOnActivity;
+    private float hoursSpentOnActivity;
     // Lists
     private ArrayList<Employee> listOfEmployeesInActivity = new ArrayList<>();
     //--------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ public class Activity {
         return projectName;
     }
 
-    public int getHoursSpentOnActivity() {
+    public float getHoursSpentOnActivity() {
         return hoursSpentOnActivity;
 
     }
@@ -72,7 +72,7 @@ public class Activity {
     public void setListOfEmployeesInActivity(ArrayList<Employee> listOfEmployeesInActivity) {
         this.listOfEmployeesInActivity = listOfEmployeesInActivity;
     }
-    public void setHoursSpentOnActivity(int hoursSpentOnActivity) {
+    public void setHoursSpentOnActivity(float hoursSpentOnActivity) {
         this.hoursSpentOnActivity = hoursSpentOnActivity;
     }
 

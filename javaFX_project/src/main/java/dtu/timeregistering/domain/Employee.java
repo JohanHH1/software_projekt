@@ -10,7 +10,7 @@ public class Employee {
     private final int maxNumberOfActivities = 20;
     private boolean loggedIn;
     private boolean isProjectManager;
-    private int hoursWorked;
+    private float hoursWorked;
     private boolean isAvailable;
     // Lists
     private ArrayList<Activity> myActivityList = new ArrayList<>();
@@ -59,7 +59,7 @@ public class Employee {
     public int registerTime(int hours, String initials){
         return hours;
     }
-    public int getHoursWorked() {
+    public float getHoursWorked() {
         return hoursWorked;
     }
 
@@ -88,7 +88,7 @@ public class Employee {
     public void setInitials(String initials) {
         this.initials = initials;
     }
-    public void setHoursWorked(int hoursWorked) {
+    public void setHoursWorked(float hoursWorked) {
         this.hoursWorked = hoursWorked;
     }
 

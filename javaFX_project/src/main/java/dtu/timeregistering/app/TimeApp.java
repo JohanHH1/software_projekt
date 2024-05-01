@@ -142,15 +142,15 @@ public class TimeApp {
         getEmployee(initials).setProjectManager((true));
     }
 
-    public void addHoursToActivityAndEmployee(String activityName, String initials, String projectName,int hours) {
+    public void addHoursToActivityAndEmployee(String activityName, String initials, String projectName,float hours) {
         addHoursToActivity(activityName, projectName, hours);
         addHoursToEmployee(initials, hours);
     }
-    public void addHoursToActivity(String activityName, String projectName,int hours) {
+    public void addHoursToActivity(String activityName, String projectName,float hours) {
         getProject(projectName).getActivity(activityName).setHoursSpentOnActivity(getProject(projectName).getActivity(activityName).getHoursSpentOnActivity()+hours);
 
     }
-    public void addHoursToEmployee(String initials,int hours) {
+    public void addHoursToEmployee(String initials,float hours) {
         getEmployee(initials).setHoursWorked(getEmployee(initials).getHoursWorked()+hours);
     }
     //--------------------------------------------------------------------------------
@@ -235,7 +235,7 @@ public class TimeApp {
 
 
     public void displayTotalHoursOnProject(String projectName) {
-        int i = 0;
+        float i = 0;
         for (Activity activity : getProject(projectName).getListOfActivities()){
             i+=activity.getHoursSpentOnActivity();
         }

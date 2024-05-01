@@ -24,7 +24,9 @@ import java.util.*;
         //4.2.5 remove employee from activity
     //4.3 get hours spent on project (total hours on activities)
     //4.4 see selected employees data(se valgte employees data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? ))
-//5 Log ud
+// 5 get weekly report
+
+//6 Log ud
 //________________________________________________________________________________________________________________________//
 public class Start {
     TimeApp timeapp = new TimeApp();
@@ -42,7 +44,7 @@ public class Start {
         int unavailableWeek;
         int startWeek;
         int endWeek;
-        int hoursWorked;
+        float hoursWorked;
         int budgetHours;
         String employeeToAdd;
         String chosenProject;
@@ -124,7 +126,7 @@ public class Start {
                                 timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
                                 activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", chosenProject);
                                 System.out.println("Please enter hours worked on activity " + activityName);
-                                hoursWorked = console.nextInt();
+                                hoursWorked = console.nextFloat();
                                 console.nextLine();
                                 timeapp.addHoursToActivityAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
                                 System.out.println(hoursWorked + " hours added to activity " + activityName + " in project " + chosenProject);
