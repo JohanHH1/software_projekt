@@ -139,8 +139,12 @@ public class TimeApp {
     }
 
     public void addEmployeeToActivity(String activityName, String initials, String projectName) {
-        getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().add(getEmployee((initials)));
-        getEmployee(initials).getMyActivityList().add(getProject(projectName).getActivity(activityName));
+        if (getEmployee(initials).getMyActivityList().size()<20) {
+            getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().add(getEmployee((initials)));
+            getEmployee(initials).getMyActivityList().add(getProject(projectName).getActivity(activityName));
+        } else {
+            System.out.println(initials + " has the max limit of activities (20).");
+        }
     }
 
     public void assignProjectmanager(String initials) {
