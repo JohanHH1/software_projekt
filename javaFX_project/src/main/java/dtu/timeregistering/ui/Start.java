@@ -110,7 +110,7 @@ public class Start {
                         System.out.println("0. To go back to main menu");
                         System.out.println("1. Register hours");
                         System.out.println("2. See activity data");
-                        if ((!timeapp.getProject(chosenProject).getHasProjectManager())){   // if no manager
+                        if ((!timeapp.projectHasProjectManager(chosenProject))){   // if no manager
                             System.out.println("3. Select a project manager");
                         }
                         nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 3);
@@ -123,7 +123,7 @@ public class Start {
                             }
                             else {
                                 System.out.println("Choose an activity: ");
-                                timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+                                timeapp.displayAllActivitiesInProject(chosenProject);
                                 activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", chosenProject);
                                 System.out.println("Please enter hours worked on activity " + activityName);
                                 hoursWorked = console.nextFloat();
@@ -131,7 +131,7 @@ public class Start {
                                 timeapp.addHoursToActivityAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
                                 System.out.println(hoursWorked + " hours added to activity " + activityName + " in project " + chosenProject);
                                 System.out.println(hoursWorked + " hours added to " + chosenEmployee + " worked hours");
-                                System.out.println("Your total hours worked are: " + timeapp.getEmployee(chosenEmployee).getHoursWorked());
+                                System.out.println("Your total hours worked are: " + timeapp.EmployeeHoursWorked(chosenEmployee));
                             }
                         }
 
@@ -142,7 +142,7 @@ public class Start {
                             }
                             else{   // If there is an activity in chosenProject
                                 System.out.println("Choose an activity: ");
-                                timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+                                timeapp.displayAllActivitiesInProject(chosenProject);
                                 activityName = timeapp.getValidActivityName(console,"Enter a valid activity name: ", chosenProject);
                                 timeapp.displayActivityInformation(activityName, chosenProject);
                             }
@@ -150,14 +150,14 @@ public class Start {
 
                         if (nr2 == 3){ // 2.3 Select a projectManager
                             // Hvis der ikke allerede er en project manager
-                            if ((!timeapp.getProject(chosenProject).getHasProjectManager())){
+                            if (timeapp.projectHasProjectManager(chosenProject)){
                                 System.out.println("\nPlease choose an employee to assign as project manager: ");
                                 System.out.println("List of all employees: ");
                                 timeapp.displayAllEmployees();
                                 employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
                                 employeeToAdd = employeeToAdd.toUpperCase();
                                 timeapp.assignProjectmanager(employeeToAdd);
-                                timeapp.getProject(chosenProject).setHasProjectManager(true);
+                                timeapp.setHasProjectManager(chosenProject,true);
                                 System.out.println(employeeToAdd + " has successfully been assigned as project manager ");
                             }
                         }
@@ -243,7 +243,7 @@ public class Start {
                             timeapp.createActivity(activityName, chosenProject);
                             System.out.println("The activity " + activityName + " was successfully created!");
                             System.out.println("Here is a list of all current activities in project " + chosenProject + ": ");
-                            timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+                            timeapp.displayAllActivitiesInProject(chosenProject);
                             System.out.println();
                         }
                         if (nr2 == 2) { //4.2 Manage activity
@@ -252,7 +252,7 @@ public class Start {
                             }
                             else {
                             System.out.println("Which activity would you like to manage?");
-                            timeapp.displayAllActivitiesInProject(timeapp.getProject(chosenProject));
+                            timeapp.displayAllActivitiesInProject(chosenProject);
                             activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", chosenProject);
                             do {
                                 System.out.println("\nManage activities menu for activity " + activityName);

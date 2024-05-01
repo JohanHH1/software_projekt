@@ -161,8 +161,8 @@ public class TimeApp {
             System.out.println(listOfProject.getProjectName());
         }
     }
-    public void displayAllActivitiesInProject(Project project) {
-        for (Activity listOfActivity : project.getListOfActivities()){
+    public void displayAllActivitiesInProject(String projectName) {
+        for (Activity listOfActivity : getProject(projectName).getListOfActivities()){
             System.out.println(listOfActivity.getActivityName());
         }
     }
@@ -389,6 +389,18 @@ public class TimeApp {
 
     public void setBudgetedHoursForActivity(Integer budgetedHours, String activityName, String projectName) {
         getProject(projectName).getActivity(activityName).setBudgetedHours(budgetedHours);
+    }
+
+    public boolean projectHasProjectManager(String projectName) {
+        return getProject(projectName).getHasProjectManager();
+    }
+
+    public void setHasProjectManager(String chosenProject, boolean b) {
+        getProject(chosenProject).setHasProjectManager(b);
+    }
+
+    public float EmployeeHoursWorked(String initials) {
+        return getEmployee(initials).getHoursWorked();
     }
 
     //--------------------------------------------------------------------------------
