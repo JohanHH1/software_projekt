@@ -226,8 +226,8 @@ public class Start {
                         System.out.println("0. Go back to main menu");
                         System.out.println("1. Create an activity");
                         System.out.println("2. Manage activity");
-                        System.out.println("3. Get hours spent on project(virker ikke) ");
-                        System.out.println("4. See employee data(virker ikke)");
+                        System.out.println("3. Get hours spent on project");
+                        System.out.println("4. See employee data");
                         nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
                         console.nextLine();
                         if (nr2 == 1){ // 4.1 Create activity
@@ -255,8 +255,8 @@ public class Start {
                                 System.out.println("1. Add timeframe to activity");
                                 System.out.println("2. See available employees in chosen period");
                                 System.out.println("3. Assign employee to activity");
-                                System.out.println("4. Set budgeted hours on activities(virker ikke) ");
-                                System.out.println("5. Remove employee from activity(virker ikke)");
+                                System.out.println("4. Set budgeted hours on activities");
+                                System.out.println("5. Remove employee from activity");
                                 nr3 = timeapp.getInt(console, "Enter a number from the list above: ", 0, 5);
                                 if (nr3 == 1) {//4.2.1 add timeframe to activity
                                     System.out.println("Start week for activity " + activityName + ": ");
@@ -267,7 +267,7 @@ public class Start {
                                     System.out.println("Timeframe has successfully been added to activity " + activityName + " in project " + chosenProject);
                                     System.out.println("Start week: " + startWeek + ", End week: " + endWeek);
                                 }
-                                if (nr3 == 2) {// 4.2.2 2. See available employees in chosen period
+                                if (nr3 == 2) {// 4.2.2  See available employees in chosen period
                                     System.out.println("Enter the start week for the availability check");
                                     startWeek = timeapp.getInt(console, "Enter a valid week number: ", 1, 5000);
                                     System.out.println("Enter the end week for the availability check");
@@ -283,25 +283,30 @@ public class Start {
                                     System.out.println("Employee " + employeeToAdd + " was successfully added to activity " + activityName + " in project " + chosenProject);
                                 }
                                 if (nr3 == 4) {//4.2.4 set budgeted hours in activity
-
+                                    // bliver lavet lige nu af johan joyce og kajsa
                                 }
                                 if (nr3 == 5) {//4.2.5 remove employee from activities
-
+                                    System.out.println("Chose an employee to remove from activity " + activityName + ": ");
+                                    System.out.println("List of employees in activity: ");
+                                    timeapp.displayListOfEmployeesInActivity(activityName,chosenProject);
+                                    employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                                    timeapp.removeEmployeeFromActivity(employeeToAdd,activityName, chosenProject);
+                                    System.out.println("Employee " + employeeToAdd + " was successfully removed from activity " + activityName + " in project " + chosenProject);
                                 }
                             } while (nr3 != 0);
-
-
                         }
-
-
                         }
-                        if (nr2 == 4){ //4.4 Get hours spent on project (total hours on activities)
-
+                        if (nr2 == 3){ //4.3 Get hours spent on project (total hours on activities)
+                            System.out.println("The total hours spent on " + chosenProject + " is :");
+                            timeapp.displayTotalHoursOnProject(chosenProject);
                         }
-                        if (nr2 == 5){ //4.5 See employee data
-
+                        if (nr2 == 4){ //4.4 See employee data
+                            System.out.println("Chose an employee: ");
+                            System.out.println("List of all employees: ");
+                            timeapp.displayAllEmployees();
+                            employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                            timeapp.displayAllMyInformation(employeeToAdd);
                         }
-
                     } while(nr2 !=0); // Back to main menu
                 }
             }
