@@ -1,5 +1,5 @@
-Feature: Manage employees
-  Description: the user is managing employees
+Feature: Get Employee Data
+  Description: the user getting employee data
   Actors: Employee
 
   Scenario: An employee with current activities checks employee data:
