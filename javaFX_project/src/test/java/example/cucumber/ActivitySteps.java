@@ -113,6 +113,16 @@ public class ActivitySteps {
     public void activity_in_project_has_budgeted_hour(String activityName, String projectName, Integer budgetedHours) {
         assertEquals(timeApp.getProject(projectName).getActivity(activityName).getBudgetedHours(), (int) budgetedHours);
     }
-
-}
     //----------------------------------------------------------------------------------------------------
+    // display weekly report
+    @When("I enter the weekly report {string}")
+    public void i_enter_the_weekly_report(String weeklyReport) {
+    }
+    @Then("the information for a weekly report {string} is displayed")
+    public void the_information_for_a_weekly_report_is_displayed(String weeklyReport) {
+       timeApp.displayWeeklyReport(weeklyReport);
+    }
+
+//----------------------------------------------------------------------------------------------------
+}
+
