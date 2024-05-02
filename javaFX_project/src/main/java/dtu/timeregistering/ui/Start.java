@@ -12,7 +12,7 @@ import java.util.*;
 //3 My profile
     //3.1 see employee data(se deres egen data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? )
     //3.2 register unavailable
-    //3.3 edit hours(fjerne allerede registreret timer)
+    //3.3 remove hours(fjerne allerede registreret timer)
 //4 project Manager actions
 // choose a project to manage if more that one:
     //4.1 create activities
@@ -171,7 +171,7 @@ public class Start {
                     System.out.println("0. To go back to main menu");
                     System.out.println("1. Display my information");
                     System.out.println("2. Register unavailable");
-                    System.out.println("3. Edit hours(virker ikke)");
+                    System.out.println("3. Remove hours");
                     nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
 
                     if (nr2 == 1){ // 3.1 Display my information
@@ -208,7 +208,23 @@ public class Start {
 
                         if (nr2 == 3){ // 3.3 edit hours
                         //edit hours
-                    }
+                            System.out.println("\nChoose a project: ");
+                            System.out.println("List of all current projects: ");
+                            timeapp.displayAllProjectNames();
+                            chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
+                            console.nextLine(); // (Skal være her for at det virker)
+                            System.out.println("Choose an activity to remove hours from: ");
+                            timeapp.displayAllActivitiesInProject(chosenProject);
+                            activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", chosenProject);
+                            System.out.println("Please enter the amount of hours you wish to remove: ");
+                            hoursWorked = console.nextFloat();
+                            console.nextLine();
+                            timeapp.removeHoursInActiivtyAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
+                            System.out.println(hoursWorked + " hours removed from activity " + activityName + " in project " + chosenProject);
+                            System.out.println(hoursWorked + " hours removed from " + chosenEmployee + " worked hours");
+                            System.out.println("Your total hours worked are: " + timeapp.EmployeeHoursWorked(chosenEmployee));
+
+                        }
 
                 } while(nr2 !=0); // Back to main menu
 

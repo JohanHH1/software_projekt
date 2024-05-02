@@ -156,6 +156,10 @@ public class TimeApp {
         addHoursToActivity(activityName, projectName, hours);
         addHoursToEmployee(initials, hours);
     }
+    public void removeHoursInActiivtyAndEmployee(String activityName, String initials, String projectName, float updateHours) {
+        addHoursToActivity(activityName, projectName, -updateHours);
+        addHoursToEmployee(initials, -updateHours);
+    }
     public void addHoursToActivity(String activityName, String projectName,float hours) {
         getProject(projectName).getActivity(activityName).setHoursSpentOnActivity(getProject(projectName).getActivity(activityName).getHoursSpentOnActivity()+hours);
 
