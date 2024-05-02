@@ -255,12 +255,13 @@ public class TimeApp {
         }
         System.out.println(i);
     }
-    public void displayWeeklyReport(String weeklyReport) {
+    public void displayWeeklyReport() {
         Calendar cal = Calendar.getInstance();
         int weekNumber = cal.get(Calendar.WEEK_OF_YEAR);
         System.out.println("Report from week no." + weekNumber);
         System.out.println("Available Employees:" + listOfAvailableEmployees);
         System.out.println("Total hours spent on activities this week ");
+        // tilføjes mere til
     }
     //--------------------------------------------------------------------------------
     // Getters:

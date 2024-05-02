@@ -120,7 +120,7 @@ public class ActivitySteps {
     }
     @Then("the information for a weekly report {string} is displayed")
     public void the_information_for_a_weekly_report_is_displayed(String weeklyReport) {
-       timeApp.displayWeeklyReport(weeklyReport);
+       timeApp.displayWeeklyReport();
     }
 
 //----------------------------------------------------------------------------------------------------
