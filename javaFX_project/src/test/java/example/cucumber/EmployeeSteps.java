@@ -64,6 +64,11 @@ public class EmployeeSteps {
         int hours = updatedHours-oldHours;
         timeapp.addHoursToActivityAndEmployee(activityName,initials,projectName,hours);
     }
+    @When("employee {string} removes {int} hours spent on activity {string} in project {string}")
+    public void employeeRemovesHoursSpentOnActivityInProjectTo(String initials, float updateHours,String activityName, String projectName) {
+        timeapp.removeHoursInActiivtyAndEmployee(activityName,initials,projectName,updateHours);
+    }
+
 
     @Then("activity {string} in project {string} is updated with {int} hours spent")
     public void activityInProjectIsUpdatedWithHoursSpent(String activityName, String projectName, int hours) {
