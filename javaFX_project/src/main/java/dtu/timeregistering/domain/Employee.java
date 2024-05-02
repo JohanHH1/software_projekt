@@ -56,17 +56,12 @@ public class Employee {
     public int getMaxNumberOfActivities() {
         return maxNumberOfActivities;
     }
-    public int registerTime(int hours, String initials){
-        return hours;
-    }
     public float getHoursWorked() {
         return hoursWorked;
     }
-
     public ArrayList<Integer> getUnavailableWeeks() {
         return unavailableWeeks;
     }
-
     public ArrayList<Project> getLisOfManagersListOfProjects() {
         return lisOfManagersListOfProjects;
     }
@@ -79,27 +74,11 @@ public class Employee {
     public void setProjectManager(boolean projectManager) {
         isProjectManager = projectManager;
     }
-    public void setMyProjectList(ArrayList<Project> myProjectList) {
-        this.myProjectList = myProjectList;
-    }
-    public void setMyActivityList(ArrayList<Activity> myActivityList) {
-        this.myActivityList = myActivityList;
-    }
-    public void setInitials(String initials) {
-        this.initials = initials;
-    }
     public void setHoursWorked(float hoursWorked) {
         this.hoursWorked = hoursWorked;
     }
-
     public void setAvailable(boolean available) {
         isAvailable = available;
-    }
-    public void setUnavailableWeeks(ArrayList<Integer> unavailableWeeks) {
-        this.unavailableWeeks = unavailableWeeks;
-    }
-    public void setLisOfManagersListOfProjects(ArrayList<Project> lisOfManagersListOfProjects) {
-        this.lisOfManagersListOfProjects = lisOfManagersListOfProjects;
     }
 
     //--------------------------------------------------------------------------------

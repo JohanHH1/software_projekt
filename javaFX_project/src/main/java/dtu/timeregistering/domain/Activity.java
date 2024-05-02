@@ -57,9 +57,6 @@ public class Activity {
     }
     //--------------------------------------------------------------------------------
     // Setters
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
-    }
     public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
@@ -69,13 +66,9 @@ public class Activity {
     public void setEndWeek(int endWeek) {
         this.endWeek = endWeek;
     }
-    public void setListOfEmployeesInActivity(ArrayList<Employee> listOfEmployeesInActivity) {
-        this.listOfEmployeesInActivity = listOfEmployeesInActivity;
-    }
     public void setHoursSpentOnActivity(float hoursSpentOnActivity) {
         this.hoursSpentOnActivity = hoursSpentOnActivity;
     }
-
     public void setBudgetedHours(int budgetedHours) {
         this.budgetedHours = budgetedHours;
     }

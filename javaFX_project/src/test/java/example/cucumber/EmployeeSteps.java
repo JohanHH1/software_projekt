@@ -26,6 +26,7 @@ public class EmployeeSteps {
     @Given("employee {string} already exist")
     public void employee_already_exist (String initials){
         timeapp.initializeEmployees();
+        assertTrue(timeapp.getListOfEmployees().contains(timeapp.getEmployee(initials)));
     }
     //----------------------------------------------------------------------------------------------------
     // Feature: select employee,  Scenario: An employee logs in successfully:
@@ -61,9 +62,9 @@ public class EmployeeSteps {
     }
     @When("employee {string} edits hours spent on activity {string} in project {string} to {float}")
     public void employeeEditsHoursSpentOnActivityInProjectFromTo(String initials, String activityName, String projectName, float updatedHours) {
-        timeapp.addHoursToActivityAndEmployee(activityName,initials,projectName,hours);
+        timeapp.addHoursToActivityAndEmployee(activityName,initials,projectName,updatedHours);
     }
-    @When("employee {string} removes {int} hours spent on activity {string} in project {string}")
+    @When("employee {string} removes {float} hours spent on activity {string} in project {string}")
     public void employeeRemovesHoursSpentOnActivityInProjectTo(String initials, float updateHours,String activityName, String projectName) {
         timeapp.removeHoursInActiivtyAndEmployee(activityName,initials,projectName,updateHours);
     }
@@ -132,7 +133,7 @@ public class EmployeeSteps {
         }
     }
 
-
+//skal dette fjernes???????
 
     // Feature get available employees unsuccessfully
 //    @Given("there does not exist an available user {string} from week {int} till week {int}")

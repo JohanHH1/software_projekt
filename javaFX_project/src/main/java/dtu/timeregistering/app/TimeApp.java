@@ -21,7 +21,6 @@ public class TimeApp {
     private ArrayList<Project> listOfProjects = new ArrayList<>();
     private ArrayList<Employee> listOfEmployees = new ArrayList<>();
     private ArrayList<Employee> listOfAvailableEmployees = new ArrayList<>();
-    private ArrayList<Project> lisOfManagersListOfProjects = new ArrayList<>();
     //--------------------------------------------------------------------------------
 
     // Constructor:
@@ -258,6 +257,12 @@ public class TimeApp {
     //--------------------------------------------------------------------------------
     // Getters:
     //This method ensures the user prompt is an integer (long)
+
+
+    public ArrayList<Employee> getListOfEmployees() {
+        return listOfEmployees;
+    }
+
     public int getInt(Scanner console, String prompt, int min, int max) {
         int input;
         while (true) {
@@ -309,9 +314,6 @@ public class TimeApp {
             }
         }
     }
-    public ArrayList<Project> getProjects() {
-        return listOfProjects;
-    }
 
     public Project getProject(String projectName) {
         String normalizedProjectName = projectName.toLowerCase(); // Convert project name to lowercase
@@ -350,13 +352,6 @@ public class TimeApp {
         }
         return listOfAvailableEmployees;
     }
-
-    public ArrayList<Project> getLisOfManagersListOfProjects(String initials, String projectName) {
-        return lisOfManagersListOfProjects;
-    }
-
-
-
     //--------------------------------------------------------------------------------
     // Setters:
     public void setTimeFrame(String activityName, String projectName, Integer startWeek, Integer endWeek) throws Exception {
@@ -395,10 +390,6 @@ public class TimeApp {
         return false;
     }
 
-    public void setLisOfManagersListOfProjects(ArrayList<Project> lisOfManagersListOfProjects) {
-        this.lisOfManagersListOfProjects = lisOfManagersListOfProjects;
-    }
-
     public void removeEmployeeFromActivity(String initials, String activityName, String projectName) {
         Activity activity = getProject(projectName).getActivity(activityName);
         activity.getListOfEmployeesInActivity().removeIf(i -> i.equals(getEmployee(initials)));
@@ -421,9 +412,6 @@ public class TimeApp {
     public float EmployeeHoursWorked(String initials) {
         return getEmployee(initials).getHoursWorked();
     }
-
-
-
 
     //--------------------------------------------------------------------------------
 }

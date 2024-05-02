@@ -17,7 +17,7 @@ Feature: select employee
     Then activity "activity1" in project "project-1" is updated with 10 hours spent
     And employee "HUBA" hours worked is updated to 10 hours more
 
-  Scenario: an employee edits hours spent on an activity
+  Scenario: an employee removes hours spent on an activity
     Given employee "HUBA" already exist
     Given project "project-1" already exists
     And the user has an activity "activity1" in project "project-1"

@@ -12,7 +12,6 @@ public class Project {
     // Lists
     private ArrayList<Activity> listOfActivities = new ArrayList<>();
     private Employee projectManager;
-    private int serialNumber;
 
     //--------------------------------------------------------------------------------
 
@@ -46,7 +45,6 @@ public class Project {
         return listOfActivities;
     }
     public Activity getActivity(String activityName) {
-        String normalizedActivityName = activityName.toLowerCase(); // Convert activity name to lowercase
         for (Activity activity : listOfActivities) {
             if (activityName.equalsIgnoreCase(activity.getActivityName())) {
                 return activity;
@@ -54,39 +52,21 @@ public class Project {
         }
         return null;
     }
-
     public Employee getProjectManager() {
         return projectManager;
     }
-
     public boolean getHasProjectManager() {
         return hasProjectManager;
     }
-
     public int getProjectNumber() {
         return projectNumber;
     }
-    public int getCount() {return count;}
 
     //--------------------------------------------------------------------------------
     // Setters
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-    public void setListOfActivities(ArrayList<Activity> listOfActivities) {
-        this.listOfActivities = listOfActivities;
-    }
-    public void setActivityStartWeek(int startWeek, Activity activity){
-        activity.setStartWeek(startWeek);
-    }
-    public void setActivityEndWeek(int endWeek, Activity activity){
-        activity.setEndWeek(endWeek);
-    }
-
     public void setHasProjectManager(boolean hasProjectManager) {
         this.hasProjectManager = hasProjectManager;
     }
-
     public void setProjectManager(Employee projectManager) {
         this.projectManager = projectManager;
     }

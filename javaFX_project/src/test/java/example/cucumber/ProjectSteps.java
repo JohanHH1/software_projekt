@@ -48,17 +48,7 @@ public class ProjectSteps {
     public void already_exists(String projectName) {
         timeApp.addProject(projectName);
     }
-    /*
-    @And bruges i begge to så behøver kun at stå der én gang!
-    @And("i add the project {string}")
-    public void i_add_the_project(String projectName) throws Exception{
-        try {
-            timeApp.addProject(projectName);
-        } catch (Exception e) {
-            errorMessage = e.getMessage();
-        }
-    }
-    */
+
     @Then("error message {string} is thrown")
     public void error_message_is_thrown(String em)  {
         assertEquals(em,errorMessage);
