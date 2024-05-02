@@ -49,19 +49,18 @@ public class EmployeeSteps {
         assertTrue(timeapp.isProjectManager(initials));
     }
     //----------------------------------------------------------------------------------------------------
-    //Feature: employees,      Scenario: employee registers hours
+    //Feature: employees, Scenario: employee registers hours
     @Given("employee {string} is assigned to the activity {string} in project {string}")
     public void employee_is_assigned_to_the_activity_in_project(String initials, String activityName, String projectName) {
         timeapp.addEmployeeToActivity(activityName,initials,projectName);
     }
 
-    @When("employee {string} enters {int} hours spent on activity {string} in project {string}")
-    public void employeeEntersHoursSpentOnActivityInProject(String initials, int hours, String activityName, String projectName) {
+    @When("employee {string} enters {float} hours spent on activity {string} in project {string}")
+    public void employeeEntersHoursSpentOnActivityInProject(String initials, float hours, String activityName, String projectName) {
         timeapp.addHoursToActivityAndEmployee(activityName,initials,projectName,hours);
     }
-    @When("employee {string} edits hours spent on activity {string} in project {string} from {int} to {int}")
-    public void employeeEditsHoursSpentOnActivityInProjectFromTo(String initials, String activityName, String projectName, int oldHours, int updatedHours) {
-        int hours = updatedHours-oldHours;
+    @When("employee {string} edits hours spent on activity {string} in project {string} to {float}")
+    public void employeeEditsHoursSpentOnActivityInProjectFromTo(String initials, String activityName, String projectName, float updatedHours) {
         timeapp.addHoursToActivityAndEmployee(activityName,initials,projectName,hours);
     }
     @When("employee {string} removes {int} hours spent on activity {string} in project {string}")
@@ -70,13 +69,13 @@ public class EmployeeSteps {
     }
 
 
-    @Then("activity {string} in project {string} is updated with {int} hours spent")
-    public void activityInProjectIsUpdatedWithHoursSpent(String activityName, String projectName, int hours) {
+    @Then("activity {string} in project {string} is updated with {float} hours spent")
+    public void activityInProjectIsUpdatedWithHoursSpent(String activityName, String projectName, float hours) {
         assertTrue(timeapp.getProject(projectName).getActivity(activityName).getHoursSpentOnActivity()==hours);
     }
 
-    @And("employee {string} hours worked is updated to {int} hours more")
-    public void employeeHoursWorkedIsUpdatedToHoursMore(String initials, int hours) {
+    @And("employee {string} hours worked is updated to {float} hours more")
+    public void employeeHoursWorkedIsUpdatedToHoursMore(String initials, float hours) {
         assertTrue(timeapp.getEmployee(initials).getHoursWorked()==hours);
     }
 

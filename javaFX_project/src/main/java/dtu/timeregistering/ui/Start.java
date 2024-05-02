@@ -77,7 +77,7 @@ public class Start {
             System.out.println("3. My profile");
             System.out.println("4. Project manager actions");
             System.out.println("5. Get Weekly report");
-            nr = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
+            nr = timeapp.getInt(console,"Enter a number from the list above: ", 0, 4);
             console.nextLine();
 
             // 1. Create project
@@ -337,10 +337,6 @@ public class Start {
                     } while(nr2 !=0); // Back to main menu
                 }
 
-            }
-            if (nr==5){
-                // nr3 = timeapp.getInt(console,"Enter a week number ", 0, 5000);
-                timeapp.displayWeeklyReport();
             }
         } while(nr!=0);
         System.out.println("Exiting program as per your request");

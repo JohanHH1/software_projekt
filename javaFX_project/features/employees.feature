@@ -7,6 +7,7 @@ Feature: select employee
     When I enter the initials "HUBA"
     Then I am logged in as initials "HUBA"
 
+
   Scenario: an employee registers hours spent on an activity
     Given employee "HUBA" already exist
     Given project "project-1" already exists
