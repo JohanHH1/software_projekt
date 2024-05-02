@@ -55,7 +55,11 @@ public class TimeApp {
             for (int j = 0; j < 2; j++) { // Adding 2 activities to each of the 5 projects
                 String activityName = activityNames.get(activityIndex++);
                 Activity activity = new Activity(activityName);
-                project.addActivity(activityName);
+                try {
+                    project.addActivity(activityName);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 for (Employee employee : listOfEmployees) { // assigning all employees to all activities
                     addEmployeeToActivity(activityName, employee.getInitials(), project.getProjectName());
                 }

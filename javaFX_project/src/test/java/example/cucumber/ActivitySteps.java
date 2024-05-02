@@ -23,12 +23,9 @@ public class ActivitySteps {
 
     // Den samme @Given bruges i alle 4 scenarios
     @Given("the user has an activity {string} in project {string}")
-    public void theUserHasAnActivityInProject(String activityName, String projectName) {
-        try {
+    public void theUserHasAnActivityInProject(String activityName, String projectName) throws Exception {
             timeApp.createActivity(activityName, projectName);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     //----------------------------------------------------------------------------------------------------
@@ -68,7 +65,7 @@ public class ActivitySteps {
     }
     @When("employee {string} is added to activity {string} in project {string}")
     public void employeeIsAddedToActivityInProject(String initials, String activityName, String projectName) {
-        timeApp.initializeEmployees();
+        timeApp.getListOfEmployees().add(timeApp.getEmployee(initials));
         timeApp.addEmployeeToActivity(activityName, initials, projectName);
     }
 
@@ -87,7 +84,7 @@ public class ActivitySteps {
 
     @And("employee {string} is assigned to activity {string} in project {string}")
     public void employeeIsAssignedToActivityInProject(String initials, String activityName, String projectName) {
-        timeApp.initializeEmployees();
+        timeApp.getListOfEmployees().add(timeApp.getEmployee(initials));
         timeApp.addEmployeeToActivity(activityName, initials, projectName);
 
     }

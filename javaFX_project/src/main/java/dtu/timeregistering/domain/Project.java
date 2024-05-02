@@ -30,12 +30,17 @@ public class Project {
     }
     //--------------------------------------------------------------------------------
     // Methods
-    public void addActivity(String activityName){
-
+    public void addActivity(String activityName) throws Exception{
+        for(Activity activityVariable : listOfActivities) {
+            if (activityVariable.getActivityName().equals(activityName)) {
+                throw new Exception("Activity already exists");
+            }
+        }
         Activity activity = new Activity(activityName);
         activity.setProjectName(projectName);
         listOfActivities.add(activity);
-    }
+        }
+
     //--------------------------------------------------------------------------------
     // Getters
     public String getProjectName() {
