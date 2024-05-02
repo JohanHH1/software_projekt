@@ -18,6 +18,7 @@ public class TimeApp {
     private Project project;
     private Start start;
     private int counter = 0;
+    private boolean b;
     private ArrayList<Project> listOfProjects = new ArrayList<>();
     private ArrayList<Employee> listOfEmployees = new ArrayList<>();
     private ArrayList<Employee> listOfAvailableEmployees = new ArrayList<>();
@@ -343,12 +344,16 @@ public class TimeApp {
     }
 
 
-    public ArrayList<Employee> getListOfAvailableEmployees(Integer startWeek, Integer endWeek) throws Exception {
+    public ArrayList<Employee> getListOfAvailableEmployees(int startWeek, int endWeek) throws Exception {
         for (Employee employee : listOfEmployees) {
-            if (!employee.getUnavailableWeeks().contains(startWeek) && !employee.getUnavailableWeeks().contains(endWeek)) {
+            b=true;
+            for (int i = startWeek; i<=endWeek; i++){
+                if (employee.getUnavailableWeeks().contains(i)) {
+                    b=false; // b is a boolean that catches of an employee is unavailable for even one week during the period
+                }}
+            if (b){
                 listOfAvailableEmployees.add(employee);
-            }
-        }
+            }}
         if(listOfAvailableEmployees.isEmpty()){
             throw new Exception("There are no available employees in your requested timeframe");
         }
