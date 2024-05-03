@@ -33,7 +33,7 @@ public class Project {
     public void addActivity(String activityName) throws Exception{
         for(Activity activityVariable : listOfActivities) {
             if (activityVariable.getActivityName().equals(activityName)) {
-                throw new Exception("Activity already exists");
+                throw new Exception("Activity already exists in this project");
             }
         }
         Activity activity = new Activity(activityName);
