@@ -190,16 +190,16 @@ public class Start {
                             //console.nextLine();
                             if (nr3 == 1) {
                                 System.out.println("Please enter week of your unavailability:");
-                                unavailableWeek = timeapp.getInt(console, "Please enter a valid week.", 1, 1000);
+                                unavailableWeek = timeapp.getInt(console, "Please enter a valid week.", 1, 10000);
                                 //console.nextLine();
                                 timeapp.markEmployeeUnavailableSingleWeek(chosenEmployee, unavailableWeek);
                                 System.out.println("You have successfully been marked unavailable in week " + unavailableWeek);
                             }
                             if (nr3 == 2) {
                                 System.out.println("Please enter start week of your unavailability:");
-                                startWeek = timeapp.getInt(console, "Please enter a valid week.", 1, 1000);
+                                startWeek = timeapp.getInt(console, "Please enter a valid week.", 1, 10000);
                                 System.out.println("Please enter end week of your unavailability:");
-                                endWeek = timeapp.getInt(console, "Please enter a valid week.", 1, 1000);
+                                endWeek = timeapp.getInt(console, "Please enter larger week number than the start week.", startWeek+1, 10000);
                                 timeapp.markEmployeeUnavailableSeveralWeeks(chosenEmployee, startWeek, endWeek);
                                 System.out.println("You have successfully been marked unavailable from week " + startWeek + " till week " + endWeek);
                             }
