@@ -76,7 +76,6 @@ public class Start {
             System.out.println("2. Select a project");
             System.out.println("3. My profile");
             System.out.println("4. Project manager actions");
-            System.out.println("5. Get Weekly report");
             nr = timeapp.getInt(console,"Enter a number from the list above: ", 0, 4);
             console.nextLine();
 
@@ -126,7 +125,7 @@ public class Start {
                                 timeapp.displayAllActivitiesInProject(chosenProject);
                                 activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", chosenProject);
                                 System.out.println("Please enter hours worked on activity " + activityName);
-                                hoursWorked = console.nextFloat();
+                                hoursWorked = timeapp.getFloat(console,"Please enter the amount of hours worked: ");
                                 console.nextLine();
                                 timeapp.addHoursToActivityAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
                                 System.out.println(hoursWorked + " hours added to activity " + activityName + " in project " + chosenProject);
@@ -207,8 +206,8 @@ public class Start {
                         } while (nr3 != 0);
                     }
 
-                        if (nr2 == 3){ // 3.3 edit hours
-                        //edit hours
+                        if (nr2 == 3){ // 3.3 remove hours
+                        //remove hours
                             System.out.println("\nChoose a project: ");
                             System.out.println("List of all current projects: ");
                             timeapp.displayAllProjectNames();
@@ -218,7 +217,7 @@ public class Start {
                             timeapp.displayAllActivitiesInProject(chosenProject);
                             activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", chosenProject);
                             System.out.println("Please enter the amount of hours you wish to remove: ");
-                            hoursWorked = console.nextFloat();
+                            hoursWorked = timeapp.getFloat(console,"Please enter the amount of hours you wish to remove: ");
                             console.nextLine();
                             timeapp.removeHoursInActiivtyAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
                             System.out.println(hoursWorked + " hours removed from activity " + activityName + " in project " + chosenProject);

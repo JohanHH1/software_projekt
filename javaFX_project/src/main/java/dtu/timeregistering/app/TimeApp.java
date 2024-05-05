@@ -285,6 +285,16 @@ public class TimeApp {
         }
         return input;
     }
+    public float getFloat(Scanner console, String prompt) {
+        float input;
+            while (!console.hasNextFloat()) {
+                console.next();
+                System.out.println("Error - Please enter an number");
+                System.out.print(prompt);
+            }
+            input = console.nextFloat();
+        return input;
+    }
     public String getValidProjectName(Scanner console, String prompt) {
         while (true) {
             String projectName = console.next();
