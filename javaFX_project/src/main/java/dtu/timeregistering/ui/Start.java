@@ -3,18 +3,17 @@ import dtu.timeregistering.app.TimeApp;
 
 import java.util.*;
 //___________________________________________________________________________________________________________________________//
-// STRUKTUR PÅ START KLASSEN
+// STRUKTUR IN START CLASS
 //1 create project
 //2 select project
     //2.1 Register hours
     //2.2 See activity data
     //2.3 select project manager
 //3 My profile
-    //3.1 see employee data(se deres egen data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? )
+    //3.1 see employee data
     //3.2 register unavailable
-    //3.3 remove hours(fjerne allerede registreret timer)
+    //3.3 remove hours
 //4 project Manager actions
-// choose a project to manage if more that one:
     //4.1 create activities
     //4.2 manage activity
         //4.2.1 add timeframe
@@ -22,11 +21,8 @@ import java.util.*;
         //4.2.3 assign employee to activity
         //4.2.4 set budgeted hours on activities
         //4.2.5 remove employee from activity
-    //4.3 get hours spent on project (total hours on activities)
-    //4.4 see selected employees data(se valgte employees data: initials, hoursWorked,number of activities, activities, unavailable weeks,is project manager: project managers projects, my projects?? ))
-// 5 get weekly report
-
-//6 Log ud
+    //4.3 get hours spent on project
+    //4.4 see selected employees data
 //________________________________________________________________________________________________________________________//
 public class Start {
     TimeApp timeapp = new TimeApp();

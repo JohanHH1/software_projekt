@@ -246,7 +246,7 @@ public class TimeApp {
         System.out.println("End week: " + activity.getEndWeek());
         System.out.println("Activity " + activityName + " is in project: " + activity.getProjectName());
     }
-    public void displayListOfAvailableEmployees(Integer startWeek, Integer endWeek) {
+    public void displayListOfAvailableEmployees(int startWeek, int endWeek) {
         try {
             ArrayList<Employee> listOfAvailableEmployees = getListOfAvailableEmployees(startWeek, endWeek);
             System.out.println("Available Employees from week " + startWeek + " to week " + endWeek);
@@ -268,7 +268,7 @@ public class TimeApp {
     }
     //--------------------------------------------------------------------------------
     // Getters:
-    //This method ensures the user prompt is an integer (long)
+    //This method ensures the user prompt is an int
 
 
     public ArrayList<Employee> getListOfEmployees() {
@@ -376,18 +376,18 @@ public class TimeApp {
     }
     //--------------------------------------------------------------------------------
     // Setters:
-    public void setTimeFrame(String activityName, String projectName, Integer startWeek, Integer endWeek) throws Exception {
+    public void setTimeFrame(String activityName, String projectName, int startWeek, int endWeek) throws Exception {
         Project gottenProject = listOfProjects.stream().filter(project->project.getProjectName().equalsIgnoreCase(projectName)).findFirst().orElseThrow(()-> new Exception("Activity not in project"));
         gottenProject.getActivity(activityName).setStartWeek(startWeek);
         gottenProject.getActivity(activityName).setEndWeek(endWeek);
     }
 
-    public void markEmployeeUnavailableSingleWeek(String initials, Integer unavailableWeek) {
+    public void markEmployeeUnavailableSingleWeek(String initials, int unavailableWeek) {
         getEmployee(initials).getUnavailableWeeks().add(unavailableWeek);
 
     }
 
-    public void markEmployeeUnavailableSeveralWeeks(String initials, Integer startWeekUnavailable, Integer endWeekUnavailable) {
+    public void markEmployeeUnavailableSeveralWeeks(String initials, int startWeekUnavailable, int endWeekUnavailable) {
         for (int i = startWeekUnavailable; i <= endWeekUnavailable; i++) {
             getEmployee(initials).getUnavailableWeeks().add(i);
         }
@@ -404,7 +404,7 @@ public class TimeApp {
         getProject(projectName).setHasProjectManager(true);
     }
 
-    public boolean employeeIsAvailable(String initials, Integer startWeek, Integer endWeek){
+    public boolean employeeIsAvailable(String initials, int startWeek, int endWeek){
         if(!getEmployee(initials).getUnavailableWeeks().contains(startWeek) && !getEmployee(initials).getUnavailableWeeks().contains(endWeek)) {
             getEmployee(initials).setAvailable(true);
             return getEmployee(initials).isAvailable();
@@ -419,7 +419,7 @@ public class TimeApp {
         employee.getMyActivityList().removeIf(i -> i.equals(activity));
     }
 
-    public void setBudgetedHoursForActivity(Integer budgetedHours, String activityName, String projectName) {
+    public void setBudgetedHoursForActivity(int budgetedHours, String activityName, String projectName) {
         getProject(projectName).getActivity(activityName).setBudgetedHours(budgetedHours);
     }
 
