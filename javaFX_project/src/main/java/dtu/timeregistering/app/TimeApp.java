@@ -15,6 +15,7 @@ public class TimeApp {
     // Fields:
     private int counter = 0;
     private boolean b;
+    String name;
     private ArrayList<Project> listOfProjects = new ArrayList<>();
     private ArrayList<Employee> listOfEmployees = new ArrayList<>();
     private ArrayList<Employee> listOfAvailableEmployees = new ArrayList<>();
@@ -49,13 +50,15 @@ public class TimeApp {
         }
         int activityIndex = 0;
         for (int i = 1; i <= 5; i++) {  // Creating 5 projects
+            name = "Project" + i;
+            addProject(name);
             Project project = new Project("Project" + i);
             listOfProjects.add(project);
             for (int j = 0; j < 2; j++) { // Adding 2 activities to each of the 5 projects
                 String activityName = activityNames.get(activityIndex++);
                 Activity activity = new Activity(activityName);
                 try {
-                    project.addActivity(activityName);
+                    getProject(name).addActivity(activityName);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -140,14 +143,12 @@ public class TimeApp {
         counter +=1;
         project.setCount(counter);
         project.setProjectNumber();
-        System.out.println("project number is: " + project.getProjectNumber());
 
     }
     //Patrick - create activity in project
     public void createActivity(String activityName, String projectName) throws Exception {
         try{
             getProject(projectName).addActivity(activityName);
-            System.out.println("The activity " + activityName + " was successfully created!");
         }
         catch (Exception e){
             System.out.println("Error : "+e.getMessage());
@@ -163,8 +164,6 @@ public class TimeApp {
         if (getEmployee(initials).getMyActivityList().size()<20) {
             getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().add(getEmployee((initials)));
             getEmployee(initials).getMyActivityList().add(getProject(projectName).getActivity(activityName));
-            System.out.println("Employee " + initials + " was successfully added to activity " + activityName + " in project " + projectName);
-
         } else {
             System.out.println(initials + " has the max limit of activities (20).");
         }
