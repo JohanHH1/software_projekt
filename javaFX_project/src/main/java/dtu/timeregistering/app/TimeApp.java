@@ -49,11 +49,9 @@ public class TimeApp {
             activityNames.add("Activity" + i);
         }
         int activityIndex = 0;
-        for (int i = 1; i <= 5; i++) {  // Creating 5 projects
-            name = "Project" + i;
+        for (int k = 1; k <= 5; k++) {  // Creating 5 projects
+            name = "Project" + k;
             addProject(name);
-            Project project = new Project("Project" + i);
-            listOfProjects.add(project);
             for (int j = 0; j < 2; j++) { // Adding 2 activities to each of the 5 projects
                 String activityName = activityNames.get(activityIndex++);
                 Activity activity = new Activity(activityName);
@@ -63,7 +61,7 @@ public class TimeApp {
                     throw new RuntimeException(e);
                 }
                 for (Employee employee : listOfEmployees) { // assigning all employees to all activities
-                    addEmployeeToActivity(activityName, employee.getInitials(), project.getProjectName());
+                    addEmployeeToActivity(activityName, employee.getInitials(), getProject(name).getProjectName());
                 }
             }
         }
