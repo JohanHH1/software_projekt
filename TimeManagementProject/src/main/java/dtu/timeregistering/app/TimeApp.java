@@ -13,9 +13,6 @@ public class TimeApp {
 
     //--------------------------------------------------------------------------------
     // Fields:
-    private int n=0;
-    private Project project;
-    private Start start;
     private int counter = 0;
     private boolean b;
     private ArrayList<Project> listOfProjects = new ArrayList<>();
@@ -148,11 +145,18 @@ public class TimeApp {
         counter +=1;
         project.setCount(counter);
         project.setProjectNumber();
+        System.out.println("project number is: " + project.getProjectNumber());
 
     }
     //Patrick - create activity in project
     public void createActivity(String activityName, String projectName) throws Exception {
+        try{
          getProject(projectName).addActivity(activityName);
+         System.out.println("The activity " + activityName + " was successfully created!");
+        }
+        catch (Exception e){
+            System.out.println("Error : "+e.getMessage());
+        }
     }
     //Kajsa - employee log in
     public void logIn(String initials) {
