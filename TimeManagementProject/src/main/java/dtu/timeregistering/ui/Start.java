@@ -289,7 +289,8 @@ public class Start {
                                             employeeToAdd = employeeToAdd.toUpperCase();
                                         } while (timeapp.isInActivityListOfEmployees(activityName, employeeToAdd, chosenProject));
                                         timeapp.addEmployeeToActivity(activityName, employeeToAdd, chosenProject);
-                                         } else{
+                                        System.out.println("Employee " + employeeToAdd + " was successfully added to activity " + activityName + " in project " + chosenProject);
+                                    } else{
                                         System.out.println("All employees are already working on the activity " + activityName);
                                     }
                                 }
@@ -301,20 +302,15 @@ public class Start {
                                     System.out.println("Hours budgeted for activity " + activityName + " is: " + budgetHours);
                                 }
                                 if (nr3 == 5) {//4.2.5 remove employee from activities
-                                    if(!timeapp.getProject(chosenProject).getActivity(activityName).getListOfEmployeesInActivity().isEmpty()) {
-                                        do {
-                                            System.out.println("Chose an employee to remove from activity " + activityName + ": ");
-                                            System.out.println("List of employees in activity: ");
-                                            timeapp.displayListOfEmployeesInActivity(activityName, chosenProject);
-                                            employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
-                                            employeeToAdd = employeeToAdd.toUpperCase();
-                                        } while (!timeapp.isInActivityListOfEmployees(activityName, employeeToAdd, chosenProject));
-                                        timeapp.removeEmployeeFromActivity(employeeToAdd, activityName, chosenProject);
-                                        System.out.println("Employee " + employeeToAdd + " was successfully removed from activity " + activityName + " in project " + chosenProject);
-                                    }
-                                    else{
-                                        System.out.println("No employees are working on the activity " + activityName);
-                                    }
+                                    do {
+                                        System.out.println("Chose an employee to remove from activity " + activityName + ": ");
+                                        System.out.println("List of employees in activity: ");
+                                        timeapp.displayListOfEmployeesInActivity(activityName, chosenProject);
+                                        employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                                        employeeToAdd = employeeToAdd.toUpperCase();
+                                    } while (!timeapp.isInActivityListOfEmployees(activityName, employeeToAdd,chosenProject));
+                                    timeapp.removeEmployeeFromActivity(employeeToAdd,activityName, chosenProject);
+                                    System.out.println("Employee " + employeeToAdd + " was successfully removed from activity " + activityName + " in project " + chosenProject);
                                 }
                             } while (nr3 != 0);
                         }
@@ -333,6 +329,7 @@ public class Start {
                         }
                     } while(nr2 !=0); // Back to main menu
                 }
+
             }
         } while(nr!=0);
         System.out.println("Exiting program as per your request");
