@@ -2,7 +2,7 @@
 
 We have had major problems with re-naming the project from the given name "javaFX-project" to something else. This explains the name, even though it is NOT a JavaFX-project.
 
-Program should be run using IntelliJ ide. Open the pom.xml as a project.
+Program should be run using IntelliJ ide. Open the pom.xml as a project. If the error: "Invalid VCS root mapping" is shown, press configure, and on the right side, chose VCS as "<none>", then hit "Apply".
 Inside your IDE, run the "Start" file under the UI folder to start the program.
 Follow the prompts in the program to use the program.
 
