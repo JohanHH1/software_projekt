@@ -89,7 +89,8 @@ public class Start {
                 timeapp.displayAllProjectNames();
                 System.out.println();
             }
-            if (nr == 2) {  // 2. Select a project
+            // 2. Select a project
+            if (nr == 2) {
                 if (timeapp.isEmptyProjectList()){
                     System.out.println("There is currently no projects to chose from. Create a project first.");
                 }
@@ -98,7 +99,8 @@ public class Start {
                     System.out.println("List of all current projects: ");
                     timeapp.displayAllProjectNames();
                     chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
-                    console.nextLine();
+                    console.nextLine(); // (Skal være her for at det virker)
+                    // 2.
                     do {
                         System.out.println("\nProject management menu for project: " + chosenProject);
                         System.out.println("0. To go back to main menu");
@@ -108,7 +110,9 @@ public class Start {
                             System.out.println("3. Select a project manager");
                         }
                         nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 3);
-                        console.nextLine();
+                        console.nextLine(); // (Skal være her for at det virker, men gør i princippet ingenting)
+
+                        //2.1
                         if (nr2 == 1) { // 2.1 Register hours
                             if (timeapp.isEmptyActivityList(chosenProject)) {
                                 System.out.println("There are currently no activities in project " + chosenProject + ".");
@@ -126,6 +130,8 @@ public class Start {
                                 System.out.println("Your total hours worked are: " + timeapp.employeeHoursWorked(chosenEmployee));
                             }
                         }
+
+                        // 2.2
                         if (nr2 == 2){ // 2.2 See Activity data
                             if (timeapp.isEmptyActivityList(chosenProject)) {    // If no activities in chosenProject
                                 System.out.println("There are currently no activities in project " + chosenProject + ".");
@@ -139,6 +145,8 @@ public class Start {
                         }
                         if (!timeapp.projectHasProjectManager(chosenProject)){
                         if (nr2 == 3){ // 2.3 Select a projectManager
+                            // Hvis der ikke allerede er en project manager
+
                                 System.out.println("\nPlease choose an employee to assign as project manager: ");
                                 System.out.println("List of all employees: ");
                                 timeapp.displayAllEmployees();
@@ -162,20 +170,25 @@ public class Start {
                     System.out.println("2. Register unavailable");
                     System.out.println("3. Remove hours");
                     nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
+
                     if (nr2 == 1){ // 3.1 Display my information
                         System.out.println(chosenEmployee + "'s informations are: ");
                         timeapp.displayAllMyInformation(chosenEmployee);
                     }
+
+
                     if (nr2 == 2) { // 3.2 Register unavailable
                         do {
-                            System.out.println("\nChoose one of the options below :");
+                            System.out.println("\n Choose one of the options below :");
                             System.out.println("0. Go back to My profile menu:");
                             System.out.println("1. Register unavailable for a single week:");
                             System.out.println("2. Register unavailable for multiple weeks:");
                             nr3 = timeapp.getInt(console, "Enter a number from the list above: ", 0, 2);
+                            //console.nextLine();
                             if (nr3 == 1) {
                                 System.out.println("Please enter week of your unavailability:");
                                 unavailableWeek = timeapp.getInt(console, "Please enter a valid week.", 1, 10000);
+                                //console.nextLine();
                                 timeapp.markEmployeeUnavailableSingleWeek(chosenEmployee, unavailableWeek);
                                 System.out.println("You have successfully been marked unavailable in week " + unavailableWeek);
                             }
@@ -189,12 +202,14 @@ public class Start {
                             }
                         } while (nr3 != 0);
                     }
+
                         if (nr2 == 3){ // 3.3 remove hours
+                        //remove hours
                             System.out.println("\nChoose a project: ");
                             System.out.println("List of all current projects: ");
                             timeapp.displayAllProjectNames();
                             chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
-                            console.nextLine();
+                            console.nextLine(); // (Skal være her for at det virker)
                             if (timeapp.isEmptyActivityList(chosenProject)) {    // If no activities in chosenProject
                                 System.out.println("There are currently no activities in project " + chosenProject + ".");
                             }
@@ -210,8 +225,11 @@ public class Start {
                                 System.out.println(hoursWorked + " hours removed from " + chosenEmployee + " worked hours");
                                 System.out.println("Your total hours worked are: " + timeapp.employeeHoursWorked(chosenEmployee));
                             }
+
                         }
+
                 } while(nr2 !=0); // Back to main menu
+
             }
             // 4. Project manager actions
             if (nr == 4){ // 4. Project manager settings
@@ -220,10 +238,12 @@ public class Start {
                 timeapp.displayAllProjectNames();
                 chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
                 if (!timeapp.isProjectManager(loggedInEmployee) && (timeapp.projectHasProjectManager(chosenProject))) {
+                    //jeg er ikke manager og projectet har en manager
                         System.out.println(loggedInEmployee + ", You do not have access to project manager settings.");
                         System.out.println("You are now being sent back to main menu.");
                 } else{
                     do{ // choose a project to manage if more than one:
+
                         System.out.println("\nProject manager settings for project " + chosenProject);
                         System.out.println("0. Go back to main menu");
                         System.out.println("1. Create an activity");
@@ -233,10 +253,12 @@ public class Start {
                         nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
                         console.nextLine();
                         if (nr2 == 1){ // 4.1 Create activity
+
                             timeapp.displayLisOfManagersListOfProjects(chosenEmployee);
                             System.out.println("To create new activity, please enter activity name: ");
                             activityName = console.nextLine();
                             timeapp.createActivity(activityName, chosenProject);
+                            System.out.println("The activity " + activityName + " was successfully created!");
                             System.out.println("Here is a list of all current activities in project " + chosenProject + ": ");
                             timeapp.displayAllActivitiesInProject(chosenProject);
                             System.out.println();
