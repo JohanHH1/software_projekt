@@ -10,7 +10,7 @@ Cucumbers scenarios are in /software_projekt/javaFX_project/features
 
 Cumbersteps are in /software_projekt/javaFX_project/src/test/java/example/cucumber
 
-All tests can be run at once in software_projekt/javaFX_project/src/test/java/example/cucumber/CucumberTest
+All tests can be run at once in /software_projekt/javaFX_project/src/test/java/example/cucumber/CucumberTest
 
 Overview of the interface:
 
