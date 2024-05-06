@@ -344,12 +344,20 @@ public class TimeApp {
     //Johan - this makes sure user inputs a number (can be a float)
     public float getFloat(Scanner console, String prompt) {
         float input;
-        while (!console.hasNextFloat() && console.nextFloat()>=0) {
+        while (true){
+        while (!console.hasNextFloat()) {
             console.next();
-            System.out.println("Error - Please enter an number");
+            System.out.println("Error - Please enter a number");
             System.out.println(prompt);
         }
         input = console.nextFloat();
+        if(input >=0) {
+            break;
+        } else{
+            System.out.println("Error - Please enter a number");
+            System.out.println(prompt);
+        }
+        }
         return input;
     }
 
