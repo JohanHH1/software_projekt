@@ -135,7 +135,7 @@ public class TimeApp {
         project.setProjectNumber();
 
     }
-    public void createActivity(String activityName, String projectName) throws Exception {
+    public void createActivity(String activityName, String projectName) {
          getProject(projectName).addActivity(activityName);
     }
     public void logIn(String initials) {
@@ -196,7 +196,6 @@ public class TimeApp {
         }
     }
     public void displayMyActivityList(String initials) {
-        // Denne metode kan måske/evt upgrades til at displaye hvilket projekt hver aktivitet hører til
         for (Activity i : getEmployee(initials).getMyActivityList()){
             System.out.println(i.getActivityName());
         }
@@ -207,7 +206,7 @@ public class TimeApp {
         }
     }
     public void displayMyHoursWorked(String initials) {
-        System.out.println("Your total hours worked are: " + getEmployee(initials).getHoursWorked());
+        System.out.println(initials + "'s total hours worked are: " + getEmployee(initials).getHoursWorked());
     }
     public void displayListOfEmployeesInActivity(String activityName, String projectName) {
         for (Employee i : getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity()){
@@ -222,14 +221,14 @@ public class TimeApp {
     public void displayAllMyInformation(String initials){
         Employee employee = getEmployee(initials);
         System.out.println("Name: "+ employee.getInitials());
-        System.out.print("My projects: ");
+        System.out.println("Projects: ");
         displayMyProjectList(initials);
         System.out.println("Max number of activities: "+ employee.getMaxNumberOfActivities());
-        System.out.println("My number of activities: " + employee.getMyActivityList().size());
-        System.out.println("My activities: ");
+        System.out.println("Number of activities: " + employee.getMyActivityList().size());
+        System.out.println("Activities: ");
         displayMyActivityList(initials);
         displayMyHoursWorked(initials);
-        System.out.println("My unavailable weeks are: " + employee.getUnavailableWeeks());
+        System.out.println("Unavailable weeks are: " + employee.getUnavailableWeeks());
         System.out.println("ProjectManager: " + employee.isProjectManager());
         if (employee.isProjectManager()){
             displayLisOfManagersListOfProjects(initials);
@@ -281,24 +280,24 @@ public class TimeApp {
             while (!console.hasNextInt()) {
                 console.next();
                 System.out.println("Error - Please enter an integer between " + min + " and " + max + ": ");
-                System.out.print(prompt);
+                System.out.println(prompt);
             }
             input = console.nextInt();
             if (input >= min && input <= max) {
                 break;
             } else {
                 System.out.println("Error - Please enter an integer between " + min + " and " + max + ": ");
-                System.out.print(prompt);
+                System.out.println(prompt);
             }
         }
         return input;
     }
     public float getFloat(Scanner console, String prompt) {
         float input;
-            while (!console.hasNextFloat()) {
+            while (!console.hasNextFloat() && console.nextFloat()>=0) {
                 console.next();
                 System.out.println("Error - Please enter an number");
-                System.out.print(prompt);
+                System.out.println(prompt);
             }
             input = console.nextFloat();
         return input;
@@ -310,7 +309,7 @@ public class TimeApp {
                 return projectName;
             } else {
                 System.out.println("Error - Please enter a valid project name: ");
-                System.out.print(prompt);
+                System.out.println(prompt);
             }
         }
     }
@@ -321,7 +320,7 @@ public class TimeApp {
                 return activityName;
             } else {
                 System.out.println("Error - Please enter a valid activity name: ");
-                System.out.print(prompt);
+                System.out.println(prompt);
             }
         }
     }
@@ -332,7 +331,7 @@ public class TimeApp {
                 return employeeName;
             } else {
                 System.out.println("Error - Please enter a valid employee name: ");
-                System.out.print(prompt);
+                System.out.println(prompt);
             }
         }
     }
@@ -344,6 +343,7 @@ public class TimeApp {
                 return project;
             }
         }
+        System.out.println("ERROR - Project with project Name " + projectName + " not found");
         return null;
     }
 

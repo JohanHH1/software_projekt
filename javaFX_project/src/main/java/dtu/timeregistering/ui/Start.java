@@ -1,5 +1,6 @@
 package dtu.timeregistering.ui;
 import dtu.timeregistering.app.TimeApp;
+import dtu.timeregistering.domain.Employee;
 
 import java.util.*;
 //___________________________________________________________________________________________________________________________//
@@ -171,7 +172,7 @@ public class Start {
                     nr2 = timeapp.getInt(console,"Enter a number from the list above: ", 0, 5);
 
                     if (nr2 == 1){ // 3.1 Display my information
-                        System.out.println(chosenEmployee + " your informations are ");
+                        System.out.println(chosenEmployee + "'s informations are: ");
                         timeapp.displayAllMyInformation(chosenEmployee);
                     }
 
@@ -209,16 +210,21 @@ public class Start {
                             timeapp.displayAllProjectNames();
                             chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
                             console.nextLine(); // (Skal være her for at det virker)
-                            System.out.println("Choose an activity to remove hours from: ");
-                            timeapp.displayAllActivitiesInProject(chosenProject);
-                            activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", chosenProject);
-                            System.out.println("Please enter the amount of hours you wish to remove: ");
-                            hoursWorked = timeapp.getFloat(console,"Please enter the amount of hours you wish to remove: ");
-                            console.nextLine();
-                            timeapp.removeHoursInActiivtyAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
-                            System.out.println(hoursWorked + " hours removed from activity " + activityName + " in project " + chosenProject);
-                            System.out.println(hoursWorked + " hours removed from " + chosenEmployee + " worked hours");
-                            System.out.println("Your total hours worked are: " + timeapp.EmployeeHoursWorked(chosenEmployee));
+                            if (timeapp.isEmptyActivityList(chosenProject)) {    // If no activities in chosenProject
+                                System.out.println("There are currently no activities in project " + chosenProject + ".");
+                            }
+                            else {   // If there is an activity in chosenProject
+                                System.out.println("Choose an activity to remove hours from: ");
+                                timeapp.displayAllActivitiesInProject(chosenProject);
+                                activityName = timeapp.getValidActivityName(console, "Enter a valid activity name: ", chosenProject);
+                                System.out.println("Please enter the amount of hours you wish to remove: ");
+                                hoursWorked = timeapp.getFloat(console, "Please enter the amount of hours you wish to remove: ");
+                                console.nextLine();
+                                timeapp.removeHoursInActiivtyAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
+                                System.out.println(hoursWorked + " hours removed from activity " + activityName + " in project " + chosenProject);
+                                System.out.println(hoursWorked + " hours removed from " + chosenEmployee + " worked hours");
+                                System.out.println("Your total hours worked are: " + timeapp.EmployeeHoursWorked(chosenEmployee));
+                            }
 
                         }
 
@@ -291,16 +297,26 @@ public class Start {
                                     timeapp.displayListOfAvailableEmployees(startWeek, endWeek);
                                 }
                                 if (nr3 == 3) {// 4.2.3 assign employee to activity
-                                    do {
-                                        System.out.println("Chose an employee to add to activity " + activityName + ": ");
-                                        System.out.println("List of all employees not in the Activity: ");
-                                        timeapp.displayEmployeesNotInActivity(activityName, chosenProject);
-                                        employeeToAdd = timeapp.getValidEmployeeName(console, "Enter an employee in the project: ");
-                                        employeeToAdd = employeeToAdd.toUpperCase();
-                                    } while (timeapp.isInActivityListOfEmployees(activityName, employeeToAdd,chosenProject));
-                                    timeapp.addEmployeeToActivity(activityName, employeeToAdd, chosenProject);
-                                    System.out.println("Employee " + employeeToAdd + " was successfully added to activity " + activityName + " in project " + chosenProject);
+                                    int i = 0;
+                                    for (Employee employee : timeapp.getListOfEmployees()){
+                                        if (timeapp.getProject(chosenProject).getActivity(activityName).getListOfEmployeesInActivity().contains(employee)) {
+                                            i++;
+                                        }}
+                                        if (i < timeapp.getListOfEmployees().size()) {
+                                        do {
+                                            System.out.println("Chose an employee to add to activity " + activityName + ": ");
+                                            System.out.println("List of all employees not in the Activity: ");
+                                            timeapp.displayEmployeesNotInActivity(activityName, chosenProject);
+                                            employeeToAdd = timeapp.getValidEmployeeName(console, "Enter an employee in the project: ");
+                                            employeeToAdd = employeeToAdd.toUpperCase();
+                                        } while (timeapp.isInActivityListOfEmployees(activityName, employeeToAdd, chosenProject));
+                                        timeapp.addEmployeeToActivity(activityName, employeeToAdd, chosenProject);
+                                        System.out.println("Employee " + employeeToAdd + " was successfully added to activity " + activityName + " in project " + chosenProject);
+                                    } else{
+                                        System.out.println("All employees are already working on the activity " + activityName);
+                                    }
                                 }
+
                                 if (nr3 == 4) {//4.2.4 set budgeted hours in activity
                                     System.out.println("Enter the hours budgeted for this activity:");
                                     budgetHours = timeapp.getInt(console, "Enter a valid number: ", 1, 10000);
@@ -322,7 +338,7 @@ public class Start {
                         }
                         }
                         if (nr2 == 3){ //4.3 Get hours spent on project (total hours on activities)
-                            System.out.println("The total hours spent on " + chosenProject + " is :");
+                            System.out.println("The total hours spent on project " + chosenProject + " is :");
                             timeapp.displayTotalHoursOnProject(chosenProject);
                         }
                         if (nr2 == 4){ //4.4 See employee data

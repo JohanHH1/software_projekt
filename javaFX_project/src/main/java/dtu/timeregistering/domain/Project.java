@@ -30,10 +30,10 @@ public class Project {
     }
     //--------------------------------------------------------------------------------
     // Methods
-    public void addActivity(String activityName) throws Exception{
+    public void addActivity(String activityName) throws IllegalArgumentException{
         for(Activity activityVariable : listOfActivities) {
             if (activityVariable.getActivityName().equals(activityName)) {
-                throw new Exception("Activity already exists in this project");
+                throw new IllegalArgumentException("Activity already exists in this project");
             }
         }
         Activity activity = new Activity(activityName);
@@ -55,6 +55,7 @@ public class Project {
                 return activity;
             }
         }
+        System.out.println("ERROR - Activity with activity name " + activityName + " not found");
         return null;
     }
     public Employee getProjectManager() {
