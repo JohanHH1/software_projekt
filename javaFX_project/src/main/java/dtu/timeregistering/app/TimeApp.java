@@ -13,9 +13,6 @@ public class TimeApp {
 
     //--------------------------------------------------------------------------------
     // Fields:
-    private int n=0;
-    private Project project;
-    private Start start;
     private int counter = 0;
     private boolean b;
     private ArrayList<Project> listOfProjects = new ArrayList<>();
@@ -121,11 +118,6 @@ public class TimeApp {
         return getEmployee(initials).getMyActivityList().contains(getProject(projectName).getActivity(activityName));
     }
 
-    //Lizette - check if employee is assigned to the project
-    public boolean isInEmployeesListOfProjects(String initials, String projectName) {
-        return getEmployee(initials).getMyProjectList().contains(getProject(projectName));
-    }
-
     //Patrick - check if employee is in list of activities for a project
     public boolean isInActivityListOfEmployees(String activityName, String initials, String projectName) {
         return getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().contains(getEmployee(initials));
@@ -148,11 +140,18 @@ public class TimeApp {
         counter +=1;
         project.setCount(counter);
         project.setProjectNumber();
+        System.out.println("project number is: " + project.getProjectNumber());
 
     }
     //Patrick - create activity in project
     public void createActivity(String activityName, String projectName) throws Exception {
-         getProject(projectName).addActivity(activityName);
+        try{
+            getProject(projectName).addActivity(activityName);
+            System.out.println("The activity " + activityName + " was successfully created!");
+        }
+        catch (Exception e){
+            System.out.println("Error : "+e.getMessage());
+        }
     }
     //Kajsa - employee log in
     public void logIn(String initials) {
@@ -164,12 +163,14 @@ public class TimeApp {
         if (getEmployee(initials).getMyActivityList().size()<20) {
             getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().add(getEmployee((initials)));
             getEmployee(initials).getMyActivityList().add(getProject(projectName).getActivity(activityName));
+            System.out.println("Employee " + initials + " was successfully added to activity " + activityName + " in project " + projectName);
+
         } else {
             System.out.println(initials + " has the max limit of activities (20).");
         }
     }
 
-    //Joyce - assign a projectmanager
+    //Joyce - assign a projectManager
     public void assignProjectmanager(String initials) {
         getEmployee(initials).setProjectManager((true));
     }
@@ -346,12 +347,12 @@ public class TimeApp {
     //Johan - this makes sure user inputs a number (can be a float)
     public float getFloat(Scanner console, String prompt) {
         float input;
-            while (!console.hasNextFloat() && console.nextFloat()>=0) {
-                console.next();
-                System.out.println("Error - Please enter an number");
-                System.out.println(prompt);
-            }
-            input = console.nextFloat();
+        while (!console.hasNextFloat() && console.nextFloat()>=0) {
+            console.next();
+            System.out.println("Error - Please enter an number");
+            System.out.println(prompt);
+        }
+        input = console.nextFloat();
         return input;
     }
 
