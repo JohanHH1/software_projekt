@@ -295,11 +295,13 @@ public class Start {
                                     timeapp.displayListOfAvailableEmployees(startWeek, endWeek);
                                 }
                                 if (nr3 == 3) {// 4.2.3 assign employee to activity
-                                    System.out.println("Chose an employee to add to activity " + activityName + ": ");
-                                    System.out.println("List of all employees: ");
-                                    timeapp.displayAllEmployees();
-                                    employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
-                                    employeeToAdd=employeeToAdd.toUpperCase();
+                                    do {
+                                        System.out.println("Chose an employee to add to activity " + activityName + ": ");
+                                        System.out.println("List of all employees not in the Activity: ");
+                                        timeapp.displayEmployeesNotInActivity(activityName, chosenProject);
+                                        employeeToAdd = timeapp.getValidEmployeeName(console, "Enter an employee in the project: ");
+                                        employeeToAdd = employeeToAdd.toUpperCase();
+                                    } while (timeapp.isInActivityListOfEmployees(activityName, employeeToAdd,chosenProject));
                                     timeapp.addEmployeeToActivity(activityName, employeeToAdd, chosenProject);
                                     System.out.println("Employee " + employeeToAdd + " was successfully added to activity " + activityName + " in project " + chosenProject);
                                 }
@@ -310,11 +312,13 @@ public class Start {
                                     System.out.println("Hours budgeted for activity " + activityName + " is: " + budgetHours);
                                 }
                                 if (nr3 == 5) {//4.2.5 remove employee from activities
-                                    System.out.println("Chose an employee to remove from activity " + activityName + ": ");
-                                    System.out.println("List of employees in activity: ");
-                                    timeapp.displayListOfEmployeesInActivity(activityName,chosenProject);
-                                    employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
-                                    employeeToAdd=employeeToAdd.toUpperCase();
+                                    do {
+                                        System.out.println("Chose an employee to remove from activity " + activityName + ": ");
+                                        System.out.println("List of employees in activity: ");
+                                        timeapp.displayListOfEmployeesInActivity(activityName, chosenProject);
+                                        employeeToAdd = timeapp.getValidEmployeeName(console, "Enter a valid employee name: ");
+                                        employeeToAdd = employeeToAdd.toUpperCase();
+                                    } while (!timeapp.isInActivityListOfEmployees(activityName, employeeToAdd,chosenProject));
                                     timeapp.removeEmployeeFromActivity(employeeToAdd,activityName, chosenProject);
                                     System.out.println("Employee " + employeeToAdd + " was successfully removed from activity " + activityName + " in project " + chosenProject);
                                 }

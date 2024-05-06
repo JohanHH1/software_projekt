@@ -172,6 +172,14 @@ public class TimeApp {
     }
     //--------------------------------------------------------------------------------
     // DISPLAY METHODS:
+
+    public void displayEmployeesNotInActivity(String activityName, String projectName) {
+        for (Employee employee : listOfEmployees) {
+            if (!getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().contains(employee)) {
+                System.out.println(employee.getInitials());
+            }
+        }
+    }
     public void displayAllProjectNames() {
         for (Project listOfProject : listOfProjects) {
             System.out.println(listOfProject.getProjectName());
