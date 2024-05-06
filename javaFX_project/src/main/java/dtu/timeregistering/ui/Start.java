@@ -54,7 +54,7 @@ public class Start {
         // Program Starting
         timeapp.initializeEmployees();
         timeapp.initializeProjectsAndActivities();
-
+        // Patrick - initialization of the program
         // Log In
         System.out.println("Chose an employee to login as:");
         timeapp.displayAllEmployees();
@@ -75,7 +75,7 @@ public class Start {
             System.out.println("4. Project manager actions");
             nr = timeapp.getInt(console,"Enter a number from the list above: ", 0, 4);
             console.nextLine();
-
+            // joyce - creation a project
             // 1. Create project
             if (nr == 1) {
                 System.out.println("To create a new project, please enter project name: ");
@@ -90,6 +90,7 @@ public class Start {
                 timeapp.displayAllProjectNames();
                 System.out.println();
             }
+            // Kajsa - editing a project
             if (nr == 2) {  // 2. Select a project
                 if (timeapp.isEmptyProjectList()){
                     System.out.println("There is currently no projects to chose from. Create a project first.");
@@ -153,7 +154,7 @@ public class Start {
 
                     } while (nr2 !=0); // Back to main menu
                 }
-            }
+            } // johan - changing my profile
             // 3. My profile
             if (nr == 3){
                 do{
@@ -214,6 +215,7 @@ public class Start {
                     }
                 } while(nr2 !=0); // Back to main menu
             }
+            // Lizette - ProjectManager actions
             // 4. Project manager actions
             if (nr == 4){ // 4. Project manager settings
                 System.out.println("Please pick a project to continue with ");

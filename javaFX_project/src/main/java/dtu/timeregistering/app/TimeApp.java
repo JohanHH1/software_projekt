@@ -115,6 +115,7 @@ public class TimeApp {
     public boolean isLoggedIn(String initials) {
         return getEmployee(initials).isLoggedIn();
     }
+    //Lizette - checks if employees activities
     public boolean isInEmployeesListOfActivities(String activityName, String initials, String projectName) {
         return getEmployee(initials).getMyActivityList().contains(getProject(projectName).getActivity(activityName));
     }
