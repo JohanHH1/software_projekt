@@ -223,7 +223,7 @@ public class Start {
                                 timeapp.removeHoursInActiivtyAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
                                 System.out.println(hoursWorked + " hours removed from activity " + activityName + " in project " + chosenProject);
                                 System.out.println(hoursWorked + " hours removed from " + chosenEmployee + " worked hours");
-                                System.out.println("Your total hours worked are: " + timeapp.EmployeeHoursWorked(chosenEmployee));
+                                System.out.println("Your total hours worked are: " + timeapp.employeeHoursWorked(chosenEmployee));
                             }
 
                         }
