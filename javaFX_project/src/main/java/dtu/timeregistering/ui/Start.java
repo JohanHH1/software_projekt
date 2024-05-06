@@ -127,7 +127,7 @@ public class Start {
                                 timeapp.addHoursToActivityAndEmployee(activityName, chosenEmployee, chosenProject, hoursWorked);
                                 System.out.println(hoursWorked + " hours added to activity " + activityName + " in project " + chosenProject);
                                 System.out.println(hoursWorked + " hours added to " + chosenEmployee + " worked hours");
-                                System.out.println("Your total hours worked are: " + timeapp.EmployeeHoursWorked(chosenEmployee));
+                                System.out.println("Your total hours worked are: " + timeapp.employeeHoursWorked(chosenEmployee));
                             }
                         }
 
