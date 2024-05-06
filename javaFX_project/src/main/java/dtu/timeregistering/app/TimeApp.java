@@ -297,6 +297,7 @@ public class TimeApp {
     //Patrick - display list of all available employees for a given timeframe (startweek, endweek)
     public void displayListOfAvailableEmployees(int startWeek, int endWeek) {
         try {
+            listOfAvailableEmployees.clear();
             ArrayList<Employee> listOfAvailableEmployees = getListOfAvailableEmployees(startWeek, endWeek);
             System.out.println("Available Employees from week " + startWeek + " to week " + endWeek);
             for (Employee employee : listOfAvailableEmployees) {
