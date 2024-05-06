@@ -30,6 +30,7 @@ public class Project {
     }
     //--------------------------------------------------------------------------------
     // Methods
+    //Patrick - method to add activity - uses a manually coded stream
     public void addActivity(String activityName) throws Exception{
         for(Activity activityVariable : listOfActivities) {
             if (activityVariable.getActivityName().equals(activityName)) {
@@ -49,6 +50,8 @@ public class Project {
     public ArrayList<Activity> getListOfActivities() {
         return listOfActivities;
     }
+
+    //Joyce - gets the correct activity using a manually coded stream
     public Activity getActivity(String activityName) {
         for (Activity activity : listOfActivities) {
             if (activityName.equalsIgnoreCase(activity.getActivityName())) {
