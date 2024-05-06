@@ -118,11 +118,6 @@ public class TimeApp {
         return getEmployee(initials).getMyActivityList().contains(getProject(projectName).getActivity(activityName));
     }
 
-    //Lizette - check if employee is assigned to the project
-    public boolean isInEmployeesListOfProjects(String initials, String projectName) {
-        return getEmployee(initials).getMyProjectList().contains(getProject(projectName));
-    }
-
     //Patrick - check if employee is in list of activities for a project
     public boolean isInActivityListOfEmployees(String activityName, String initials, String projectName) {
         return getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().contains(getEmployee(initials));
@@ -168,12 +163,14 @@ public class TimeApp {
         if (getEmployee(initials).getMyActivityList().size()<20) {
             getProject(projectName).getActivity(activityName).getListOfEmployeesInActivity().add(getEmployee((initials)));
             getEmployee(initials).getMyActivityList().add(getProject(projectName).getActivity(activityName));
+            System.out.println("Employee " + initials + " was successfully added to activity " + activityName + " in project " + projectName);
+
         } else {
             System.out.println(initials + " has the max limit of activities (20).");
         }
     }
 
-    //Joyce - assign a projectmanager
+    //Joyce - assign a projectManager
     public void assignProjectmanager(String initials) {
         getEmployee(initials).setProjectManager((true));
     }
