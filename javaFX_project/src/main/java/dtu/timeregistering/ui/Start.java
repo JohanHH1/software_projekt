@@ -7,23 +7,23 @@ import java.util.*;
 // STRUKTUR IN START CLASS
 //1 create project
 //2 select project
-//2.1 Register hours
-//2.2 See activity data
-//2.3 select project manager
+    //2.1 Register hours
+    //2.2 See activity data
+    //2.3 select project manager
 //3 My profile
-//3.1 see employee data
-//3.2 register unavailable
-//3.3 remove hours
+    //3.1 see employee data
+    //3.2 register unavailable
+    //3.3 remove hours
 //4 project Manager actions
-//4.1 create activities
-//4.2 manage activity
-//4.2.1 add timeframe
-//4.2.2 see available employees
-//4.2.3 assign employee to activity
-//4.2.4 set budgeted hours on activities
-//4.2.5 remove employee from activity
-//4.3 get hours spent on project
-//4.4 see selected employees data
+    //4.1 create activities
+    //4.2 manage activity
+        //4.2.1 add timeframe
+        //4.2.2 see available employees
+        //4.2.3 assign employee to activity
+        //4.2.4 set budgeted hours on activities
+        //4.2.5 remove employee from activity
+    //4.3 get hours spent on project
+    //4.4 see selected employees data
 //________________________________________________________________________________________________________________________//
 public class Start {
     TimeApp timeapp = new TimeApp();
@@ -101,7 +101,7 @@ public class Start {
                     chosenProject = timeapp.getValidProjectName(console,"Enter a valid project name: ");
                     console.nextLine();
                     do {
-                        System.out.println("\nProject management menu for project: " + chosenProject);
+                        System.out.println("\nProject management menu for project: " + chosenProject +": "+ timeapp.getProject(chosenProject).getProjectNumber());
                         System.out.println("0. To go back to main menu");
                         System.out.println("1. Register hours");
                         System.out.println("2. See activity data");
@@ -225,7 +225,7 @@ public class Start {
                     System.out.println("You are now being sent back to main menu.");
                 } else{
                     do{ // choose a project to manage if more than one:
-                        System.out.println("\nProject manager settings for project " + chosenProject);
+                        System.out.println("\nProject manager settings for project " + chosenProject + ": "+ timeapp.getProject(chosenProject).getProjectNumber());
                         System.out.println("0. Go back to main menu");
                         System.out.println("1. Create an activity");
                         System.out.println("2. Manage activity");

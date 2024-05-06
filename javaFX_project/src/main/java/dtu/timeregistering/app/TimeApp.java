@@ -289,7 +289,7 @@ public class TimeApp {
         System.out.println("Budget hours: " + activity.getBudgetedHours());
         System.out.println("Start week: " + activity.getStartWeek());
         System.out.println("End week: " + activity.getEndWeek());
-        System.out.println("Activity " + activityName + " is in project: " + activity.getProjectName());
+        System.out.println("Activity " + activityName + " is in project: " + activity.getProjectName() + ": " + getProject(activity.getProjectName()).getProjectNumber());
     }
 
     //Patrick - display list of all available employees for a given timeframe (startweek, endweek)
